@@ -295,7 +295,7 @@ export default function Home() {
               Содержанки
             </h2>
 
-            <div className="w-full grid grid-cols-4 mt-[30px] z-20 relative">
+            <div className="w-full grid grid-cols-4 gap-[34px] mt-[30px] z-20 relative">
               {soderjanki.map((item, idx) => (
                 <div className="flex justify-center" key={item._id}>
                   <PreviewWidget
