@@ -328,7 +328,7 @@ export default function Home() {
                   <PreviewWidget
                     item={item}
                     className={cn({
-                      "mt-[50]":
+                      "mt-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
