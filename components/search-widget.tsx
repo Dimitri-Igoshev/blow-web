@@ -91,41 +91,41 @@ const ages = [
   { key: "99", label: "99" },
 ];
 
-const cities = [
-  { key: "moscow", label: "Москва" },
-  { key: "piter", label: "Санкт-Петербург" },
-  { key: "novosibirsk", label: "Новосибирск" },
-  { key: "kazan", label: "Казань" },
-  { key: "ekaterinburg", label: "Екатеринбург" },
-  { key: "perm", label: "Пермь" },
-  { key: "rostov", label: "Ростов-на-Дону" },
-  { key: "omsk", label: "Омск" },
-  { key: "volgograd", label: "Волгоград" },
-  { key: "samara", label: "Самара" },
-  { key: "chelyabinsk", label: "Челябинск" },
-  { key: "kemerovo", label: "Кемерово" },
-  { key: "yekaterinburg", label: "Якутск" },
-  { key: "novokuznetsk", label: "Новокузнецк" },
-  { key: "irkutsk", label: "Иркутск" },
-  { key: "tula", label: "Тула" },
-  { key: "kaliningrad", label: "Калининград" },
-  { key: "krasnoyarsk", label: "Красноярск" },
-];
-
-export const animals = [
-  { key: "cat", label: "Cat" },
-  { key: "dog", label: "Dog" },
-  { key: "elephant", label: "Elephant" },
-  { key: "lion", label: "Lion" },
-  { key: "tiger", label: "Tiger" },
-  { key: "giraffe", label: "Giraffe" },
-  { key: "dolphin", label: "Dolphin" },
-  { key: "penguin", label: "Penguin" },
-  { key: "zebra", label: "Zebra" },
-  { key: "shark", label: "Shark" },
-  { key: "whale", label: "Whale" },
-  { key: "otter", label: "Otter" },
-  { key: "crocodile", label: "Crocodile" },
+export const cities = [
+  { label: "Москва", value: "moscow" },
+  { label: "Санкт-Петербург", value: "piter" },
+  { label: "Астрахань", value: "astrahan" },
+  { label: "Барнаул", value: "barnaul" },
+  { label: "Владивосток", value: "vladivostok" },
+  { label: "Екатиренбург", value: "ekaterinburg" },
+  { label: "Ижевск", value: "izhevsk" },
+  { label: "Казань", value: "kazan" },
+  { label: "Кемерово", value: "kemerovo" },
+  { label: "Красноярск", value: "krasnoyarsk" },
+  { label: "Краснодар", value: "krasnodar" },
+  { label: "Липецк", value: "lipetsk" },
+  { label: "Майкоп", value: "maykop" },
+  { label: "Набережные Челны", value: "naberezhnye-chelny" },
+  { label: "Нижний Новгород", value: "nnov" },
+  { label: "Новосибирск", value: "novosibirsk" },
+  { label: "Омск", value: "omsk" },
+  { label: "Оренбург", value: "orenburg" },
+  { label: "Пенза", value: "penza" },
+  { label: "Пермь", value: "perm" },
+  { label: "Ростов-на-Дону", value: "rostov" },
+  { label: "Рязань", value: "ryazan" },
+  { label: "Самара", value: "samara" },
+  { label: "Саратов", value: "saratov" },
+  { label: "Тула", value: "tula" },
+  { label: "Тюмень", value: "tyumen" },
+  { label: "Ульяновск", value: "ulyanovsk" },
+  { label: "Уфа", value: "ufa" },
+  { label: "Ханты-Мансийск", value: "khanty-mansiysk" },
+  { label: "Чебоксары", value: "cheboksary" },
+  { label: "Челябинск", value: "chelyabinsk" },
+  { label: "Череповец", value: "cherpovets" },
+  { label: "Чита", value: "chita" },
+  { label: "Ярославль", value: "yaroslavl" },
 ];
 
 interface SearchWidgetProps {
@@ -228,7 +228,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
           onChange={(el: any) => setCity(el.target.value)}
         >
           {cities.map((city) => (
-            <SelectItem key={city.key}>{city.label}</SelectItem>
+            <SelectItem key={city.value}>{city.label}</SelectItem>
           ))}
         </Select>
       </div>
