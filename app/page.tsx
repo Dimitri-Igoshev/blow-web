@@ -1,7 +1,11 @@
+"use client";
+
 import { PreviewWidget } from "@/components/preview-widget";
 import { SearchWidget } from "@/components/search-widget";
 import { cn } from "@heroui/theme";
 import { Image } from "@heroui/image";
+import { cities } from "@/data/cities";
+import { useRouter } from "next/navigation";
 
 const soderjanki = [
   {
@@ -266,6 +270,15 @@ const sponsors = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+
+  const cities1 = cities.slice(0, 6);
+  const cities2 = cities.slice(6, 12);
+  const cities3 = cities.slice(12, 18);
+  const cities4 = cities.slice(18, 24);
+  const cities5 = cities.slice(24, 30);
+  const cities6 = cities.slice(30, 34);
+
   return (
     <>
       <div className="relative">
@@ -443,126 +456,75 @@ export default function Home() {
 
             <div className="grid grid-cols-6 mt-[30px] px-12 pb-[50px] gap-6">
               <ul className="flex flex-col gap-1">
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Москва
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Санкт-Петербург
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Астрахань
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Барнаул
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Владивосток
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Екатеринбург
-                </li>
+                {cities1.map((item: any) => (
+                  <li
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    key={item.value}
+                    onClick={() => router.push(`/?city=${item.value}`)}
+                  >
+                    {item.label}
+                  </li>
+                ))}
               </ul>
 
               <ul className="flex flex-col gap-1">
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Ижевск
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Казань
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Кемерово
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Краснодар
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Красноярск
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Липецк
-                </li>
+                {cities2.map((item: any) => (
+                  <li
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    key={item.value}
+                    onClick={() => router.push(`/?city=${item.value}`)}
+                  >
+                    {item.label}
+                  </li>
+                ))}
               </ul>
 
               <ul className="flex flex-col gap-1">
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Майкоп
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Набережные Челны
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Нижний Новгород
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Новосибирск
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Омск
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Оренбург
-                </li>
+                {cities3.map((item: any) => (
+                  <li
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    key={item.value}
+                    onClick={() => router.push(`/?city=${item.value}`)}
+                  >
+                    {item.label}
+                  </li>
+                ))}
               </ul>
 
               <ul className="flex flex-col gap-1">
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Пенза
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Пермь
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Ростов-на-Дону
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Рязань
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Самара
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Саратов
-                </li>
+                {cities4.map((item: any) => (
+                  <li
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    key={item.value}
+                    onClick={() => router.push(`/?city=${item.value}`)}
+                  >
+                    {item.label}
+                  </li>
+                ))}
               </ul>
 
               <ul className="flex flex-col gap-1">
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Тула
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Тюмень
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Ульяновск
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Уфа
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Ханты-Мансийск
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Чебоксары
-                </li>
+                {cities5.map((item: any) => (
+                  <li
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    key={item.value}
+                    onClick={() => router.push(`/?city=${item.value}`)}
+                  >
+                    {item.label}
+                  </li>
+                ))}
               </ul>
 
               <ul className="flex flex-col gap-1">
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Челябинск
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Череповец
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Чита
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  Ярославль
-                </li>
-                <li className="cursor-pointer hover:text-primary hover:underline">
-                  {" "}
-                </li>
+                {cities6.map((item: any) => (
+                  <li
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    key={item.value}
+                    onClick={() => router.push(`/?city=${item.value}`)}
+                  >
+                    {item.label}
+                  </li>
+                ))}
                 <li className="cursor-pointer text-primary hover:text-dark font-semibold mt-6">
                   Все города
                 </li>
@@ -575,11 +537,25 @@ export default function Home() {
                   {new Date().getFullYear()} © BLOW. Сайт для лиц старше 18-ти
                   лет.
                 </p>
-                <div className="flex justify-center"><Image alt="BLOW" src="/logo.png" width={101} height={40} radius="none" /></div>
+                <div className="flex justify-center">
+                  <Image
+                    alt="BLOW"
+                    src="/logo.png"
+                    width={101}
+                    height={40}
+                    radius="none"
+                  />
+                </div>
                 <ul className="flex items-center justify-end gap-6">
-                  <li className="underline cursor-pointer hover:text-primary text-nowrap">Свяжись с нами</li>
-                  <li className="underline cursor-pointer hover:text-primary text-nowrap">Правила</li>
-                  <li className="underline cursor-pointer hover:text-primary text-nowrap">Договор оферта</li>
+                  <li className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Свяжись с нами
+                  </li>
+                  <li className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Правила
+                  </li>
+                  <li className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Договор оферта
+                  </li>
                 </ul>
               </div>
             </footer>

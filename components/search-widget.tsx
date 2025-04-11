@@ -7,6 +7,8 @@ import { HeartFilledIcon, MenIcon, WomenIcon } from "./icons";
 import { colors } from "@/config/colors";
 import { Input } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/react";
+import { cities } from "@/data/cities";
+import { useSearchParams } from 'next/navigation'
 
 const ages = [
   { key: "18", label: "18" },
@@ -91,55 +93,26 @@ const ages = [
   { key: "99", label: "99" },
 ];
 
-export const cities = [
-  { label: "Москва", value: "moscow" },
-  { label: "Санкт-Петербург", value: "piter" },
-  { label: "Астрахань", value: "astrahan" },
-  { label: "Барнаул", value: "barnaul" },
-  { label: "Владивосток", value: "vladivostok" },
-  { label: "Екатиренбург", value: "ekaterinburg" },
-  { label: "Ижевск", value: "izhevsk" },
-  { label: "Казань", value: "kazan" },
-  { label: "Кемерово", value: "kemerovo" },
-  { label: "Красноярск", value: "krasnoyarsk" },
-  { label: "Краснодар", value: "krasnodar" },
-  { label: "Липецк", value: "lipetsk" },
-  { label: "Майкоп", value: "maykop" },
-  { label: "Набережные Челны", value: "naberezhnye-chelny" },
-  { label: "Нижний Новгород", value: "nnov" },
-  { label: "Новосибирск", value: "novosibirsk" },
-  { label: "Омск", value: "omsk" },
-  { label: "Оренбург", value: "orenburg" },
-  { label: "Пенза", value: "penza" },
-  { label: "Пермь", value: "perm" },
-  { label: "Ростов-на-Дону", value: "rostov" },
-  { label: "Рязань", value: "ryazan" },
-  { label: "Самара", value: "samara" },
-  { label: "Саратов", value: "saratov" },
-  { label: "Тула", value: "tula" },
-  { label: "Тюмень", value: "tyumen" },
-  { label: "Ульяновск", value: "ulyanovsk" },
-  { label: "Уфа", value: "ufa" },
-  { label: "Ханты-Мансийск", value: "khanty-mansiysk" },
-  { label: "Чебоксары", value: "cheboksary" },
-  { label: "Челябинск", value: "chelyabinsk" },
-  { label: "Череповец", value: "cherpovets" },
-  { label: "Чита", value: "chita" },
-  { label: "Ярославль", value: "yaroslavl" },
-];
-
 interface SearchWidgetProps {
   className?: string;
 }
 
 export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
+  const searchParams = useSearchParams()
+
   const [men, setMen] = useState(false);
   const [woman, setWoman] = useState(false);
   const [ageFromOptions, setAgeFromOptions] = useState([...ages]);
   const [ageFrom, setAgeFrom] = useState("");
   const [ageToOptions, setAgeToOptions] = useState([...ages]);
   const [ageTo, setAgeTo] = useState("");
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(searchParams.get("city") || "");  
+
+  useEffect(() => {
+    if (!searchParams.get("city")) return;
+    setCity(searchParams.get("city") as string);
+  }, [searchParams.get("city")])
+  
 
   useEffect(() => {
     if (!ageFrom) return;
