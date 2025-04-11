@@ -10,7 +10,7 @@ const soderjanki = [
     name: "Светлана",
     age: "24",
     city: "Москва",
-    photo: "/1.jpg",
+    photo: "/1.png",
   },
   {
     _id: "2",
@@ -18,7 +18,7 @@ const soderjanki = [
     name: "Алена",
     age: "32",
     city: "Москва",
-    photo: "/2.jpg",
+    photo: "/2.png",
   },
   {
     _id: "3",
@@ -26,7 +26,7 @@ const soderjanki = [
     name: "София",
     age: "23",
     city: "Москва",
-    photo: "/3.jpg",
+    photo: "/3.png",
   },
   {
     _id: "4",
@@ -34,7 +34,7 @@ const soderjanki = [
     name: "Дарья",
     age: "25",
     city: "Москва",
-    photo: "/4.jpg",
+    photo: "/4.png",
   },
   {
     _id: "5",
@@ -42,7 +42,7 @@ const soderjanki = [
     name: "Наташа",
     age: "28",
     city: "Москва",
-    photo: "/5.jpg",
+    photo: "/5.png",
   },
   {
     _id: "6",
@@ -50,7 +50,7 @@ const soderjanki = [
     name: "Юля",
     age: "24",
     city: "Москва",
-    photo: "/6.jpg",
+    photo: "/6.png",
   },
   {
     _id: "7",
@@ -58,7 +58,7 @@ const soderjanki = [
     name: "Вероника",
     age: "35",
     city: "Москва",
-    photo: "/7.jpg",
+    photo: "/7.png",
   },
   {
     _id: "8",
@@ -66,7 +66,7 @@ const soderjanki = [
     name: "Анна",
     age: "25",
     city: "Москва",
-    photo: "/8.jpg",
+    photo: "/8.png",
   },
   {
     _id: "9",
@@ -74,7 +74,7 @@ const soderjanki = [
     name: "Кристина",
     age: "25",
     city: "Москва",
-    photo: "/9.jpg",
+    photo: "/9.png",
   },
   {
     _id: "10",
@@ -82,7 +82,7 @@ const soderjanki = [
     name: "Виктория",
     age: "36",
     city: "Москва",
-    photo: "/10.jpg",
+    photo: "/10.png",
   },
   {
     _id: "11",
@@ -90,7 +90,7 @@ const soderjanki = [
     name: "Эмма",
     age: "23",
     city: "Москва",
-    photo: "/11.jpg",
+    photo: "/11.png",
   },
   {
     _id: "12",
@@ -98,7 +98,7 @@ const soderjanki = [
     name: "Мэри",
     age: "32",
     city: "Москва",
-    photo: "/12.jpg",
+    photo: "/12.png",
   },
   {
     _id: "13",
@@ -106,7 +106,7 @@ const soderjanki = [
     name: "Виктория",
     age: "37",
     city: "Москва",
-    photo: "/13.jpg",
+    photo: "/13.png",
   },
   {
     _id: "14",
@@ -114,7 +114,7 @@ const soderjanki = [
     name: "Екатерина",
     age: "27",
     city: "Москва",
-    photo: "/14.jpg",
+    photo: "/14.png",
   },
   {
     _id: "15",
@@ -122,7 +122,7 @@ const soderjanki = [
     name: "Валерия",
     age: "37",
     city: "Москва",
-    photo: "/15.jpg",
+    photo: "/15.png",
   },
   {
     _id: "16",
@@ -130,7 +130,7 @@ const soderjanki = [
     name: "Диана",
     age: "29",
     city: "Москва",
-    photo: "/16.jpg",
+    photo: "/16.png",
   },
 ];
 
@@ -295,13 +295,13 @@ export default function Home() {
               Содержанки
             </h2>
 
-            <div className="w-full grid grid-cols-4 gap-[34px] mt-[30px] z-20 relative">
+            <div className="w-full grid grid-cols-4 mt-[30px] z-20 relative">
               {soderjanki.map((item, idx) => (
                 <div className="flex justify-center" key={item._id}>
                   <PreviewWidget
                     item={item}
                     className={cn({
-                      "mt-[50]":
+                      "mt-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
