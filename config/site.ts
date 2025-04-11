@@ -1,11 +1,13 @@
+import { ROUTES } from "@/app/routes";
+
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + HeroUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "BLOW",
+  description: "Поиск лучших содержанок и самых успешных мужчин",
   navItems: [
     {
-      label: "Home",
+      label: "Главная",
       href: "/",
     },
     {
@@ -27,8 +29,8 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Профиль",
+      href: ROUTES.PROFILE,
     },
     {
       label: "Dashboard",
