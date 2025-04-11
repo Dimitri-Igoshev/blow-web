@@ -11,7 +11,7 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
   return (
     <div
       className={cn(
-        "w-[280px] h-[350px] border-[5px] rounded-[32px] border-white dark:border-white/25 overflow-hidden relative cursor-pointer text-white",
+        "w-[280px] h-[350px] border-[5px] rounded-[32px] border-white dark:border-white/25 overflow-hidden relative cursor-pointer text-white hover:scale-110 transition-all",
         className
       )}
     >
