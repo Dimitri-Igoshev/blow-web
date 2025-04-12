@@ -220,12 +220,12 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                   Все верно
                 </Button>
 
-                <div className="flex items-center justify-between w-full gap-4 text-xs mt-4 px-3">
-                  <p className="cursor-pointer hover:text-primary">Забыл{woman ? 'a' : ''} пароль?</p>
-                  <p className="cursor-pointer hover:text-primary" onClick={() => {
+                <div className="flex items-center justify-between w-full gap-4 text-xs mt-2 -mb-3">
+                  <Button className="cursor-pointer hover:text-primary bg-transparent text-xs" variant="flat">Забыл{woman ? 'a' : ''} пароль?</Button>
+                  <Button className="cursor-pointer hover:text-primary bg-transparent text-xs" variant="flat" onPress={() => {
                     onLogin();
                     onClose()
-                  }}>Есть анкета?</p>
+                  }}>Есть анкета?</Button>
                 </div>
               </div>
             </ModalFooter>
