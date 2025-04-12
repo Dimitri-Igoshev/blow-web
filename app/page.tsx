@@ -1,11 +1,14 @@
 "use client";
 
-import { PreviewWidget } from "@/components/preview-widget";
-import { SearchWidget } from "@/components/search-widget";
 import { cn } from "@heroui/theme";
 import { Image } from "@heroui/image";
+
+import { PreviewWidget } from "@/components/preview-widget";
+import { SearchWidget } from "@/components/search-widget";
 import { cities } from "@/data/cities";
-import { useRouter } from "next/navigation";
+import { ROUTES } from "./routes";
+import Link from "next/link";
+import { Suspense } from "react";
 
 const soderjanki = [
   {
@@ -270,8 +273,6 @@ const sponsors = [
 ];
 
 export default function Home() {
-  const router = useRouter();
-
   const cities1 = cities.slice(0, 6);
   const cities2 = cities.slice(6, 12);
   const cities3 = cities.slice(12, 18);
@@ -283,13 +284,15 @@ export default function Home() {
     <>
       <div className="relative">
         <img
-          src="/bg.png"
           alt=""
           className="rounded-b-[50px] flex flex-col relative z-10"
+          src="/bg.png"
         />
         <div className="w-full absolute top-[130px]">
           <div className="flex justify-center items-center gap-[5%] px-5 relative z-10">
-            <SearchWidget className="" />
+            <Suspense>
+              <SearchWidget className="" />
+            </Suspense>
             <div className="flex flex-col w-[750px] gap-8">
               <h1 className="text-[48px] font-semibold text-white leading-[56px]">
                 Поиск лучших содержанок и самых успешных мужчин
@@ -310,9 +313,8 @@ export default function Home() {
 
             <div className="w-full grid grid-cols-4 mt-[30px] z-20 relative">
               {soderjanki.map((item, idx) => (
-                <div className="flex justify-center" key={item._id}>
+                <div key={item._id} className="flex justify-center">
                   <PreviewWidget
-                    item={item}
                     className={cn({
                       "mt-[50px]":
                         idx === 1 ||
@@ -324,6 +326,7 @@ export default function Home() {
                         idx === 13 ||
                         idx === 14,
                     })}
+                    item={item}
                   />
                 </div>
               ))}
@@ -337,9 +340,8 @@ export default function Home() {
 
             <div className="w-full grid grid-cols-4 mt-[30px] z-20 relative">
               {sponsors.map((item, idx) => (
-                <div className="flex justify-center" key={item._id}>
+                <div key={item._id} className="flex justify-center">
                   <PreviewWidget
-                    item={item}
                     className={cn({
                       "mt-[50px]":
                         idx === 1 ||
@@ -351,6 +353,7 @@ export default function Home() {
                         idx === 13 ||
                         idx === 14,
                     })}
+                    item={item}
                   />
                 </div>
               ))}
@@ -359,10 +362,10 @@ export default function Home() {
             <div className="bg-white dark:bg-foreground-200 p-6 m-9 mb-0 mt-20 rounded-[36px]">
               <Image
                 alt="BLOW"
+                className="object-cover float-left mr-8 mb-3"
+                height={510}
                 src={`/info.png`}
                 width={570}
-                height={510}
-                className="object-cover float-left mr-8 mb-3"
               />
               <p>
                 <span className="text-[24px] text-primary font-semibold">
@@ -455,80 +458,80 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-6 mt-[30px] px-12 pb-[50px] gap-6">
-              <ul className="flex flex-col gap-1">
-                {cities1.map((item: any) => (
-                  <li
-                    className="cursor-pointer hover:text-primary hover:underline"
+              <div className="flex flex-col gap-1">
+                {cities1?.map((item: any) => (
+                  <Link
                     key={item.value}
-                    onClick={() => router.push(`/?city=${item.value}`)}
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    href={`${ROUTES.HOME}/?city=${item.value}`}
                   >
                     {item.label}
-                  </li>
+                  </Link>
                 ))}
-              </ul>
+              </div>
 
-              <ul className="flex flex-col gap-1">
-                {cities2.map((item: any) => (
-                  <li
-                    className="cursor-pointer hover:text-primary hover:underline"
+              <div className="flex flex-col gap-1">
+                {cities2?.map((item: any) => (
+                  <Link
                     key={item.value}
-                    onClick={() => router.push(`/?city=${item.value}`)}
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    href={`${ROUTES.HOME}/?city=${item.value}`}
                   >
                     {item.label}
-                  </li>
+                  </Link>
                 ))}
-              </ul>
+              </div>
 
-              <ul className="flex flex-col gap-1">
-                {cities3.map((item: any) => (
-                  <li
-                    className="cursor-pointer hover:text-primary hover:underline"
+              <div className="flex flex-col gap-1">
+                {cities3?.map((item: any) => (
+                  <Link
                     key={item.value}
-                    onClick={() => router.push(`/?city=${item.value}`)}
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    href={`${ROUTES.HOME}/?city=${item.value}`}
                   >
                     {item.label}
-                  </li>
+                  </Link>
                 ))}
-              </ul>
+              </div>
 
-              <ul className="flex flex-col gap-1">
-                {cities4.map((item: any) => (
-                  <li
-                    className="cursor-pointer hover:text-primary hover:underline"
+              <div className="flex flex-col gap-1">
+                {cities4?.map((item: any) => (
+                  <Link
                     key={item.value}
-                    onClick={() => router.push(`/?city=${item.value}`)}
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    href={`${ROUTES.HOME}/?city=${item.value}`}
                   >
                     {item.label}
-                  </li>
+                  </Link>
                 ))}
-              </ul>
+              </div>
 
-              <ul className="flex flex-col gap-1">
-                {cities5.map((item: any) => (
-                  <li
-                    className="cursor-pointer hover:text-primary hover:underline"
+              <div className="flex flex-col gap-1">
+                {cities5?.map((item: any) => (
+                  <Link
                     key={item.value}
-                    onClick={() => router.push(`/?city=${item.value}`)}
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    href={`${ROUTES.HOME}/?city=${item.value}`}
                   >
                     {item.label}
-                  </li>
+                  </Link>
                 ))}
-              </ul>
+              </div>
 
-              <ul className="flex flex-col gap-1">
-                {cities6.map((item: any) => (
-                  <li
-                    className="cursor-pointer hover:text-primary hover:underline"
+              <div className="flex flex-col gap-1">
+                {cities6?.map((item: any) => (
+                  <Link
                     key={item.value}
-                    onClick={() => router.push(`/?city=${item.value}`)}
+                    className="cursor-pointer hover:text-primary hover:underline"
+                    href={`${ROUTES.HOME}/?city=${item.value}`}
                   >
                     {item.label}
-                  </li>
+                  </Link>
                 ))}
-                <li className="cursor-pointer text-primary hover:text-dark font-semibold mt-6">
+                <div className="cursor-pointer text-primary hover:text-dark font-semibold mt-6">
                   Все города
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
 
             <footer className="bg-gray dark:bg-black w-full">
@@ -540,23 +543,23 @@ export default function Home() {
                 <div className="flex justify-center">
                   <Image
                     alt="BLOW"
-                    src="/logo.png"
-                    width={101}
                     height={40}
                     radius="none"
+                    src="/logo.png"
+                    width={101}
                   />
                 </div>
-                <ul className="flex items-center justify-end gap-6">
-                  <li className="underline cursor-pointer hover:text-primary text-nowrap">
+                <div className="flex items-center justify-end gap-6">
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
                     Свяжись с нами
-                  </li>
-                  <li className="underline cursor-pointer hover:text-primary text-nowrap">
+                  </div>
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
                     Правила
-                  </li>
-                  <li className="underline cursor-pointer hover:text-primary text-nowrap">
+                  </div>
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
                     Договор оферта
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </footer>
           </div>

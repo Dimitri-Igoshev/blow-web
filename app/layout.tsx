@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -8,6 +7,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -45,9 +45,7 @@ export default function RootLayout({
           <div className="relative flex flex-col h-full bg-gray dark:bg-black">
             <Navbar />
             {/* <main className="container mx-auto max-w-full pt-16 px-6 flex-grow"> */}
-            <main className="">
-              {children}
-            </main>
+            <main className="">{children}</main>
             {/* <footer className="w-full flex items-center justify-center py-3">
               <Link
                 isExternal
@@ -59,7 +57,6 @@ export default function RootLayout({
                 <p className="text-primary">HeroUI</p>
               </Link>
             </footer> */}
-            
           </div>
         </Providers>
       </body>

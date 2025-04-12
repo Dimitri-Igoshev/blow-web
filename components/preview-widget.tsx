@@ -12,15 +12,15 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
     <div
       className={cn(
         "w-[280px] h-[350px] border-[5px] rounded-[32px] border-white dark:border-white/25 overflow-hidden relative cursor-pointer text-white hover:scale-110 transition-all",
-        className
+        className,
       )}
     >
       <Image
         alt="BLOW"
+        className="object-cover"
+        height={350}
         src={`/photos/${item.photo}`}
         width={280}
-        height={350}
-        className="object-cover"
       />
 
       <div className="p-[7px] bg-transparent w-full absolute left-0 bottom-0 z-10">
@@ -32,7 +32,9 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
             <p className="font-semibold">{item.name}</p>
           </div>
 
-          <p className="opacity-50">{item.age}, {item.city}</p>
+          <p className="opacity-50">
+            {item.age}, {item.city}
+          </p>
         </div>
       </div>
     </div>

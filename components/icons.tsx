@@ -191,10 +191,10 @@ export const MenIcon = (props: IconSvgProps) => (
     aria-hidden="true"
     fill="none"
     focusable="false"
-    role="presentation"
-    width="23"
     height="22"
+    role="presentation"
     viewBox="0 0 23 22"
+    width="23"
     {...props}
   >
     <path
@@ -209,10 +209,10 @@ export const WomenIcon = (props: IconSvgProps) => (
     aria-hidden="true"
     fill="none"
     focusable="false"
-    role="presentation"
-    width="23"
     height="24"
+    role="presentation"
     viewBox="0 0 23 24"
+    width="23"
     {...props}
   >
     <path

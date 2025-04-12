@@ -1,51 +1,39 @@
-'use client'
+"use client";
 
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
-  NavbarMenuItem,
 } from "@heroui/navbar";
 import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
-import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
-import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
-import clsx from "clsx";
-
-import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-  Logo,
-} from "@/components/icons";
-
 import { Image } from "@heroui/image";
-import { ROUTES } from "@/app/routes";
 import { useRouter } from "next/navigation";
+
+import { ThemeSwitch } from "@/components/theme-switch";
+import { SearchIcon } from "@/components/icons";
+import { ROUTES } from "@/app/routes";
 
 export const Navbar = () => {
   const router = useRouter();
-  
+
   return (
-    <HeroUINavbar maxWidth="full" position="sticky" isBlurred={true} className="p-3 fixed bg-transparent">
+    <HeroUINavbar
+      className="p-3 fixed bg-transparent"
+      isBlurred={true}
+      maxWidth="full"
+      position="sticky"
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Image
               alt="BLOW"
-              src="/logo.png"
-              width={127}
               height={50}
               radius="none"
+              src="/logo.png"
+              width={127}
               onClick={() => router.push(ROUTES.HOME)}
             />
           </NextLink>
@@ -56,21 +44,20 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <SearchIcon className="text-default-500 cursor-pointer" onClick={() => router.push(ROUTES.HOME)}/>
+        <SearchIcon
+          className="text-default-500 cursor-pointer"
+          onClick={() => router.push(ROUTES.HOME)}
+        />
         <ThemeSwitch className="mr-3" />
         <NavbarItem className="hidden md:flex">
-          <Button
-            radius="full"
-            className="text-sm px-6"
-            variant="solid"
-          >
+          <Button className="text-sm px-6" radius="full" variant="solid">
             Есть страница
           </Button>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Button
-            radius="full"
             className="text-sm  bg-primary text-white px-6"
+            radius="full"
             variant="solid"
           >
             Добавить себя

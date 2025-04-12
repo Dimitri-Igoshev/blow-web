@@ -3,12 +3,12 @@
 import { Button } from "@heroui/button";
 import { cn } from "@heroui/theme";
 import { FC, useEffect, useState } from "react";
-import { HeartFilledIcon, MenIcon, WomenIcon } from "./icons";
-import { colors } from "@/config/colors";
-import { Input } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/react";
+import { useSearchParams } from "next/navigation";
+
+import { MenIcon, WomenIcon } from "./icons";
+
 import { cities } from "@/data/cities";
-import { useSearchParams } from 'next/navigation'
 
 const ages = [
   { key: "18", label: "18" },
@@ -98,7 +98,7 @@ interface SearchWidgetProps {
 }
 
 export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   const [men, setMen] = useState(false);
   const [woman, setWoman] = useState(false);
@@ -106,13 +106,12 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
   const [ageFrom, setAgeFrom] = useState("");
   const [ageToOptions, setAgeToOptions] = useState([...ages]);
   const [ageTo, setAgeTo] = useState("");
-  const [city, setCity] = useState(searchParams.get("city") || "");  
+  const [city, setCity] = useState(searchParams.get("city") || "");
 
   useEffect(() => {
     if (!searchParams.get("city")) return;
     setCity(searchParams.get("city") as string);
-  }, [searchParams.get("city")])
-  
+  }, [searchParams.get("city")]);
 
   useEffect(() => {
     if (!ageFrom) return;
@@ -134,28 +133,28 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
     <div
       className={cn(
         "w-[400px] rounded-[32px] bg-primary/50 p-[30px] flex flex-col gap-5",
-        className
+        className,
       )}
     >
       <div className="flex items-center justify-between">
         <p className="font-semibold text-sm text-white">Найти</p>
         <div className="flex items-center gap-4">
           <Button
-            radius="full"
-            startContent={<MenIcon className="text-danger" />}
             className={cn("text-xs font-regular", {
               "bg-dark dark:bg-black text-white": men,
             })}
+            radius="full"
+            startContent={<MenIcon className="text-danger" />}
             onPress={() => setMen(!men)}
           >
             мужчину
           </Button>
           <Button
-            radius="full"
-            startContent={<WomenIcon className="text-danger" />}
             className={cn("text-xs  font-regular", {
               "bg-dark dark:bg-black text-white": woman,
             })}
+            radius="full"
+            startContent={<WomenIcon className="text-danger" />}
             onPress={() => setWoman(!woman)}
           >
             девушку
@@ -206,7 +205,10 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
         </Select>
       </div>
 
-      <Button className="font-semibold text-white dark:bg-black bg-dark mt-2" radius="full">
+      <Button
+        className="font-semibold text-white dark:bg-black bg-dark mt-2"
+        radius="full"
+      >
         НАЙТИ
       </Button>
     </div>
