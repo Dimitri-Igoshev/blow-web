@@ -1,0 +1,237 @@
+"use client";
+
+import {
+  Button,
+  Checkbox,
+  cn,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Select,
+  SelectItem,
+} from "@heroui/react";
+import { FC, useState } from "react";
+import { HeartIcon, MenIcon, WomenIcon } from "./icons";
+import { cities } from "@/data/cities";
+import { ages } from "@/data/ages";
+import { MdOutlineGirl, MdOutlineHeight } from "react-icons/md";
+import { HiOutlineCamera } from "react-icons/hi2";
+
+import { GiWeight } from "react-icons/gi";
+import { heights } from "@/data/heights";
+import { weights } from "@/data/weights";
+
+interface RegisterModalProps {
+  isOpen: boolean;
+  onLogin: () => void;
+  onOpenChange: () => void;
+}
+
+export const RegisterModal: FC<RegisterModalProps> = ({
+  isOpen,
+  onLogin,
+  onOpenChange,
+}) => {
+  const [men, setMen] = useState(true);
+  const [woman, setWoman] = useState(false);
+  const [city, setCity] = useState("");
+  const [sponsor, setSponsor] = useState(true);
+  const [age, setAge] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      size="sm"
+      placement="center"
+      backdrop="blur"
+      onOpenChange={onOpenChange}
+      className="bg-gray dark:bg-foreground-100 border-[3px] border-white dark:border-white/50 rounded-[36px] py-1 transition-all"
+      classNames={{
+        closeButton: "m-3.5",
+      }}
+    >
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1 text-[20px]">
+              Информация о вас
+            </ModalHeader>
+            <ModalBody>
+              <div className="flex flex-col gap-5">
+                <div className="flex items-center w-full gap-4">
+                  <Button
+                    className={cn(
+                      "text-xs font-regular bg-white w-full dark:bg-foreground-300",
+                      {
+                        "bg-dark dark:bg-black text-white": men,
+                      }
+                    )}
+                    radius="full"
+                    startContent={<MenIcon className="text-danger" />}
+                    onPress={() => {
+                      setMen(!men);
+                      setWoman(false);
+                    }}
+                  >
+                    мужчина
+                  </Button>
+                  <Button
+                    className={cn(
+                      "text-xs  font-regular bg-white w-full dark:bg-foreground-300",
+                      {
+                        "bg-dark dark:bg-black text-white": woman,
+                      }
+                    )}
+                    radius="full"
+                    startContent={<WomenIcon className="text-danger" />}
+                    onPress={() => {
+                      setWoman(!woman);
+                      setMen(false);
+                    }}
+                  >
+                    девушка
+                  </Button>
+                </div>
+
+                {woman ? (
+                  <>
+                    <Select
+                      className="w-full text-primary"
+                      classNames={{
+                        trigger: "bg-white dark:bg-foreground-300",
+                      }}
+                      placeholder="возраст (лет)"
+                      radius="full"
+                      selectedKeys={[age]}
+                      onChange={(el: any) => setAge(el.target.value)}
+                      startContent={<MdOutlineGirl size={24} />}
+                    >
+                      {ages.map((age) => (
+                        <SelectItem key={age.key}>{age.label}</SelectItem>
+                      ))}
+                    </Select>
+
+                    <Select
+                      className="w-full text-primary"
+                      classNames={{
+                        trigger: "bg-white dark:bg-foreground-300",
+                      }}
+                      placeholder="рост (см)"
+                      radius="full"
+                      selectedKeys={[height]}
+                      onChange={(el: any) => setHeight(el.target.value)}
+                      startContent={
+                        <MdOutlineHeight size={22} className="w-[22px]" />
+                      }
+                    >
+                      {heights.map((height) => (
+                        <SelectItem key={height.key}>{height.label}</SelectItem>
+                      ))}
+                    </Select>
+
+                    <Select
+                      className="w-full text-primary"
+                      classNames={{
+                        trigger: "bg-white dark:bg-foreground-300",
+                      }}
+                      placeholder="вес (кг)"
+                      radius="full"
+                      selectedKeys={[weight]}
+                      onChange={(el: any) => setWeight(el.target.value)}
+                      startContent={<GiWeight size={18} className="w-[22px]" />}
+                    >
+                      {weights.map((weight) => (
+                        <SelectItem key={weight.key}>{weight.label}</SelectItem>
+                      ))}
+                    </Select>
+                  </>
+                ) : null}
+
+                <Select
+                  className="text-primary"
+                  classNames={{
+                    trigger: "bg-white dark:bg-foreground-300",
+                  }}
+                  placeholder="выберите город"
+                  radius="full"
+                  selectedKeys={[city]}
+                  onChange={(el: any) => setCity(el.target.value)}
+                >
+                  {cities.map((city) => (
+                    <SelectItem key={city.value}>{city.label}</SelectItem>
+                  ))}
+                </Select>
+
+                {woman ? (
+                  <Button
+                    color="primary"
+                    radius="full"
+                    className="w-full"
+                    variant="bordered"
+                    startContent={
+                      <HiOutlineCamera size={20} className="w-[22px]" />
+                    }
+                    onPress={() => null}
+                  >
+                    Добавить фото
+                  </Button>
+                ) : null}
+
+                <p className="font-semibold mt-1">Цель знакомства</p>
+
+                <Checkbox
+                  defaultSelected
+                  icon={<HeartIcon />}
+                  className="-mt-4"
+                  classNames={{
+                    wrapper: "bg-white dark:bg-foreground-300",
+                  }}
+                  isSelected={sponsor}
+                  onChange={(e) => e.target.checked && setSponsor(true)}
+                >
+                  {men ? "стану спонсором" : "ищу спонсора"}
+                </Checkbox>
+                <Checkbox
+                  defaultSelected
+                  icon={<HeartIcon />}
+                  className="-mt-5"
+                  classNames={{
+                    wrapper: "bg-white dark:bg-foreground-300",
+                  }}
+                  isSelected={!sponsor}
+                  onChange={(e) => e.target.checked && setSponsor(false)}
+                >
+                  {men ? "я не спонсор" : "не ищу спонсора"}
+                </Checkbox>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <div className="flex flex-col w-full">
+                <Button
+                  color="primary"
+                  radius="full"
+                  className="w-full"
+                  onPress={onClose}
+                >
+                  Все верно
+                </Button>
+
+                <div className="flex items-center justify-between w-full gap-4 text-xs mt-4 px-3">
+                  <p className="cursor-pointer hover:text-primary">Забыл{woman ? 'a' : ''} пароль?</p>
+                  <p className="cursor-pointer hover:text-primary" onClick={() => {
+                    onLogin();
+                    onClose()
+                  }}>Есть анкета?</p>
+                </div>
+              </div>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
+  );
+};
