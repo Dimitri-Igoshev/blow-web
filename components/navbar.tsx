@@ -14,12 +14,15 @@ import { useRouter } from "next/navigation";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { SearchIcon } from "@/components/icons";
 import { ROUTES } from "@/app/routes";
-import { useDisclosure } from "@heroui/react";
+import { Avatar, useDisclosure } from "@heroui/react";
 import { RegisterModal } from "./register-modal";
 import { LoginModal } from "./login-modal";
+import { use, useEffect, useState } from "react";
 
 export const Navbar = () => {
   const router = useRouter();
+
+  const [me, setMe] = useState(true);
 
   const {
     isOpen: isLogin,
@@ -31,6 +34,12 @@ export const Navbar = () => {
     onOpen: onRegister,
     onOpenChange: onRegisterChange,
   } = useDisclosure();
+
+  useEffect(() => {
+    fetch("https://api.ipify.org?format=json")
+      .then((res) => res.json())
+      .then((data) => console.log(data.ip));
+  });
 
   return (
     <>
@@ -63,30 +72,44 @@ export const Navbar = () => {
           justify="end"
         >
           <SearchIcon
-            className="text-default-500 cursor-pointer"
+            className="text-white cursor-pointer"
             onClick={() => router.push(ROUTES.HOME)}
           />
           <ThemeSwitch className="mr-3" />
-          <NavbarItem className="hidden md:flex">
-            <Button
-              className="text-sm px-6"
-              radius="full"
-              variant="solid"
-              onPress={onLogin}
-            >
-              Есть страница
-            </Button>
-          </NavbarItem>
-          <NavbarItem className="hidden md:flex">
-            <Button
-              className="text-sm  bg-primary text-white px-6"
-              radius="full"
-              variant="solid"
-              onPress={onRegister}
-            >
-              Добавить себя
-            </Button>
-          </NavbarItem>
+
+          {me ? (
+            <>
+              <p className="text-white">Светлана</p>
+              <NavbarItem className="hidden md:flex">
+                <div className="rounded-full border-[2px] border-white">
+                  <Avatar src="/photos/1.png" />
+                </div>
+              </NavbarItem>
+            </>
+          ) : (
+            <>
+              <NavbarItem className="hidden md:flex">
+                <Button
+                  className="text-sm px-6"
+                  radius="full"
+                  variant="solid"
+                  onPress={onLogin}
+                >
+                  Есть страница
+                </Button>
+              </NavbarItem>
+              <NavbarItem className="hidden md:flex">
+                <Button
+                  className="text-sm  bg-primary text-white px-6"
+                  radius="full"
+                  variant="solid"
+                  onPress={onRegister}
+                >
+                  Добавить себя
+                </Button>
+              </NavbarItem>
+            </>
+          )}
         </NavbarContent>
 
         {/* <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

@@ -12,6 +12,8 @@ import {
 import { FC, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
+import { ROUTES } from "@/app/routes";
+import { useRouter } from "next/navigation";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -24,6 +26,7 @@ export const LoginModal: FC<LoginModalProps> = ({
   onRegister,
   onOpenChange,
 }) => {
+  const router = useRouter();
   return (
     <Modal
       isOpen={isOpen}
@@ -72,7 +75,10 @@ export const LoginModal: FC<LoginModalProps> = ({
                   color="primary"
                   radius="full"
                   className="w-full"
-                  onPress={onClose}
+                  onPress={() => {
+                    router.push(ROUTES.ACCOUNT)
+                    onClose()
+                  }}
                 >
                   Войти
                 </Button>
@@ -81,12 +87,14 @@ export const LoginModal: FC<LoginModalProps> = ({
                   <Button
                     className="cursor-pointer hover:text-primary bg-transparent text-xs"
                     variant="flat"
+                    radius="full"
                   >
                     Забыли пароль?
                   </Button>
                   <Button
                     className="cursor-pointer hover:text-primary bg-transparent text-xs"
                     variant="flat"
+                    radius="full"
                     onPress={() => {
                       onRegister();
                       onClose();
