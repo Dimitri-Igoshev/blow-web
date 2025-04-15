@@ -22,7 +22,7 @@ import { use, useEffect, useState } from "react";
 export const Navbar = () => {
   const router = useRouter();
 
-  const [me, setMe] = useState(true);
+  const [me, setMe] = useState(false);
 
   const {
     isOpen: isLogin,
