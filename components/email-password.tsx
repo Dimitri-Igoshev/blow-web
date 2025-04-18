@@ -12,26 +12,32 @@ import {
 import { FC, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
-import { ROUTES } from "@/app/routes";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useLoginMutation } from "@/redux/services/authApi";
+import { useRegisterMutation } from "@/redux/services/authApi";
+import { cities } from "@/data/cities";
+import { weights } from "@/data/weights";
+import { useUploadMutation } from "@/redux/services/uploadApi";
 
 type Inputs = {
   email: string;
   password: string;
 };
 
-interface LoginModalProps {
+interface EmailModalProps {
   isOpen: boolean;
+  onLogin: () => void;
   onRegister: () => void;
   onOpenChange: () => void;
+  newUser: any;
 }
 
-export const LoginModal: FC<LoginModalProps> = ({
+export const EmailModal: FC<EmailModalProps> = ({
   isOpen,
+  onLogin,
   onRegister,
   onOpenChange,
+  newUser,
 }) => {
   const router = useRouter();
 
@@ -41,10 +47,10 @@ export const LoginModal: FC<LoginModalProps> = ({
     watch,
     formState: { errors, isValid },
   } = useForm<Inputs>();
-
   const [isLoading, setIsLoading] = useState(false);
 
-  const [login] = useLoginMutation();
+  const [registaration] = useRegisterMutation();
+  const [upload] = useUploadMutation();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
@@ -52,13 +58,30 @@ export const LoginModal: FC<LoginModalProps> = ({
     const body: any = {
       email: data.email,
       password: data.password,
+      sex: newUser.men ? "male" : "female",
+      age: newUser.age,
+      city: newUser.city,
+      height: newUser.height,
+      weight: newUser.weight,
+      sponsor: newUser.sponsor,
     };
 
-    login(body)
+    if (newUser?.photo) {
+      const formData = new FormData();
+      formData.set("files", newUser?.photo);
+      await upload(formData)
+        .unwrap()
+        .then((res) => {
+          body.photos = [{ ...res[0], priority: 0 }]
+        })
+        .catch((err) => console.log(err));
+    }
+
+    registaration(body)
       .unwrap()
-      .then((res: any) => {
-        console.log(res)
+      .then((res) => {
         localStorage.setItem("access-token", res.accessToken);
+        document.location.reload()
       })
       .catch((error: any) => console.log(error))
       .finally(() => {
@@ -83,7 +106,7 @@ export const LoginModal: FC<LoginModalProps> = ({
         {(onClose) => (
           <form onSubmit={handleSubmit(onSubmit)}>
             <ModalHeader className="flex flex-col gap-1 text-[20px]">
-              Вход
+              Данные входа
             </ModalHeader>
             <ModalBody>
               <div className="flex flex-col gap-5">
@@ -105,6 +128,7 @@ export const LoginModal: FC<LoginModalProps> = ({
                   })}
                 />
                 <Input
+                  required
                   radius="full"
                   type="password"
                   placeholder="Пароль"
@@ -128,7 +152,7 @@ export const LoginModal: FC<LoginModalProps> = ({
                   radius="full"
                   className="w-full"
                 >
-                  Войти
+                  Сохранить
                 </Button>
 
                 <div className="flex items-center justify-between w-full gap-4 text-xs mt-2 -mb-3">
@@ -144,11 +168,11 @@ export const LoginModal: FC<LoginModalProps> = ({
                     variant="flat"
                     radius="full"
                     onPress={() => {
-                      onRegister();
+                      onLogin();
                       onClose();
                     }}
                   >
-                    Зарегистрироваться?
+                    Есть аккаунт?
                   </Button>
                 </div>
               </div>

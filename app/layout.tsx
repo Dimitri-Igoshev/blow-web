@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import 'react-image-crop/dist/ReactCrop.css'
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 

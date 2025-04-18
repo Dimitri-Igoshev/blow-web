@@ -9,6 +9,7 @@ import { cities } from "@/data/cities";
 import { ROUTES } from "./routes";
 import Link from "next/link";
 import { Suspense } from "react";
+import { useGetUsersQuery } from "@/redux/services/userApi";
 
 const soderjanki = [
   {
@@ -279,6 +280,9 @@ export default function Home() {
   const cities4 = cities.slice(18, 24);
   const cities5 = cities.slice(24, 30);
   const cities6 = cities.slice(30, 34);
+
+  const { data: users } = useGetUsersQuery(null);
+  console.log(555, users)
 
   return (
     <>

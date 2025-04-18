@@ -17,12 +17,18 @@ import { ROUTES } from "@/app/routes";
 import { Avatar, useDisclosure } from "@heroui/react";
 import { RegisterModal } from "./register-modal";
 import { LoginModal } from "./login-modal";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { EmailModal } from "./email-password";
+import { useGetMeQuery } from "@/redux/services/userApi";
+import { config } from "@/common/env";
+import { CameraIcon } from "@/common/icons";
 
 export const Navbar = () => {
   const router = useRouter();
 
-  const [me, setMe] = useState(false);
+  const [newUser, setNewUser] = useState(null);
+
+  const { data: me } = useGetMeQuery(null);
 
   const {
     isOpen: isLogin,
@@ -34,12 +40,19 @@ export const Navbar = () => {
     onOpen: onRegister,
     onOpenChange: onRegisterChange,
   } = useDisclosure();
+  const {
+    isOpen: isEmail,
+    onOpen: onEmail,
+    onOpenChange: onEmailChange,
+  } = useDisclosure();
 
-  useEffect(() => {
-    fetch("https://api.ipify.org?format=json")
-      .then((res) => res.json())
-      .then((data) => console.log(data.ip));
-  });
+  const onNext = (value: any) => {
+    setNewUser(value);
+
+    onEmail();
+  };
+
+  const registration = () => {};
 
   return (
     <>
@@ -77,12 +90,28 @@ export const Navbar = () => {
           />
           <ThemeSwitch className="mr-3" />
 
-          {me ? (
+          {me?._id ? (
             <>
-              <p className="text-white">Светлана</p>
-              <NavbarItem className="hidden md:flex">
+              <p className="text-white">
+                {me?.firstName
+                  ? me.firstName
+                  : me?.sex === "male"
+                    ? "Мужчина"
+                    : "Девушка"}
+              </p>
+              <NavbarItem className="hidden md:flex cursor-pointer" onClick={() => router.push(ROUTES.ACCOUNT)}>
                 <div className="rounded-full border-[2px] border-white">
-                  <Avatar src="/photos/1.png" />
+                  <Avatar
+                    showFallback
+                    fallback={
+                      <CameraIcon
+                        className="animate-pulse w-6 h-6 text-default-500"
+                        fill="currentColor"
+                        size={20}
+                      />
+                    }
+                    src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
+                  />
                 </div>
               </NavbarItem>
             </>
@@ -149,6 +178,14 @@ export const Navbar = () => {
         isOpen={isRegister}
         onOpenChange={onRegisterChange}
         onLogin={onLogin}
+        onNext={onNext}
+      />
+      <EmailModal
+        isOpen={isEmail}
+        onOpenChange={onEmailChange}
+        onLogin={onLoginChange}
+        onRegister={registration}
+        newUser={newUser}
       />
     </>
   );
