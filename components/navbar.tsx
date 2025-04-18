@@ -99,7 +99,7 @@ export const Navbar = () => {
                     ? "Мужчина"
                     : "Девушка"}
               </p>
-              <NavbarItem className="hidden md:flex cursor-pointer" onClick={() => router.push(ROUTES.ACCOUNT)}>
+              <NavbarItem className="hidden md:flex cursor-pointer" onClick={() => router.push(ROUTES.ACCOUNT.PROFILE)}>
                 <div className="rounded-full border-[2px] border-white">
                   <Avatar
                     showFallback

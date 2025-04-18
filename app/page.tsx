@@ -282,7 +282,6 @@ export default function Home() {
   const cities6 = cities.slice(30, 34);
 
   const { data: users } = useGetUsersQuery(null);
-  console.log(555, users)
 
   return (
     <>
