@@ -11,7 +11,6 @@ import {
   ModalHeader,
   Select,
   SelectItem,
-  useDisclosure,
 } from "@heroui/react";
 import { FC, useRef, useState } from "react";
 import { HeartIcon, MenIcon, WomenIcon } from "./icons";
@@ -23,10 +22,8 @@ import { HiOutlineCamera } from "react-icons/hi2";
 import { GiWeight } from "react-icons/gi";
 import { heights } from "@/data/heights";
 import { weights } from "@/data/weights";
-import ImageCroper from "./ImageCroper";
 import { IFilePayload } from "@/common/interfaces";
 import { useUploadMutation } from "@/redux/services/uploadApi";
-import BaseModal from "./BaseModal";
 
 interface RegisterModalProps {
   isOpen: boolean;
