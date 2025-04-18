@@ -214,7 +214,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                     <>
                       {imgSrc ? (
                         <div className="flex justify-center w-full rounded-[20px] overflow-hidden">
-                          <img src={imgSrc} />
+                          <img src={imgSrc} alt="" />
                         </div>
                       ) : null}
                       <input
