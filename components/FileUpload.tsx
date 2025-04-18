@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
+import { CameraIcon } from "@/common/icons";
+import { Button } from "@heroui/button";
 import React, { useRef, useState } from "react";
-import { CameraIcon } from "../icons/CameraIcon";
 
 const FileUpload = () => {
 	const [file, setFile] = useState<any>(null);
