@@ -13,13 +13,14 @@ import {
   SelectItem,
 } from "@heroui/react";
 import { FC, useRef, useState } from "react";
-import { HeartIcon, MenIcon, WomenIcon } from "./icons";
-import { cities } from "@/data/cities";
-import { ages } from "@/data/ages";
 import { MdOutlineGirl, MdOutlineHeight } from "react-icons/md";
 import { HiOutlineCamera } from "react-icons/hi2";
-
 import { GiWeight } from "react-icons/gi";
+
+import { HeartIcon, MenIcon, WomenIcon } from "./icons";
+
+import { cities } from "@/data/cities";
+import { ages } from "@/data/ages";
 import { heights } from "@/data/heights";
 import { weights } from "@/data/weights";
 import { IFilePayload } from "@/common/interfaces";
@@ -57,8 +58,9 @@ export const RegisterModal: FC<RegisterModalProps> = ({
     if (e.target.files && e.target.files.length > 0) {
       setPhoto(e.target.files[0]);
       const reader = new FileReader();
+
       reader.addEventListener("load", () =>
-        setImgSrc(reader.result?.toString() || "")
+        setImgSrc(reader.result?.toString() || ""),
       );
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -68,6 +70,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
     setLoading(true);
 
     const formData = new FormData();
+
     if (value?.blob) formData.set("file", value.blob);
 
     upload(formData)
@@ -82,15 +85,15 @@ export const RegisterModal: FC<RegisterModalProps> = ({
   return (
     <>
       <Modal
-        isOpen={isOpen}
-        size="sm"
-        placement="center"
         backdrop="blur"
-        onOpenChange={onOpenChange}
         className="bg-gray dark:bg-foreground-100 border-[3px] border-white dark:border-white/50 rounded-[36px] py-1 transition-all"
         classNames={{
           closeButton: "m-3.5",
         }}
+        isOpen={isOpen}
+        placement="center"
+        size="sm"
+        onOpenChange={onOpenChange}
       >
         <ModalContent>
           {(onClose) => (
@@ -106,7 +109,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         "text-xs font-regular bg-white w-full dark:bg-foreground-300",
                         {
                           "bg-dark dark:bg-black text-white": men,
-                        }
+                        },
                       )}
                       radius="full"
                       startContent={<MenIcon className="text-danger" />}
@@ -122,7 +125,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         "text-xs  font-regular bg-white w-full dark:bg-foreground-300",
                         {
                           "bg-dark dark:bg-black text-white": woman,
-                        }
+                        },
                       )}
                       radius="full"
                       startContent={<WomenIcon className="text-danger" />}
@@ -145,8 +148,8 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         placeholder="возраст (лет)"
                         radius="full"
                         selectedKeys={[age]}
-                        onChange={(el: any) => setAge(el.target.value)}
                         startContent={<MdOutlineGirl size={24} />}
+                        onChange={(el: any) => setAge(el.target.value)}
                       >
                         {ages.map((age) => (
                           <SelectItem key={age.key}>{age.label}</SelectItem>
@@ -161,10 +164,10 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         placeholder="рост (см)"
                         radius="full"
                         selectedKeys={[height]}
-                        onChange={(el: any) => setHeight(el.target.value)}
                         startContent={
-                          <MdOutlineHeight size={22} className="w-[22px]" />
+                          <MdOutlineHeight className="w-[22px]" size={22} />
                         }
+                        onChange={(el: any) => setHeight(el.target.value)}
                       >
                         {heights.map((height) => (
                           <SelectItem key={height.key}>
@@ -181,10 +184,10 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         placeholder="вес (кг)"
                         radius="full"
                         selectedKeys={[weight]}
-                        onChange={(el: any) => setWeight(el.target.value)}
                         startContent={
-                          <GiWeight size={18} className="w-[22px]" />
+                          <GiWeight className="w-[22px]" size={18} />
                         }
+                        onChange={(el: any) => setWeight(el.target.value)}
                       >
                         {weights.map((weight) => (
                           <SelectItem key={weight.key}>
@@ -214,7 +217,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                     <>
                       {imgSrc ? (
                         <div className="flex justify-center w-full rounded-[20px] overflow-hidden">
-                          <img src={imgSrc} alt="" />
+                          <img alt="" src={imgSrc} />
                         </div>
                       ) : null}
                       <input
@@ -225,13 +228,13 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                       />
 
                       <Button
+                        className="w-full"
                         color="primary"
                         radius="full"
-                        className="w-full"
-                        variant="bordered"
                         startContent={
-                          <HiOutlineCamera size={20} className="w-[22px]" />
+                          <HiOutlineCamera className="w-[22px]" size={20} />
                         }
+                        variant="bordered"
                         onPress={() => inputRef.current.click()}
                       >
                         {photo ? "Заменить фото" : "Добавить фото"}
@@ -243,11 +246,11 @@ export const RegisterModal: FC<RegisterModalProps> = ({
 
                   <Checkbox
                     defaultSelected
-                    icon={<HeartIcon />}
                     className="-mt-4"
                     classNames={{
                       wrapper: "bg-white dark:bg-foreground-300",
                     }}
+                    icon={<HeartIcon />}
                     isSelected={sponsor}
                     onChange={(e) => e.target.checked && setSponsor(true)}
                   >
@@ -255,11 +258,11 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                   </Checkbox>
                   <Checkbox
                     defaultSelected
-                    icon={<HeartIcon />}
                     className="-mt-5"
                     classNames={{
                       wrapper: "bg-white dark:bg-foreground-300",
                     }}
+                    icon={<HeartIcon />}
                     isSelected={!sponsor}
                     onChange={(e) => e.target.checked && setSponsor(false)}
                   >
@@ -270,9 +273,9 @@ export const RegisterModal: FC<RegisterModalProps> = ({
               <ModalFooter>
                 <div className="flex flex-col w-full">
                   <Button
+                    className="w-full"
                     color="primary"
                     radius="full"
-                    className="w-full"
                     onPress={() => {
                       onNext({
                         men,
@@ -282,7 +285,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         age,
                         height,
                         weight,
-                        photo
+                        photo,
                       });
                       onClose();
                     }}
@@ -293,15 +296,15 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                   <div className="flex items-center justify-between w-full gap-4 text-xs mt-2 -mb-3">
                     <Button
                       className="cursor-pointer hover:text-primary bg-transparent text-xs"
-                      variant="flat"
                       radius="full"
+                      variant="flat"
                     >
                       Забыл{woman ? "a" : ""} пароль?
                     </Button>
                     <Button
                       className="cursor-pointer hover:text-primary bg-transparent text-xs"
-                      variant="flat"
                       radius="full"
+                      variant="flat"
                       onPress={() => {
                         onLogin();
                         onClose();

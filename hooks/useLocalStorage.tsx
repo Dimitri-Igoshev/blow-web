@@ -1,14 +1,16 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useLocalStorage = (key: string, initialValue: string) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
+
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       console.error(error);
+
       return initialValue;
     }
   });
@@ -16,6 +18,7 @@ const useLocalStorage = (key: string, initialValue: string) => {
   useEffect(() => {
     try {
       const serializedValue = JSON.stringify(storedValue);
+
       window.localStorage.setItem(key, serializedValue);
     } catch (error) {
       console.error(error);

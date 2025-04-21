@@ -1,7 +1,5 @@
 "use client";
 
 export default function accountServices() {
-  return (
-    <div>Services</div>
-  );
+  return <div>Services</div>;
 }

@@ -1,4 +1,4 @@
-import { useEffect, DependencyList } from 'react'
+import { useEffect, DependencyList } from "react";
 
 export function useDebounceEffect(
   fn: () => void,
@@ -8,11 +8,11 @@ export function useDebounceEffect(
   useEffect(() => {
     const t = setTimeout(() => {
       // @ts-ignore
-      fn.apply(undefined, deps)
-    }, waitTime)
+      fn.apply(undefined, deps);
+    }, waitTime);
 
     return () => {
-      clearTimeout(t)
-    }
-  }, deps)
+      clearTimeout(t);
+    };
+  }, deps);
 }

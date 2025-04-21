@@ -10,15 +10,16 @@ import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import { Image } from "@heroui/image";
 import { useRouter } from "next/navigation";
+import { Avatar, useDisclosure } from "@heroui/react";
+import { useState } from "react";
+
+import { RegisterModal } from "./register-modal";
+import { LoginModal } from "./login-modal";
+import { EmailModal } from "./email-password";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import { SearchIcon } from "@/components/icons";
 import { ROUTES } from "@/app/routes";
-import { Avatar, useDisclosure } from "@heroui/react";
-import { RegisterModal } from "./register-modal";
-import { LoginModal } from "./login-modal";
-import { useEffect, useState } from "react";
-import { EmailModal } from "./email-password";
 import { useGetMeQuery } from "@/redux/services/userApi";
 import { config } from "@/common/env";
 import { CameraIcon } from "@/common/icons";
@@ -99,7 +100,10 @@ export const Navbar = () => {
                     ? "Мужчина"
                     : "Девушка"}
               </p>
-              <NavbarItem className="hidden md:flex cursor-pointer" onClick={() => router.push(ROUTES.ACCOUNT.PROFILE)}>
+              <NavbarItem
+                className="hidden md:flex cursor-pointer"
+                onClick={() => router.push(ROUTES.ACCOUNT.PROFILE)}
+              >
                 <div className="rounded-full border-[2px] border-white">
                   <Avatar
                     showFallback
@@ -176,16 +180,16 @@ export const Navbar = () => {
       />
       <RegisterModal
         isOpen={isRegister}
-        onOpenChange={onRegisterChange}
         onLogin={onLogin}
         onNext={onNext}
+        onOpenChange={onRegisterChange}
       />
       <EmailModal
         isOpen={isEmail}
-        onOpenChange={onEmailChange}
-        onLogin={onLoginChange}
-        onRegister={registration}
         newUser={newUser}
+        onLogin={onLoginChange}
+        onOpenChange={onEmailChange}
+        onRegister={registration}
       />
     </>
   );

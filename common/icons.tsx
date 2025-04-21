@@ -1,4 +1,4 @@
-export const CameraIcon = ({fill, size, height, width, ...props}: any) => {
+export const CameraIcon = ({ fill, size, height, width, ...props }: any) => {
   return (
     <svg
       fill="none"

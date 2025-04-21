@@ -12,9 +12,9 @@ import {
 import { FC, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
-import { ROUTES } from "@/app/routes";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+
 import { useLoginMutation } from "@/redux/services/authApi";
 
 type Inputs = {
@@ -57,8 +57,8 @@ export const LoginModal: FC<LoginModalProps> = ({
     login(body)
       .unwrap()
       .then((res: any) => {
-        console.log(res)
         localStorage.setItem("access-token", res.accessToken);
+        window.location.reload()
       })
       .catch((error: any) => console.log(error))
       .finally(() => {
@@ -69,15 +69,15 @@ export const LoginModal: FC<LoginModalProps> = ({
 
   return (
     <Modal
-      isOpen={isOpen}
-      size="sm"
-      placement="center"
       backdrop="blur"
-      onOpenChange={onOpenChange}
       className="bg-gray dark:bg-foreground-100 border-[3px] border-white dark:border-white/50 rounded-[36px] py-1 transition-all"
       classNames={{
         closeButton: "m-3.5",
       }}
+      isOpen={isOpen}
+      placement="center"
+      size="sm"
+      onOpenChange={onOpenChange}
     >
       <ModalContent>
         {(onClose) => (
@@ -88,14 +88,14 @@ export const LoginModal: FC<LoginModalProps> = ({
             <ModalBody>
               <div className="flex flex-col gap-5">
                 <Input
-                  radius="full"
-                  type="email"
-                  placeholder="E-mail"
-                  startContent={<MdEmail />}
                   classNames={{
                     input: "bg-transparent dark:text-white",
                     inputWrapper: "dark:bg-foreground-200",
                   }}
+                  placeholder="E-mail"
+                  radius="full"
+                  startContent={<MdEmail />}
+                  type="email"
                   {...register("email", {
                     required: { value: true, message: "Обязательное поле" },
                     pattern: {
@@ -105,14 +105,14 @@ export const LoginModal: FC<LoginModalProps> = ({
                   })}
                 />
                 <Input
-                  radius="full"
-                  type="password"
-                  placeholder="Пароль"
-                  startContent={<FaLock size={14} />}
                   classNames={{
                     input: "bg-transparent dark:text-white",
                     inputWrapper: "dark:bg-foreground-200",
                   }}
+                  placeholder="Пароль"
+                  radius="full"
+                  startContent={<FaLock size={14} />}
+                  type="password"
                   {...register("password", {
                     required: { value: true, message: "Обязательное поле" },
                     minLength: { value: 6, message: "Не менее 6 символов" },
@@ -123,10 +123,10 @@ export const LoginModal: FC<LoginModalProps> = ({
             <ModalFooter>
               <div className="flex flex-col w-full">
                 <Button
-                  type="submit"
+                  className="w-full"
                   color="primary"
                   radius="full"
-                  className="w-full"
+                  type="submit"
                 >
                   Войти
                 </Button>
@@ -134,15 +134,15 @@ export const LoginModal: FC<LoginModalProps> = ({
                 <div className="flex items-center justify-between w-full gap-4 text-xs mt-2 -mb-3">
                   <Button
                     className="cursor-pointer hover:text-primary bg-transparent text-xs"
-                    variant="flat"
                     radius="full"
+                    variant="flat"
                   >
                     Забыли пароль?
                   </Button>
                   <Button
                     className="cursor-pointer hover:text-primary bg-transparent text-xs"
-                    variant="flat"
                     radius="full"
+                    variant="flat"
                     onPress={() => {
                       onRegister();
                       onClose();

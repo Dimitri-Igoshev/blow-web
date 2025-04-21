@@ -1,10 +1,12 @@
 "use client";
 
-import Protected from "@/components/Protected";
 import { Tab, Tabs } from "@heroui/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+
 import { ROUTES } from "../routes";
+
+import Protected from "@/components/Protected";
 
 export default function PanelLayout({
   children,
@@ -18,24 +20,31 @@ export default function PanelLayout({
     switch (pathname) {
       case ROUTES.ACCOUNT.SEARCH:
         setTab("search");
+
         return;
       case ROUTES.ACCOUNT.GUESTS:
         setTab("guests");
+
         return;
       case ROUTES.ACCOUNT.MAILINGS:
         setTab("mailings");
+
         return;
       case ROUTES.ACCOUNT.PROFILE:
         setTab("profile");
+
         return;
       case ROUTES.ACCOUNT.SERVICES:
         setTab("services");
+
         return;
       case ROUTES.ACCOUNT.NOTES:
         setTab("notes");
+
         return;
       case ROUTES.ACCOUNT.DIALOGUES:
         setTab("dialogues");
+
         return;
       default:
         return;
@@ -53,22 +62,38 @@ export default function PanelLayout({
 
         <div className="relative z-10 px-9 -mt-[84px] w-full">
           <Tabs
-            aria-label="Tabs"
-            variant="bordered"
-            radius="full"
             fullWidth
+            aria-label="Tabs"
             classNames={{
               tabContent: "text-white",
             }}
+            radius="full"
             selectedKey={tab}
+            variant="bordered"
           >
-            <Tab key="search" title="Поиск анкет" href={ROUTES.ACCOUNT.SEARCH} />
-            <Tab key="guests" title="Кто смотрел" href={ROUTES.ACCOUNT.GUESTS} />
-            <Tab key="mailings" title="Рассылки" href={ROUTES.ACCOUNT.MAILINGS} />
-            <Tab key="profile" title="Профиль" href={ROUTES.ACCOUNT.PROFILE} />
-            <Tab key="services" title="Услуги" href={ROUTES.ACCOUNT.SERVICES}/>
-            <Tab key="notes" title="Заметки" href={ROUTES.ACCOUNT.NOTES} />
-            <Tab key="dialogues" title="Диалоги" href={ROUTES.ACCOUNT.DIALOGUES} />
+            <Tab
+              key="search"
+              href={ROUTES.ACCOUNT.SEARCH}
+              title="Поиск анкет"
+            />
+            <Tab
+              key="guests"
+              href={ROUTES.ACCOUNT.GUESTS}
+              title="Кто смотрел"
+            />
+            <Tab
+              key="mailings"
+              href={ROUTES.ACCOUNT.MAILINGS}
+              title="Рассылки"
+            />
+            <Tab key="profile" href={ROUTES.ACCOUNT.PROFILE} title="Профиль" />
+            <Tab key="services" href={ROUTES.ACCOUNT.SERVICES} title="Услуги" />
+            <Tab key="notes" href={ROUTES.ACCOUNT.NOTES} title="Заметки" />
+            <Tab
+              key="dialogues"
+              href={ROUTES.ACCOUNT.DIALOGUES}
+              title="Диалоги"
+            />
           </Tabs>
         </div>
 

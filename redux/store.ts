@@ -1,23 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+
 import { authApi } from "./services/authApi";
 import { userApi } from "./services/userApi";
 import { uploadApi } from "./services/uploadApi";
 
 export const store = configureStore({
-	reducer: {
-		[authApi.reducerPath]: authApi.reducer,
-		[userApi.reducerPath]: userApi.reducer,
-		[uploadApi.reducerPath]: uploadApi.reducer,
-	},
-	devTools: process.env.NODE_ENV !== "production",
-	middleware: (getDefaultMiddleware) => {
-		return getDefaultMiddleware({}).concat([
-			authApi.middleware,
-			userApi.middleware,
-			uploadApi.middleware,
-		]);
-	},
+  reducer: {
+    [authApi.reducerPath]: authApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
+    [uploadApi.reducerPath]: uploadApi.reducer,
+  },
+  devTools: process.env.NODE_ENV !== "production",
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({}).concat([
+      authApi.middleware,
+      userApi.middleware,
+      uploadApi.middleware,
+    ]);
+  },
 });
 
 setupListeners(store.dispatch);

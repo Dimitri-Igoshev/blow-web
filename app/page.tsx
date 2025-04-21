@@ -2,13 +2,14 @@
 
 import { cn } from "@heroui/theme";
 import { Image } from "@heroui/image";
+import Link from "next/link";
+import { Suspense } from "react";
+
+import { ROUTES } from "./routes";
 
 import { PreviewWidget } from "@/components/preview-widget";
 import { SearchWidget } from "@/components/search-widget";
 import { cities } from "@/data/cities";
-import { ROUTES } from "./routes";
-import Link from "next/link";
-import { Suspense } from "react";
 import { useGetUsersQuery } from "@/redux/services/userApi";
 
 const soderjanki = [

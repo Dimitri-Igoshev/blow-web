@@ -1,7 +1,5 @@
 "use client";
 
 export default function accountSearch() {
-  return (
-    <div>Search</div>
-  );
+  return <div>Search</div>;
 }

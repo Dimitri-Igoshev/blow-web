@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { FunctionComponent } from "react";
+
 import { ROUTES } from "../routes";
 
 interface AccountProps {}

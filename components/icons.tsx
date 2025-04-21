@@ -222,11 +222,11 @@ export const WomenIcon = (props: IconSvgProps) => (
   </svg>
 );
 
-
-export const HeartIcon = ({size, height, width, ...props}: any) => {
+export const HeartIcon = ({ size, height, width, ...props }: any) => {
   // avoid passing non-DOM attributes to svg
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const {isSelected, isIndeterminate, disableAnimation, ...otherProps} = props;
+  const { isSelected, isIndeterminate, disableAnimation, ...otherProps } =
+    props;
 
   return (
     <svg

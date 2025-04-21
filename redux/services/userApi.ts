@@ -1,5 +1,6 @@
-import { config } from "@/common/env";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+import { config } from "@/common/env";
 
 type User = {
   id: number;
@@ -10,31 +11,32 @@ type User = {
 export const userApi = createApi({
   reducerPath: "userApi",
   refetchOnFocus: true,
-  baseQuery: fetchBaseQuery({ 
+  baseQuery: fetchBaseQuery({
     baseUrl: `${config.API_URL}/user`,
     prepareHeaders: (headers, { getState }) => {
-      const token = localStorage.getItem('access-token')
-      if (token) headers.set('Authorization', `Bearer ${token}`)
-  
-      return headers
-    }, 
+      const token = localStorage.getItem("access-token");
+
+      if (token) headers.set("Authorization", `Bearer ${token}`);
+
+      return headers;
+    },
   }),
-  tagTypes: ['User'],
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getMe: builder.query({
-      query: () => 'me',
-      providesTags: ['User']
+      query: () => "me",
+      providesTags: ["User"],
     }),
     getUser: builder.query({
       query: (id) => ({
-        url: `/${id}`
+        url: `/${id}`,
       }),
-      providesTags: ['User']
+      providesTags: ["User"],
     }),
     getUsers: builder.query({
       // query: ({ search, limit }) => `?search=${search}&limit=${limit}`,
-      query: () => '',
-      providesTags: ['User']
+      query: () => "",
+      providesTags: ["User"],
     }),
     // createUser: builder.mutation({
     //   query: (body) => ({

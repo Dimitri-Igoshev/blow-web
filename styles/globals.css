@@ -30,3 +30,15 @@ select:-webkit-autofill:focus {
 		font-size: 16px;
 	}
 }
+
+.loading {
+  display:inline-block;
+  clip-path: inset(0 15px 0 0);
+  animation: l 1s steps(4) infinite;
+}
+
+@keyframes l {
+  to {
+    clip-path: inset(0 -3px 0 0)
+  }
+}
