@@ -16,6 +16,7 @@ import { ROUTES } from "@/app/routes";
 import { getCityString } from "@/helper/getCityString";
 import { useGetMeQuery } from "@/redux/services/userApi";
 import { config } from "@/common/env";
+import { useEffect, useRef, useState } from "react";
 
 const AccountProfilePage = () => {
   const router = useRouter();
@@ -28,17 +29,36 @@ const AccountProfilePage = () => {
     window.location.reload();
   };
 
+	const [width, setWidth] = useState()
+	const ref = useRef<any>(null)
+
+	useEffect(() => {
+		setWidth(ref.current.offsetWidth)
+		
+		window.addEventListener("resize", () => {
+			setWidth(ref.current.offsetWidth)
+		})
+
+		return () => {
+			window.removeEventListener("resize", () => {
+				setWidth(ref.current.offsetWidth)
+			})
+		}
+	}, [])
+	
+
   return (
     <div className="grid grid-cols-4 px-9 h-screen pt-[94px] gap-[50px]">
       <div className="col-span-1 flex flex-col gap-[50px]">
-        <div className="relative">
+        <div className="relative" ref={ref}>
           <Image
-            alt="BLOW"
-            className="border-[7px] border-white dark:border-foreground-100 z-0 relative object-cover"
-            height={"100%"}
+            alt=""
+            className="border-[7px] border-white dark:border-foreground-100 z-0 relative"
+            height={width ? width : '100%'}
             radius="full"
             src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
             width={"100%"}
+						style={{ objectFit: 'cover' }}
           />
           {/* <div className="absolute rounded-full w-10 h-10 bg-primary cursor-pointer flex justify-center items-center right-[40px] bottom-[40px] border-[2px] border-white z-20">
 					<IoCameraOutline className="text-white mb-px" />

@@ -98,9 +98,9 @@ export default function PanelLayout({
           </Tabs>
         </div>
 
-        <div className="pt-[160px]">{children}</div>
+        <div className="pt-[160px] min-h-screen h-full">{children}</div>
 
-        <footer className="bg-gray dark:bg-black w-full">
+        <footer className="bg-gray dark:bg-black w-full mt-[100px]">
           <div className="bg-dark rounded-t-[50px] px-12 py-[28px] grid grid-cols-3 text-white items-center">
             <p>
               {new Date().getFullYear()} © BLOW. Сайт для лиц старше 18-ти лет.
