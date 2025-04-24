@@ -34,7 +34,7 @@ const AccountProfilePage = () => {
         <div className="relative">
           <Image
             alt="BLOW"
-            className="border-[7px] border-white dark:border-foreground-100 z-0 relative"
+            className="border-[7px] border-white dark:border-foreground-100 z-0 relative object-cover"
             height={"100%"}
             radius="full"
             src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
