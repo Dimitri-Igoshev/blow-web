@@ -293,7 +293,7 @@ export default function Home() {
           src="/bg.png"
         />
         <div className="w-full absolute top-[130px]">
-          <div className="flex justify-center items-center gap-[5%] px-5 relative z-10">
+          <div className="flex items-center gap-[5%] px-[40px] relative z-10">
             <Suspense>
               <SearchWidget className="" />
             </Suspense>
@@ -311,16 +311,16 @@ export default function Home() {
           </div>
 
           <div className="mt-[60px]  bg-gray dark:bg-black">
-            <h2 className="text-[36px] text-white font-semibold pl-20 z-20 relative">
+            <h2 className="text-[36px] text-white font-semibold pl-[40px] z-20 relative">
               Содержанки
             </h2>
 
-            <div className="w-full grid grid-cols-4 mt-[30px] z-20 relative">
+            <div className="w-full grid grid-cols-4 mt-[30px] gap-[50px] z-20 relative px-[40px]">
               {soderjanki.map((item, idx) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
-                      "mt-[50px]":
+                      "mt-[50px] -mb-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
@@ -337,17 +337,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-[60px] bg-gray dark:bg-black">
-            <h2 className="text-[36px] text-black dark:text-white font-semibold pl-20 z-20 relative">
+          <div className="pt-[100px] bg-gray dark:bg-black">
+            <h2 className="text-[36px] text-black dark:text-white font-semibold pl-[40px] z-20 relative">
               Наши мужчины
             </h2>
 
-            <div className="w-full grid grid-cols-4 mt-[30px] z-20 relative">
+            <div className="w-full grid grid-cols-4 mt-[30px] gap-[50px] z-20 relative px-[40px]">
               {sponsors.map((item, idx) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
-                      "mt-[50px]":
+                      "mt-[50px] -mb-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
@@ -363,7 +363,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="bg-white dark:bg-foreground-200 p-6 m-9 mb-0 mt-20 rounded-[36px]">
+            <div className="bg-white dark:bg-foreground-200 p-6 m-9 mb-0 mt-[120px] rounded-[36px]">
               <Image
                 alt="BLOW"
                 className="object-cover float-left mr-8 mb-3"

@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import "react-image-crop/dist/ReactCrop.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Image } from "@heroui/image";
 
 import { Providers } from "./providers";
 
@@ -46,17 +47,34 @@ export default function RootLayout({
             <Navbar />
             {/* <main className="container mx-auto max-w-full pt-16 px-6 flex-grow"> */}
             <main className="">{children}</main>
-            {/* <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://heroui.com?utm_source=next-app-template"
-                title="heroui.com homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">HeroUI</p>
-              </Link>
-            </footer> */}
+            <footer className="bg-gray dark:bg-black w-full">
+              <div className="bg-dark rounded-t-[50px] px-12 py-[28px] grid grid-cols-3 text-white items-center">
+                <p>
+                  {new Date().getFullYear()} © BLOW. Сайт для лиц старше 18-ти
+                  лет.
+                </p>
+                <div className="flex justify-center">
+                  <Image
+                    alt="BLOW"
+                    height={40}
+                    radius="none"
+                    src="/logo.png"
+                    width={101}
+                  />
+                </div>
+                <div className="flex items-center justify-end gap-6">
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Свяжись с нами
+                  </div>
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Правила
+                  </div>
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Договор оферта
+                  </div>
+                </div>
+              </div>
+            </footer>
           </div>
         </Providers>
       </body>

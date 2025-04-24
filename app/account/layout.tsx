@@ -56,11 +56,11 @@ export default function PanelLayout({
       <div className="relative">
         <img
           alt=""
-          className="rounded-b-[50px] flex flex-col relative z-10 w-full h-[210px] object-cover"
+          className="rounded-b-[50px] flex flex-col fixed z-10 w-full h-[210px] object-cover"
           src="/bg-min.png"
         />
 
-        <div className="relative z-10 px-9 -mt-[84px] w-full">
+        <div className="fixed z-10 px-9 mt-[128px] w-full">
           <Tabs
             fullWidth
             aria-label="Tabs"
@@ -97,7 +97,7 @@ export default function PanelLayout({
           </Tabs>
         </div>
 
-        <div>{children}</div>
+        <div className="pt-[160px]">{children}</div>
       </div>
     </Protected>
   );

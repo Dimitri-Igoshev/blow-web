@@ -89,33 +89,35 @@ export const Navbar = () => {
             className="text-white cursor-pointer"
             onClick={() => router.push(ROUTES.HOME)}
           />
-          <ThemeSwitch className="mr-3" />
+          <ThemeSwitch className="mr-6" />
 
           {me?._id ? (
             <>
-              <p className="text-white">
-                {me?.firstName
-                  ? me.firstName
-                  : me?.sex === "male"
-                    ? "Мужчина"
-                    : "Девушка"}
-              </p>
               <NavbarItem
                 className="hidden md:flex cursor-pointer"
                 onClick={() => router.push(ROUTES.ACCOUNT.PROFILE)}
               >
-                <div className="rounded-full border-[2px] border-white">
-                  <Avatar
-                    showFallback
-                    fallback={
-                      <CameraIcon
-                        className="animate-pulse w-6 h-6 text-default-500"
-                        fill="currentColor"
-                        size={20}
-                      />
-                    }
-                    src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
-                  />
+                <div className="flex items-center gap-3">
+                  <p className="text-white hover:underline">
+                    {me?.firstName
+                      ? me.firstName
+                      : me?.sex === "male"
+                        ? "Мужчина"
+                        : "Девушка"}
+                  </p>
+                  <div className="rounded-full border-white">
+                    <Avatar
+                      showFallback
+                      fallback={
+                        <CameraIcon
+                          className="animate-pulse w-6 h-6 text-default-500"
+                          fill="currentColor"
+                          size={20}
+                        />
+                      }
+                      src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
+                    />
+                  </div>
                 </div>
               </NavbarItem>
             </>

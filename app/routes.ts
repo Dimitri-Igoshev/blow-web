@@ -3,6 +3,7 @@ export const ROUTES = {
   SEARCH: "/search",
   ACCOUNT: {
     PROFILE: "/account/profile",
+    PROFILE_EDIT: "/account/profile/edit",
     GUESTS: "/account/guests",
     DIALOGUES: "/account/dialogues",
     MAILINGS: "/account/mailings",
