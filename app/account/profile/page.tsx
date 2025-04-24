@@ -1,10 +1,6 @@
 "use client";
 
 import { Image } from "@heroui/image";
-
-import { config } from "@/common/env";
-import { useGetMeQuery } from "@/redux/services/userApi";
-import { getCityString } from "@/helper/getCityString";
 import { MdOutlineHeight, MdOutlineLogout } from "react-icons/md";
 import { GiWeight } from "react-icons/gi";
 import { Button } from "@heroui/button";
@@ -14,10 +10,14 @@ import { LuCrown, LuWallet } from "react-icons/lu";
 import { IoArrowUp } from "react-icons/io5";
 import { LuTrash } from "react-icons/lu";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/app/routes";
 import Link from "next/link";
 
-export default function accountProfile() {
+import { ROUTES } from "@/app/routes";
+import { getCityString } from "@/helper/getCityString";
+import { useGetMeQuery } from "@/redux/services/userApi";
+import { config } from "@/common/env";
+
+const AccountProfilePage = () => {
   const router = useRouter();
 
   const { data: me } = useGetMeQuery(null);
@@ -71,7 +71,9 @@ export default function accountProfile() {
 
           <div className="flex gap-2.5 cursor-pointer group transition-all">
             <LuWallet className="text-primary min-w-4" size={16} />
-            <p className="-mt-[3px] group-hover:text-primary">Пополнить кошелек</p>
+            <p className="-mt-[3px] group-hover:text-primary">
+              Пополнить кошелек
+            </p>
           </div>
 
           <div className="flex gap-2.5 cursor-pointer group transition-all">
@@ -128,8 +130,8 @@ export default function accountProfile() {
                 className="w-full z-0 relative"
                 color="primary"
                 radius="full"
-                variant="bordered"
                 startContent={<PiWaveform className="w-5 h-5" />}
+                variant="bordered"
               >
                 {me?.voice ? "Прослушать голос" : "Записать голос"}
               </Button>
@@ -157,4 +159,6 @@ export default function accountProfile() {
       </div>
     </div>
   );
-}
+};
+
+export default AccountProfilePage;

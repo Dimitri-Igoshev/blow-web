@@ -1,7 +1,5 @@
 "use client";
 
-import { config } from "@/common/env";
-import { useGetMeQuery } from "@/redux/services/userApi";
 import { Button } from "@heroui/button";
 import { Image } from "@heroui/image";
 import { useRouter } from "next/navigation";
@@ -9,16 +7,19 @@ import { PiWaveform } from "react-icons/pi";
 import { BsFillCameraFill } from "react-icons/bs";
 import { Input, Textarea } from "@heroui/input";
 import { Checkbox, Select, SelectItem } from "@heroui/react";
+import { useEffect, useState } from "react";
+import { TiStarFullOutline } from "react-icons/ti";
+import { IoTrash } from "react-icons/io5";
+
 import { cities } from "@/data/cities";
 import { ages } from "@/data/ages";
 import { heights } from "@/data/heights";
 import { weights } from "@/data/weights";
 import { HeartIcon } from "@/components/icons";
-import { useEffect, useState } from "react";
-import { TiStarFullOutline } from "react-icons/ti";
-import { IoTrash } from "react-icons/io5";
+import { useGetMeQuery } from "@/redux/services/userApi";
+import { config } from "@/common/env";
 
-export default function editProfile() {
+export default function EditProfile() {
   const router = useRouter();
 
   const [user, setUser] = useState<any>();
@@ -40,8 +41,8 @@ export default function editProfile() {
           className="z-0 relative"
           color="secondary"
           radius="full"
-          variant="solid"
           startContent={<PiWaveform className="w-5 h-5" />}
+          variant="solid"
         >
           {me?.voice ? "Прослушать голос" : "Записать голос"}
         </Button>
@@ -49,9 +50,9 @@ export default function editProfile() {
 
       <div className="grid grid-cols-5 gap-5 w-full">
         <Input
-          label="Имя"
           className="z-0 relative"
           classNames={{ input: "font-semibold" }}
+          label="Имя"
           placeholder=""
           radius="lg"
         />
@@ -102,8 +103,8 @@ export default function editProfile() {
       <div className="grid grid-cols-5 gap-5 w-full">
         {me?.photos?.map((photo: any) => (
           <div
-            className="col-span-1 rounded-[27px] overflow-hidden relative group"
             key={photo.url}
+            className="col-span-1 rounded-[27px] overflow-hidden relative group"
           >
             <Image
               alt=""
@@ -190,18 +191,18 @@ export default function editProfile() {
 
       <Textarea
         className="w-full z-0 relative"
-        classNames={{input: "p-3" }}
+        classNames={{ input: "p-3" }}
         label=""
-        radius="lg"
         placeholder="Пользователь предпочёл не указывать информацию о себе "
+        radius="lg"
       />
 
       <div className="flex justify-end w-full">
         <Button
+          className="z-0 relative"
+          color="primary"
           radius="full"
           variant="solid"
-          color="primary"
-          className="z-0 relative"
           onPress={() => null}
         >
           Сохранить

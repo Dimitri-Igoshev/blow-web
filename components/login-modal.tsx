@@ -58,7 +58,7 @@ export const LoginModal: FC<LoginModalProps> = ({
       .unwrap()
       .then((res: any) => {
         localStorage.setItem("access-token", res.accessToken);
-        window.location.reload()
+        window.location.reload();
       })
       .catch((error: any) => console.log(error))
       .finally(() => {
