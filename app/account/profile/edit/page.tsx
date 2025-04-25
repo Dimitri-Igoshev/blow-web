@@ -16,33 +16,102 @@ import { ages } from "@/data/ages";
 import { heights } from "@/data/heights";
 import { weights } from "@/data/weights";
 import { HeartIcon } from "@/components/icons";
-import { useGetMeQuery } from "@/redux/services/userApi";
+import { useGetMeQuery, useUpdateUserMutation } from "@/redux/services/userApi";
 import { config } from "@/common/env";
+import { ROUTES } from "@/app/routes";
+import UploadImages from "@/components/UploadImages";
+import { IPhoto } from "@/common/interface/photo.interface";
 
 export default function EditProfile() {
   const router = useRouter();
-
   const [user, setUser] = useState<any>();
-
-  const { data: me } = useGetMeQuery(null);
-
-  const [city, setCity] = useState("");
-  const [sponsor, setSponsor] = useState(true);
-  const [age, setAge] = useState("");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
   const [loading, setLoading] = useState(false);
-  const [photo, setPhoto] = useState<any>();
-  const [imgSrc, setImgSrc] = useState<string>("");
+
+  const { data: me, refetch } = useGetMeQuery(null);
 
   useEffect(() => {
     if (!me) return;
 
-    setUser(me);
+    setUser({
+      ...me,
+      age: me?.age?.toString() || '',
+      height: me?.height?.toString() || '',
+      weight: me?.weight?.toString() || '',
+    });
   }, [me]);
 
+  const [update] = useUpdateUserMutation();
+
+  const save = async () => {
+    if (!user) return;
+
+    setLoading(true);
+
+    const data = {
+      firstName: user.firstName,
+      city: user.city,
+      age: parseInt(user.age),
+      height: parseInt(user.height),
+      weight: parseInt(user.weight),
+      sponsor: !!user?.sponsor,
+      traveling: !!user?.traveling,
+      relationships: !!user?.relationships,
+      evening: !!user?.evening,
+      about: user.about,
+    };
+
+    await update({ id: me._id, body: data })
+      .unwrap()
+      .then(() => {
+        router.push(ROUTES.ACCOUNT.PROFILE);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  };
+
+  const [files, setFiles] = useState<any[]>(me?.photos ? [...me.photos] : []);
+
+  const removeImage = (image: IPhoto) => {
+    update({
+      id: me._id,
+      body: {
+        ...me,
+        images: me?.photos.filter((i: any) => i.url !== image.url),
+      },
+    })
+      .unwrap()
+      .then(() => refetch())
+      .catch((error) => console.log(error));
+  };
+
+  const addImage = (image: IPhoto | any) => {
+    const formData = new FormData();
+    formData.append("files", image.file);
+
+    update({
+      id: me._id,
+      body: formData,
+    })
+      .unwrap()
+      .then(() => refetch())
+      .catch((error) => console.log(error));
+  };
+
+  const setMainImage = (images: IPhoto[]) => {
+    update({
+      id: me._id,
+      body: {
+        ...me,
+        images,
+      },
+    })
+      .unwrap()
+      .then(() => refetch())
+      .catch((error) => console.log(error));
+  };
+
   return (
-    <div className="flex w-full flex-col px-9 h-screen pt-[84px] gap-[30px]">
+    <div className="flex w-full flex-col px-9 pt-[84px] gap-[30px]">
       <div className="flex w-full items-center justify-between">
         <h1 className="font-semibold text-[36px]">Редактирование профиля</h1>
 
@@ -73,7 +142,7 @@ export default function EditProfile() {
           classNames={{ value: "font-semibold" }}
           label="Город"
           selectedKeys={[user?.city]}
-          onChange={(el: any) => setUser({ ...user, city: el.target.value })}
+          onChange={(el) => setUser({ ...user, city: el.target.value })}
         >
           {cities.map((city: any) => (
             <SelectItem key={city.value}>{city.label}</SelectItem>
@@ -119,6 +188,15 @@ export default function EditProfile() {
 
       <h2 className="font-semibold text-[24px] mt-5">Фото профиля</h2>
 
+      <UploadImages
+        data={files}
+        isEdit
+        onChange={(value) => (!me ? setFiles(value) : null)}
+        onAdd={addImage}
+        onRemove={removeImage}
+        onSetMain={setMainImage}
+      />
+
       <div className="grid grid-cols-5 gap-5 w-full">
         {user?.photos?.map((photo: any) => (
           <div
@@ -143,7 +221,7 @@ export default function EditProfile() {
             </div>
           </div>
         ))}
-        <button className="col-span-1 bg-white dark:bg-foreground-100 rounded-[27px] flex justify-center items-center group z-0 relative">
+        <button className="col-span-1 bg-white min-h-[300px] dark:bg-foreground-100 rounded-[27px] flex justify-center items-center group z-0 relative">
           <div className="flex flex-col items-center gap-3 group-hover:text-primary transition-all">
             <BsFillCameraFill size={36} />
             <p className="font-semibold">Добавить фото</p>
@@ -164,7 +242,7 @@ export default function EditProfile() {
           isSelected={!!user?.sponsor}
           onChange={(e) => setUser({ ...user, sponsor: !!e.target.checked })}
         >
-          {user?.sex === "men" ? "я спонсор" : "ищу спонсора"}
+          {user?.sex === "male" ? "я спонсор" : "ищу спонсора"}
         </Checkbox>
         <Checkbox
           defaultSelected
@@ -215,7 +293,7 @@ export default function EditProfile() {
         placeholder="Пользователь предпочёл не указывать информацию о себе "
         radius="lg"
         value={user?.about}
-          onChange={(e) => setUser({ ...user, about: e.target.value })}
+        onChange={(e) => setUser({ ...user, about: e.target.value })}
       />
 
       <div className="flex justify-end w-full">
@@ -224,7 +302,7 @@ export default function EditProfile() {
           color="primary"
           radius="full"
           variant="solid"
-          onPress={() => null}
+          onPress={save}
         >
           Сохранить
         </Button>

@@ -152,7 +152,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         onChange={(el: any) => setAge(el.target.value)}
                       >
                         {ages.map((age) => (
-                          <SelectItem key={age.key}>{age.label}</SelectItem>
+                          <SelectItem key={age.value}>{age.label}</SelectItem>
                         ))}
                       </Select>
 
@@ -170,7 +170,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         onChange={(el: any) => setHeight(el.target.value)}
                       >
                         {heights.map((height) => (
-                          <SelectItem key={height.key}>
+                          <SelectItem key={height.value}>
                             {height.label}
                           </SelectItem>
                         ))}
@@ -190,7 +190,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({
                         onChange={(el: any) => setWeight(el.target.value)}
                       >
                         {weights.map((weight) => (
-                          <SelectItem key={weight.key}>
+                          <SelectItem key={weight.value}>
                             {weight.label}
                           </SelectItem>
                         ))}

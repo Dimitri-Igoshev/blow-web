@@ -35,7 +35,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
     if (!ageFrom) return;
 
     setAgeToOptions([
-      ...ages.filter(({ key }) => parseInt(key) > parseInt(ageFrom)),
+      ...ages.filter(({ value }) => parseInt(value) > parseInt(ageFrom)),
     ]);
   }, [ageFrom]);
 
@@ -43,7 +43,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
     if (!ageTo) return;
 
     setAgeFromOptions([
-      ...ages.filter(({ key }) => parseInt(key) < parseInt(ageTo)),
+      ...ages.filter(({ value }) => parseInt(value) < parseInt(ageTo)),
     ]);
   }, [ageTo]);
 
@@ -91,7 +91,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
             onChange={(el: any) => setAgeFrom(el.target.value)}
           >
             {ageFromOptions.map((age) => (
-              <SelectItem key={age.key}>{age.label}</SelectItem>
+              <SelectItem key={age.value}>{age.label}</SelectItem>
             ))}
           </Select>
           <Select
@@ -102,7 +102,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({ className }) => {
             onChange={(el: any) => setAgeTo(el.target.value)}
           >
             {ageToOptions.map((age) => (
-              <SelectItem key={age.key}>{age.label}</SelectItem>
+              <SelectItem key={age.value}>{age.label}</SelectItem>
             ))}
           </Select>
         </div>

@@ -47,15 +47,15 @@ export const userApi = createApi({
     //   }),
     //   invalidatesTags: ['User']
     // }),
-    // updateUser: builder.mutation({
-    //   query: ({ id, body }) => ({
-    //     url: `/${id}`,
-    //     method: 'PATCH',
-    //     body,
-    //     formData: true
-    //   }),
-    //   invalidatesTags: ['User']
-    // }),
+    updateUser: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/${id}`,
+        method: 'PATCH',
+        body,
+        formData: true
+      }),
+      invalidatesTags: ['User']
+    }),
     // removeUser: builder.mutation({
     //   query: (id) => ({
     //     url: `/${id}`,
@@ -66,4 +66,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetMeQuery, useGetUserQuery, useGetUsersQuery } = userApi;
+export const { useGetMeQuery, useGetUserQuery, useGetUsersQuery, useUpdateUserMutation } = userApi;

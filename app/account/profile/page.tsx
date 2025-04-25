@@ -29,23 +29,22 @@ const AccountProfilePage = () => {
     window.location.reload();
   };
 
-	const [width, setWidth] = useState()
-	const ref = useRef<any>(null)
+  const [width, setWidth] = useState();
+  const ref = useRef<any>(null);
 
-	useEffect(() => {
-		setWidth(ref.current.offsetWidth)
-		
-		window.addEventListener("resize", () => {
-			setWidth(ref.current.offsetWidth)
-		})
+  useEffect(() => {
+    setWidth(ref.current.offsetWidth);
 
-		return () => {
-			window.removeEventListener("resize", () => {
-				setWidth(ref.current.offsetWidth)
-			})
-		}
-	}, [])
-	
+    window.addEventListener("resize", () => {
+      setWidth(ref.current.offsetWidth);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWidth(ref.current.offsetWidth);
+      });
+    };
+  }, []);
 
   return (
     <div className="grid grid-cols-4 px-9 h-screen pt-[94px] gap-[50px]">
@@ -54,11 +53,11 @@ const AccountProfilePage = () => {
           <Image
             alt=""
             className="border-[7px] border-white dark:border-foreground-100 z-0 relative"
-            height={width ? width : '100%'}
+            height={width ? width : "100%"}
             radius="full"
             src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
             width={"100%"}
-						style={{ objectFit: 'cover' }}
+            style={{ objectFit: "cover" }}
           />
           {/* <div className="absolute rounded-full w-10 h-10 bg-primary cursor-pointer flex justify-center items-center right-[40px] bottom-[40px] border-[2px] border-white z-20">
 					<IoCameraOutline className="text-white mb-px" />
@@ -162,17 +161,26 @@ const AccountProfilePage = () => {
 
           <ul className="flex flex-wrap w-full gap-6 pl-4">
             {!me?.sponsor ? null : (
-              <li className="list-disc">
+              <li className="list-disc mr-8">
                 {me?.sex.male ? "Стану спонсором" : "Ищу спонсора"}
               </li>
+            )}
+            {!me?.traveling ? null : (
+              <li className="list-disc mr-8">Совместные путешествия</li>
+            )}
+            {!me?.relationships ? null : (
+              <li className="list-disc mr-8">Постоянные отношения</li>
+            )}
+            {!me?.evening ? null : (
+              <li className="list-disc mr-8">Провести вечер</li>
             )}
           </ul>
 
           <div className="text-[20px] font-semibold mt-6">О себе</div>
 
           <p>
-            {me?.description
-              ? me.description
+            {me?.about
+              ? me.about
               : "Пользователь предпочел не указывать информацию о себе."}
           </p>
         </div>
