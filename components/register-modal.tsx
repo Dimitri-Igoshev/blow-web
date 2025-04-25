@@ -66,21 +66,21 @@ export const RegisterModal: FC<RegisterModalProps> = ({
     }
   };
 
-  const uploadPhoto = (value: IFilePayload) => {
-    setLoading(true);
+  // const uploadPhoto = (value: IFilePayload) => {
+  //   setLoading(true);
 
-    const formData = new FormData();
+  //   const formData = new FormData();
 
-    if (value?.blob) formData.set("file", value.blob);
+  //   if (value?.blob) formData.set("file", value.blob);
 
-    upload(formData)
-      .unwrap()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  };
+  //   upload(formData)
+  //     .unwrap()
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((error) => console.log(error))
+  //     .finally(() => setLoading(false));
+  // };
 
   return (
     <>

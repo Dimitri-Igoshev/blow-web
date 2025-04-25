@@ -26,6 +26,15 @@ export default function EditProfile() {
 
   const { data: me } = useGetMeQuery(null);
 
+  const [city, setCity] = useState("");
+  const [sponsor, setSponsor] = useState(true);
+  const [age, setAge] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [photo, setPhoto] = useState<any>();
+  const [imgSrc, setImgSrc] = useState<string>("");
+
   useEffect(() => {
     if (!me) return;
 
@@ -55,12 +64,16 @@ export default function EditProfile() {
           label="Имя"
           placeholder=""
           radius="lg"
+          value={user?.firstName}
+          onChange={(e) => setUser({ ...user, firstName: e.target.value })}
         />
 
         <Select
           className="text-primary z-0 relative"
           classNames={{ value: "font-semibold" }}
           label="Город"
+          selectedKeys={[user?.city]}
+          onChange={(el: any) => setUser({ ...user, city: el.target.value })}
         >
           {cities.map((city: any) => (
             <SelectItem key={city.value}>{city.label}</SelectItem>
@@ -71,6 +84,8 @@ export default function EditProfile() {
           className="text-primary z-0 relative"
           classNames={{ value: "font-semibold" }}
           label="Возраст (лет)"
+          selectedKeys={[user?.age]}
+          onChange={(el: any) => setUser({ ...user, age: el.target.value })}
         >
           {ages.map((age: any) => (
             <SelectItem key={age.value}>{age.label}</SelectItem>
@@ -81,6 +96,8 @@ export default function EditProfile() {
           className="text-primary z-0 relative"
           classNames={{ value: "font-semibold" }}
           label="Рост (см)"
+          selectedKeys={[user?.height]}
+          onChange={(el: any) => setUser({ ...user, height: el.target.value })}
         >
           {heights.map((height: any) => (
             <SelectItem key={height.value}>{height.label}</SelectItem>
@@ -91,6 +108,8 @@ export default function EditProfile() {
           className="text-primary z-0 relative"
           classNames={{ value: "font-semibold" }}
           label="Вес (кг)"
+          selectedKeys={[user?.weight]}
+          onChange={(el: any) => setUser({ ...user, weight: el.target.value })}
         >
           {weights.map((weight: any) => (
             <SelectItem key={weight.value}>{weight.label}</SelectItem>
@@ -101,7 +120,7 @@ export default function EditProfile() {
       <h2 className="font-semibold text-[24px] mt-5">Фото профиля</h2>
 
       <div className="grid grid-cols-5 gap-5 w-full">
-        {me?.photos?.map((photo: any) => (
+        {user?.photos?.map((photo: any) => (
           <div
             key={photo.url}
             className="col-span-1 rounded-[27px] overflow-hidden relative group"
@@ -195,6 +214,8 @@ export default function EditProfile() {
         label=""
         placeholder="Пользователь предпочёл не указывать информацию о себе "
         radius="lg"
+        value={user?.about}
+          onChange={(e) => setUser({ ...user, about: e.target.value })}
       />
 
       <div className="flex justify-end w-full">
