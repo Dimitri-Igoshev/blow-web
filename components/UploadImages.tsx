@@ -2,17 +2,15 @@
 
 import { FC, useEffect, useState } from "react";
 import { Image } from "@heroui/image";
-import { AiOutlineStar } from "react-icons/ai";
-import { MdOutlineDelete } from "react-icons/md";
-import { IPhoto } from "@/common/interface/photo.interface";
 import { Modal, ModalContent, useDisclosure } from "@heroui/react";
-import { config } from "@/common/env";
-import LabelRound from "./LabelRound";
-import ImageCroper from "./ImageCroper";
-import BaseModal from "./BaseModal";
 import { TiStarFullOutline } from "react-icons/ti";
 import { IoTrash } from "react-icons/io5";
 import { BsFillCameraFill } from "react-icons/bs";
+
+import ImageCroper from "./ImageCroper";
+
+import { config } from "@/common/env";
+import { IPhoto } from "@/common/interface/photo.interface";
 
 interface UploadImagesProps {
   data?: any[];
@@ -71,6 +69,7 @@ const UploadImages: FC<UploadImagesProps> = ({
     });
 
     const filteredImages: IPhoto[] = imgs.filter((i: IPhoto) => !i.main);
+
     if (currentImage) filteredImages.unshift(currentImage);
 
     if (isEdit) onSetMain(filteredImages);
@@ -87,6 +86,7 @@ const UploadImages: FC<UploadImagesProps> = ({
 
   const removeImage = (idx: number) => {
     const imgs = [...images];
+
     imgs.splice(idx, 1);
     setImages(imgs);
 
@@ -159,8 +159,8 @@ const UploadImages: FC<UploadImagesProps> = ({
           {(onClose) => (
             <ImageCroper
               aspectRatios={10 / 15}
-              onSave={(e: any) => addImage(e.blob)}
               onClose={onOpenChange}
+              onSave={(e: any) => addImage(e.blob)}
             />
           )}
         </ModalContent>

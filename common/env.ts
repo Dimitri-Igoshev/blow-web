@@ -3,5 +3,5 @@ export const config = {
   // MEDIA_URL: "http://localhost:4000",
 
   API_URL: "https://blow.igoshev.de/api",
-  MEDIA_URL: "https://blow.igoshev.de"
+  MEDIA_URL: "https://blow.igoshev.de",
 };

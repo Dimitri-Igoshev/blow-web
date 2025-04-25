@@ -50,11 +50,11 @@ export const userApi = createApi({
     updateUser: builder.mutation({
       query: ({ id, body }) => ({
         url: `/${id}`,
-        method: 'PATCH',
+        method: "PATCH",
         body,
-        formData: true
+        formData: true,
       }),
-      invalidatesTags: ['User']
+      invalidatesTags: ["User"],
     }),
     // removeUser: builder.mutation({
     //   query: (id) => ({
@@ -66,4 +66,9 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetMeQuery, useGetUserQuery, useGetUsersQuery, useUpdateUserMutation } = userApi;
+export const {
+  useGetMeQuery,
+  useGetUserQuery,
+  useGetUsersQuery,
+  useUpdateUserMutation,
+} = userApi;

@@ -1,6 +1,6 @@
 "use client";
 
-import { FunctionComponent, useEffect, useRef, useState } from "react";
+import { FunctionComponent, useRef, useState } from "react";
 import ReactCrop, {
   Crop,
   PixelCrop,
@@ -8,10 +8,11 @@ import ReactCrop, {
   makeAspectCrop,
 } from "react-image-crop";
 import { LuCamera } from "react-icons/lu";
-import { IoCloseSharp } from "react-icons/io5";
-import { canvasPreview } from "./canvasPreview";
-import { useDebounceEffect } from "@/hooks/useDebonceEffect";
 import { Button } from "@heroui/button";
+
+import { canvasPreview } from "./canvasPreview";
+
+import { useDebounceEffect } from "@/hooks/useDebonceEffect";
 
 interface ImageCroperProps {
   aspectRatios?: number;
@@ -50,8 +51,9 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
       setCrop(undefined); // Makes crop preview update between images.
       setFile(e.target.files[0]);
       const reader = new FileReader();
+
       reader.addEventListener("load", () =>
-        setImgSrc(reader.result?.toString() || "")
+        setImgSrc(reader.result?.toString() || ""),
       );
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -71,18 +73,18 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
           previewCanvasRef.current,
           completedCrop,
           scale,
-          rotate
+          rotate,
         );
       }
     },
     100,
-    [completedCrop, scale, rotate]
+    [completedCrop, scale, rotate],
   );
 
   function centerAspectCrop(
     mediaWidth: number,
     mediaHeight: number,
-    aspect: number
+    aspect: number,
   ) {
     return centerCrop(
       makeAspectCrop(
@@ -92,16 +94,17 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
         },
         aspect,
         mediaWidth,
-        mediaHeight
+        mediaHeight,
       ),
       mediaWidth,
-      mediaHeight
+      mediaHeight,
     );
   }
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     if (aspect) {
       const { width, height } = e.currentTarget;
+
       setCrop(centerAspectCrop(width, height, aspect));
     }
   }
@@ -109,6 +112,7 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
   async function onDownloadCropClick() {
     const image = imgRef.current;
     const previewCanvas = previewCanvasRef.current;
+
     if (!image || !previewCanvas || !completedCrop) {
       throw new Error("Crop canvas does not exist");
     }
@@ -118,9 +122,10 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
 
     const offscreen = new OffscreenCanvas(
       completedCrop.width * scaleX,
-      completedCrop.height * scaleY
+      completedCrop.height * scaleY,
     );
     const ctx = offscreen.getContext("2d");
+
     if (!ctx) {
       throw new Error("No 2d context");
     }
@@ -134,7 +139,7 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
       0,
       0,
       offscreen.width,
-      offscreen.height
+      offscreen.height,
     );
     const blob = await offscreen.convertToBlob();
 
@@ -155,20 +160,18 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
   return (
     <div className="">
       <div className="">
-        <div className="text-lg font-[600] px-6 pt-4">
-          Добавление фото
-        </div>
+        <div className="text-lg font-[600] px-6 pt-4">Добавление фото</div>
       </div>
       <div className="flex flex-col gap-4 p-6 pt-5">
         {imgSrc ? (
           <div className="">
             <ReactCrop
-              crop={crop}
               aspect={aspect}
+              crop={crop}
               onChange={(c: any) => setCrop(c)}
               onComplete={(c) => setCompletedCrop(c)}
             >
-              <img ref={imgRef} src={imgSrc} onLoad={onImageLoad} />
+              <img ref={imgRef} alt="" src={imgSrc} onLoad={onImageLoad} />
             </ReactCrop>
           </div>
         ) : null}
@@ -201,19 +204,19 @@ const ImageCroper: FunctionComponent<ImageCroperProps> = ({
             />
             <Button
               color="primary"
-              variant="ghost"
               endContent={<LuCamera className="text-lg" />}
+              radius="full"
+              variant="ghost"
               onPress={() => inputRef.current.click()}
-							radius="full"
             >
               {file ? "Другое фото" : "Выберите фото"}
             </Button>
             <Button
-              color="primary"
               className="text-white"
+              color="primary"
               isDisabled={!completedCrop}
+              radius="full"
               onPress={onDownloadCropClick}
-							radius="full"
             >
               Cохранить
             </Button>

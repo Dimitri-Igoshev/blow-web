@@ -1,15 +1,11 @@
 "use client";
 
 import { Button } from "@heroui/button";
-import { Image } from "@heroui/image";
 import { useRouter } from "next/navigation";
 import { PiWaveform } from "react-icons/pi";
-import { BsFillCameraFill } from "react-icons/bs";
 import { Input, Textarea } from "@heroui/input";
 import { Checkbox, Select, SelectItem } from "@heroui/react";
 import { useEffect, useState } from "react";
-import { TiStarFullOutline } from "react-icons/ti";
-import { IoTrash } from "react-icons/io5";
 
 import { cities } from "@/data/cities";
 import { ages } from "@/data/ages";
@@ -17,7 +13,6 @@ import { heights } from "@/data/heights";
 import { weights } from "@/data/weights";
 import { HeartIcon } from "@/components/icons";
 import { useGetMeQuery, useUpdateUserMutation } from "@/redux/services/userApi";
-import { config } from "@/common/env";
 import { ROUTES } from "@/app/routes";
 import UploadImages from "@/components/UploadImages";
 import { IPhoto } from "@/common/interface/photo.interface";
@@ -34,9 +29,9 @@ export default function EditProfile() {
 
     setUser({
       ...me,
-      age: me?.age?.toString() || '',
-      height: me?.height?.toString() || '',
-      weight: me?.weight?.toString() || '',
+      age: me?.age?.toString() || "",
+      height: me?.height?.toString() || "",
+      weight: me?.weight?.toString() || "",
     });
   }, [me]);
 
@@ -86,6 +81,7 @@ export default function EditProfile() {
 
   const addImage = (image: IPhoto | any) => {
     const formData = new FormData();
+
     formData.append("files", image.file);
 
     update({
@@ -189,10 +185,10 @@ export default function EditProfile() {
       <h2 className="font-semibold text-[24px] mt-5">Фото профиля</h2>
 
       <UploadImages
-        data={files}
         isEdit
-        onChange={(value) => (!me ? setFiles(value) : null)}
+        data={files}
         onAdd={addImage}
+        onChange={(value) => (!me ? setFiles(value) : null)}
         onRemove={removeImage}
         onSetMain={setMainImage}
       />

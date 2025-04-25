@@ -23,7 +23,6 @@ import { cities } from "@/data/cities";
 import { ages } from "@/data/ages";
 import { heights } from "@/data/heights";
 import { weights } from "@/data/weights";
-import { IFilePayload } from "@/common/interfaces";
 import { useUploadMutation } from "@/redux/services/uploadApi";
 
 interface RegisterModalProps {

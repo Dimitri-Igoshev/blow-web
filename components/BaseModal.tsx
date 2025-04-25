@@ -34,13 +34,13 @@ const BaseModal: FunctionComponent<BaseModalProps> = ({
       closeButton
       backdrop="blur"
       className={cn("m-3", className)}
+      classNames={{
+        closeButton: "m-3.5",
+      }}
       isOpen={isOpen}
       placement="center"
       size={size}
       onOpenChange={onOpenChange}
-      classNames={{
-        closeButton: "m-3.5",
-      }}
     >
       <ModalContent>{(onClose) => children}</ModalContent>
     </Modal>

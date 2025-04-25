@@ -11,12 +11,12 @@ import { IoArrowUp } from "react-icons/io5";
 import { LuTrash } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 import { ROUTES } from "@/app/routes";
 import { getCityString } from "@/helper/getCityString";
 import { useGetMeQuery } from "@/redux/services/userApi";
 import { config } from "@/common/env";
-import { useEffect, useRef, useState } from "react";
 
 const AccountProfilePage = () => {
   const router = useRouter();
@@ -49,15 +49,21 @@ const AccountProfilePage = () => {
   return (
     <div className="grid grid-cols-4 px-9 h-screen pt-[94px] gap-[50px]">
       <div className="col-span-1 flex flex-col gap-[50px]">
-        <div className="relative" ref={ref}>
+        <div ref={ref} className="relative">
           <Image
             alt=""
             className="border-[7px] border-white dark:border-foreground-100 z-0 relative"
             height={width ? width : "100%"}
             radius="full"
-            src={me?.photos[0]?.url ?`${config.MEDIA_URL}/${me?.photos[0]?.url}` : me?.sex === 'male' ? '/men.jpg' : '/woman.jpg'}
-            width={"100%"}
+            src={
+              me?.photos[0]?.url
+                ? `${config.MEDIA_URL}/${me?.photos[0]?.url}`
+                : me?.sex === "male"
+                  ? "/men.jpg"
+                  : "/woman.jpg"
+            }
             style={{ objectFit: "cover" }}
+            width={"100%"}
           />
           {/* <div className="absolute rounded-full w-10 h-10 bg-primary cursor-pointer flex justify-center items-center right-[40px] bottom-[40px] border-[2px] border-white z-20">
 					<IoCameraOutline className="text-white mb-px" />
