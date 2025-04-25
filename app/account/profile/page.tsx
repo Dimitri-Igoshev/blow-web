@@ -55,7 +55,7 @@ const AccountProfilePage = () => {
             className="border-[7px] border-white dark:border-foreground-100 z-0 relative"
             height={width ? width : "100%"}
             radius="full"
-            src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
+            src={me?.photos[0]?.url ?`${config.MEDIA_URL}/${me?.photos[0]?.url}` : me?.sex === 'male' ? '/men.jpg' : '/woman.jpg'}
             width={"100%"}
             style={{ objectFit: "cover" }}
           />

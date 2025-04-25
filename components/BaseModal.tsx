@@ -38,6 +38,9 @@ const BaseModal: FunctionComponent<BaseModalProps> = ({
       placement="center"
       size={size}
       onOpenChange={onOpenChange}
+      classNames={{
+        closeButton: "m-3.5",
+      }}
     >
       <ModalContent>{(onClose) => children}</ModalContent>
     </Modal>

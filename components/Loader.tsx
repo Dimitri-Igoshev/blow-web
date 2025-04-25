@@ -12,7 +12,7 @@ const Loader: FunctionComponent<LoaderProps> = ({
 }) => {
   return (
     <div
-      className={cn(" flex justify-center items-center", {
+      className={cn("flex justify-center items-center relative z-50" , {
         ["w-screen h-screen"]: !modal,
         ["w-full h-full py-10"]: modal,
       })}

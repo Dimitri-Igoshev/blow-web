@@ -76,11 +76,11 @@ export default function EditProfile() {
       id: me._id,
       body: {
         ...me,
-        images: me?.photos.filter((i: any) => i.url !== image.url),
+        photos: me?.photos.filter((i: any) => i.url !== image.url),
       },
     })
       .unwrap()
-      .then(() => refetch())
+      .then((res) => setFiles([...res.photos]))
       .catch((error) => console.log(error));
   };
 
@@ -93,20 +93,20 @@ export default function EditProfile() {
       body: formData,
     })
       .unwrap()
-      .then(() => refetch())
+      .then((res) => setFiles([...res.photos]))
       .catch((error) => console.log(error));
   };
 
-  const setMainImage = (images: IPhoto[]) => {
+  const setMainImage = (photos: IPhoto[]) => {
     update({
       id: me._id,
       body: {
         ...me,
-        images,
+        photos,
       },
     })
       .unwrap()
-      .then(() => refetch())
+      .then((res) => setFiles([...res.photos]))
       .catch((error) => console.log(error));
   };
 
@@ -197,7 +197,7 @@ export default function EditProfile() {
         onSetMain={setMainImage}
       />
 
-      <div className="grid grid-cols-5 gap-5 w-full">
+      {/* <div className="grid grid-cols-5 gap-5 w-full">
         {user?.photos?.map((photo: any) => (
           <div
             key={photo.url}
@@ -227,7 +227,7 @@ export default function EditProfile() {
             <p className="font-semibold">Добавить фото</p>
           </div>
         </button>
-      </div>
+      </div> */}
 
       <h2 className="font-semibold text-[24px] mt-5">Цели знакомства</h2>
 

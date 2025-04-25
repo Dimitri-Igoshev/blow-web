@@ -5,7 +5,7 @@ import { Image } from "@heroui/image";
 import { AiOutlineStar } from "react-icons/ai";
 import { MdOutlineDelete } from "react-icons/md";
 import { IPhoto } from "@/common/interface/photo.interface";
-import { useDisclosure } from "@heroui/react";
+import { Modal, ModalContent, useDisclosure } from "@heroui/react";
 import { config } from "@/common/env";
 import LabelRound from "./LabelRound";
 import ImageCroper from "./ImageCroper";
@@ -144,13 +144,27 @@ const UploadImages: FC<UploadImagesProps> = ({
         </div>
       </button>
 
-      <BaseModal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ImageCroper
-          aspectRatios={4 / 6}
-          onSave={(e: any) => addImage(e.blob)}
-          onClose={onOpenChange}
-        />
-      </BaseModal>
+      <Modal
+        backdrop="blur"
+        className="bg-gray dark:bg-foreground-100 border-[3px] border-white dark:border-white/50 rounded-[36px] py-1 transition-all"
+        classNames={{
+          closeButton: "m-3.5",
+        }}
+        isOpen={isOpen}
+        placement="center"
+        size="sm"
+        onOpenChange={onOpenChange}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <ImageCroper
+              aspectRatios={10 / 15}
+              onSave={(e: any) => addImage(e.blob)}
+              onClose={onOpenChange}
+            />
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 };
