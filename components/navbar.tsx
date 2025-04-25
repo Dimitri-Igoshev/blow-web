@@ -115,7 +115,7 @@ export const Navbar = () => {
                           size={20}
                         />
                       }
-                      src={`${config.MEDIA_URL}/${me?.photos[0]?.url}` || ""}
+                      src={me?.photos[0]?.url ?`${config.MEDIA_URL}/${me?.photos[0]?.url}` : me?.sex === 'male' ? '/men.jpg' : '/woman.jpg'}
                     />
                   </div>
                 </div>
