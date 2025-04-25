@@ -117,20 +117,20 @@ const UploadImages: FC<UploadImagesProps> = ({
           />
 
           {idx > 0 && (
-            <div
+            <button
               className="hidden group-hover:flex absolute top-2.5 left-2.5 w-[40px] h-[40px] rounded-full bg-white/50 dark:bg-dark/50 cursor-pointer items-center justify-center hover:bg-primary hover:text-white hover:dark:bg-primary hover:dark:text-white transition-all"
               onClick={() => setMainImage(url)}
             >
               <TiStarFullOutline size={24} />
-            </div>
+            </button>
           )}
 
-          <div
+          <button
             className="hidden group-hover:flex absolute top-2.5 right-2.5 w-[40px] h-[40px] rounded-full bg-white/50 dark:bg-dark/50 cursor-pointer items-center justify-center hover:bg-primary hover:text-white hover:dark:bg-primary hover:dark:text-white transition-all"
             onClick={() => removeImage(idx)}
           >
             <IoTrash size={20} />
-          </div>
+          </button>
         </div>
       ))}
 

@@ -15,7 +15,7 @@ const DLabelRound: FunctionComponent<DLabelRoundProps> = ({
   size = 'm'
 }) => {
   return (
-    <div
+    <button
       className={cn(
         "rounded-full bg-white cursor-pointer flex justify-center items-center shadow-md hover:shadow-lg overflow-hidden",
         {
@@ -27,7 +27,7 @@ const DLabelRound: FunctionComponent<DLabelRoundProps> = ({
       onClick={onClick}
     >
       {children}
-    </div>
+    </button>
   );
 };
 
