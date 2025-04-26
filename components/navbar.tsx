@@ -10,10 +10,9 @@ import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import { Image } from "@heroui/image";
 import { useRouter } from "next/navigation";
-import { Avatar, useDisclosure } from "@heroui/react";
+import { Avatar, Link, useDisclosure } from "@heroui/react";
 import { useState } from "react";
 import { RiCloseFill, RiMenu4Fill } from "react-icons/ri";
-import Link from "next/link";
 
 import { RegisterModal } from "./register-modal";
 import { LoginModal } from "./login-modal";
@@ -202,36 +201,54 @@ export const Navbar = () => {
           </div>
 
           {me ? (
-            <ul className="flex flex-col gap-3 text-[18px] mt-4">
-              <Link href={ROUTES.ACCOUNT.SEARCH}>
-                <li>Поиск анкет</li>
-              </Link>
-              <Link href={ROUTES.ACCOUNT.PROFILE}>
-                <li>Профиль</li>
-              </Link>
-              <Link href={ROUTES.ACCOUNT.DIALOGUES}>
-                <li>Диалоги</li>
-              </Link>
-
-              <Link href={ROUTES.ACCOUNT.GUESTS}>
-                <li>Кто смотрел</li>
-              </Link>
-              <Link href={ROUTES.ACCOUNT.SERVICES}>
-                <li>Услуги</li>
-              </Link>
-              <Link href={ROUTES.ACCOUNT.NOTES}>
-                <li>Заметки</li>
-              </Link>
-              <Link href={ROUTES.ACCOUNT.MAILINGS}>
-                <li>Рассылки</li>
-              </Link>
+            <ul className="flex flex-col items-start gap-3 text-[18px] mt-4">
+              <button onClick={() => {
+                router.push(ROUTES.ACCOUNT.SEARCH)
+                setMobileMenu(false)
+              }}>
+                Поиск анкет
+              </button>
+              <button onClick={() => {
+                router.push(ROUTES.ACCOUNT.PROFILE)
+                setMobileMenu(false)
+              }}>
+                Профиль
+              </button>
+              <button onClick={() => {
+                router.push(ROUTES.ACCOUNT.DIALOGUES)
+                setMobileMenu(false)
+              }}>
+                Диалоги
+              </button>
+              <button onClick={() => {
+                router.push(ROUTES.ACCOUNT.GUESTS)
+                setMobileMenu(false)
+              }}>
+                Кто смотрел
+              </button>
+              <button onClick={() => {
+                router.push(ROUTES.ACCOUNT.SERVICES)
+                setMobileMenu(false)
+              }}>
+                Услуги
+              </button>
+              <button onClick={() => {
+                router.push(ROUTES.ACCOUNT.NOTES)
+                setMobileMenu(false)
+              }}>Заметки</button>
+              <button onClick={() => {
+                router.push(ROUTES.ACCOUNT.MAILINGS)
+                setMobileMenu(false)
+              }}>
+                Рассылки
+              </button>
 
               <button className="mt-6" onClick={logout}>
                 Выйти
               </button>
             </ul>
           ) : (
-            <ul className="flex flex-col gap-3 text-[18px] mt-4">
+            <ul className="flex flex-col items-start gap-3 text-[18px] mt-4">
               <button onClick={onLogin}>Есть страница</button>
               <button onClick={onRegister}>Добавить себя</button>
             </ul>
