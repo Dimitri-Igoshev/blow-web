@@ -11,7 +11,7 @@ import NextLink from "next/link";
 import { Image } from "@heroui/image";
 import { useRouter } from "next/navigation";
 import { Avatar, Link, useDisclosure } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiCloseFill, RiMenu4Fill } from "react-icons/ri";
 
 import { RegisterModal } from "./register-modal";
@@ -63,6 +63,14 @@ export const Navbar = () => {
     router.replace(ROUTES.HOME);
     window.location.reload();
   };
+
+  useEffect(() => {
+    if (mobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [mobileMenu])
 
   return (
     <>
