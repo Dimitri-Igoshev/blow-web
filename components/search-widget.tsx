@@ -102,10 +102,10 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
   return (
     <div
       className={cn(
-        "p-[30px] gap-5 bg-primary/50",
+        "p-[20px] sm:p-[30px] gap-4 sm:gap-5 bg-primary/50 mx-2.5 sm:mx-0",
         {
           "grid grid-cols-4 w-full rounded-[32px] ": horizontal,
-          "flex flex-col rounded-[32px]  w-[400px] ": !horizontal,
+          "flex flex-col rounded-[32px] sm:w-[400px] ": !horizontal,
         },
         className
       )}
@@ -117,7 +117,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
         })}
       >
         <p className="font-semibold text-sm text-white mr-4">Найти</p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-4">
           <Button
             className={cn("text-xs font-regular", {
               "bg-dark dark:bg-black text-white": men,
@@ -148,7 +148,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
         })}
       >
         <p className="font-semibold text-sm mr-4 text-white">Возраст</p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-4">
           <Select
             className="w-[119px] text-primary"
             placeholder="от"
@@ -184,7 +184,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
       >
         <p className="font-semibold text-sm mr-4 text-white">Откуда</p>
         <Select
-          className="max-w-[254px] text-primary"
+          className="max-w-[248px] sm:max-w-[254px] text-primary"
           placeholder="выберите город"
           radius="full"
           // @ts-ignore

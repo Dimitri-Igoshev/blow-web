@@ -5,12 +5,15 @@ import {
   NavbarContent,
   NavbarBrand,
   NavbarItem,
+  NavbarMenu,
+  NavbarMenuToggle,
+  NavbarMenuItem,
 } from "@heroui/navbar";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import { Image } from "@heroui/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Avatar, useDisclosure } from "@heroui/react";
+import { Avatar, Link, useDisclosure } from "@heroui/react";
 import { use, useEffect, useState } from "react";
 
 import { RegisterModal } from "./register-modal";
@@ -23,6 +26,8 @@ import { ROUTES } from "@/app/routes";
 import { useGetMeQuery } from "@/redux/services/userApi";
 import { config } from "@/common/env";
 import { CameraIcon } from "@/common/icons";
+import { siteConfig } from "@/config/site";
+import { RiMenu4Fill } from "react-icons/ri";
 
 export const Navbar = () => {
   const router = useRouter();
@@ -58,7 +63,7 @@ export const Navbar = () => {
   return (
     <>
       <HeroUINavbar
-        className="p-3 fixed bg-transparent"
+        className="p-0 sm:p-3 fixed bg-transparent"
         isBlurred={true}
         maxWidth="full"
         position="sticky"
@@ -71,11 +76,10 @@ export const Navbar = () => {
             >
               <Image
                 alt="BLOW"
-                height={50}
                 radius="none"
                 src="/logo.png"
-                width={127}
                 onClick={() => router.push(ROUTES.HOME)}
+                className="w-[102px] sm:w-[127px] h-[40px] sm:h-[50px]"
               />
             </NextLink>
           </NavbarBrand>
@@ -153,14 +157,15 @@ export const Navbar = () => {
           )}
         </NavbarContent>
 
-        {/* <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <NavbarMenuToggle />
-      </NavbarContent> */}
+
+        <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+        <RiMenu4Fill size={32} color="white" />
+      </NavbarContent>
 
         {/* Мобильное меню */}
         {/* <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
+          {/* {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={

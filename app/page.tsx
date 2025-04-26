@@ -11,269 +11,6 @@ import { PreviewWidget } from "@/components/preview-widget";
 import { SearchWidget } from "@/components/search-widget";
 import { cities } from "@/data/cities";
 import { useGetUsersQuery } from "@/redux/services/userApi";
-import { useSearchParams } from "next/navigation";
-
-const soderjanki = [
-  {
-    _id: "1",
-    online: true,
-    name: "Светлана",
-    age: "24",
-    city: "Москва",
-    photo: "/1.png",
-  },
-  {
-    _id: "2",
-    online: false,
-    name: "Алена",
-    age: "32",
-    city: "Москва",
-    photo: "/2.png",
-  },
-  {
-    _id: "3",
-    online: false,
-    name: "София",
-    age: "23",
-    city: "Москва",
-    photo: "/3.png",
-  },
-  {
-    _id: "4",
-    online: true,
-    name: "Дарья",
-    age: "25",
-    city: "Москва",
-    photo: "/4.png",
-  },
-  {
-    _id: "5",
-    online: false,
-    name: "Наташа",
-    age: "28",
-    city: "Москва",
-    photo: "/5.png",
-  },
-  {
-    _id: "6",
-    online: true,
-    name: "Юля",
-    age: "24",
-    city: "Москва",
-    photo: "/6.png",
-  },
-  {
-    _id: "7",
-    online: false,
-    name: "Вероника",
-    age: "35",
-    city: "Москва",
-    photo: "/7.png",
-  },
-  {
-    _id: "8",
-    online: true,
-    name: "Анна",
-    age: "25",
-    city: "Москва",
-    photo: "/8.png",
-  },
-  {
-    _id: "9",
-    online: true,
-    name: "Кристина",
-    age: "25",
-    city: "Москва",
-    photo: "/9.png",
-  },
-  {
-    _id: "10",
-    online: false,
-    name: "Виктория",
-    age: "36",
-    city: "Москва",
-    photo: "/10.png",
-  },
-  {
-    _id: "11",
-    online: true,
-    name: "Эмма",
-    age: "23",
-    city: "Москва",
-    photo: "/11.png",
-  },
-  {
-    _id: "12",
-    online: false,
-    name: "Мэри",
-    age: "32",
-    city: "Москва",
-    photo: "/12.png",
-  },
-  {
-    _id: "13",
-    online: false,
-    name: "Виктория",
-    age: "37",
-    city: "Москва",
-    photo: "/13.png",
-  },
-  {
-    _id: "14",
-    online: true,
-    name: "Екатерина",
-    age: "27",
-    city: "Москва",
-    photo: "/14.png",
-  },
-  {
-    _id: "15",
-    online: false,
-    name: "Валерия",
-    age: "37",
-    city: "Москва",
-    photo: "/15.png",
-  },
-  {
-    _id: "16",
-    online: false,
-    name: "Диана",
-    age: "29",
-    city: "Москва",
-    photo: "/16.png",
-  },
-];
-
-const sponsors = [
-  {
-    _id: "17",
-    online: true,
-    name: "Август",
-    age: "24",
-    city: "Москва",
-    photo: "/17.png",
-  },
-  {
-    _id: "18",
-    online: false,
-    name: "Дмитрий",
-    age: "32",
-    city: "Москва",
-    photo: "/18.png",
-  },
-  {
-    _id: "19",
-    online: false,
-    name: "Сергей",
-    age: "23",
-    city: "Москва",
-    photo: "/19.png",
-  },
-  {
-    _id: "44",
-    online: true,
-    name: "Алексей",
-    age: "25",
-    city: "Москва",
-    photo: "/20.png",
-  },
-  {
-    _id: "45",
-    online: false,
-    name: "Роман",
-    age: "28",
-    city: "Москва",
-    photo: "/21.png",
-  },
-  {
-    _id: "46",
-    online: true,
-    name: "Михаил",
-    age: "24",
-    city: "Москва",
-    photo: "/22.png",
-  },
-  {
-    _id: "47",
-    online: false,
-    name: "Андрей",
-    age: "35",
-    city: "Москва",
-    photo: "/23.png",
-  },
-  {
-    _id: "48",
-    online: true,
-    name: "Владимир",
-    age: "25",
-    city: "Москва",
-    photo: "/24.png",
-  },
-  {
-    _id: "49",
-    online: true,
-    name: "Денис",
-    age: "25",
-    city: "Москва",
-    photo: "/25.png",
-  },
-  {
-    _id: "410",
-    online: false,
-    name: "Артем",
-    age: "36",
-    city: "Москва",
-    photo: "/26.png",
-  },
-  {
-    _id: "411",
-    online: true,
-    name: "Никита",
-    age: "23",
-    city: "Москва",
-    photo: "/27.png",
-  },
-  {
-    _id: "412",
-    online: false,
-    name: "Майк",
-    age: "32",
-    city: "Москва",
-    photo: "/28.png",
-  },
-  {
-    _id: "413",
-    online: false,
-    name: "Игорь",
-    age: "37",
-    city: "Москва",
-    photo: "/29.png",
-  },
-  {
-    _id: "414",
-    online: true,
-    name: "Антон",
-    age: "27",
-    city: "Москва",
-    photo: "/30.png",
-  },
-  {
-    _id: "415",
-    online: false,
-    name: "Виктор",
-    age: "37",
-    city: "Москва",
-    photo: "/31.png",
-  },
-  {
-    _id: "416",
-    online: false,
-    name: "Алексей",
-    age: "29",
-    city: "Москва",
-    photo: "/32.png",
-  },
-];
 
 export default function Home() {
   const cities1 = cities.slice(0, 6);
@@ -291,15 +28,22 @@ export default function Home() {
       <div className="relative">
         <img
           alt=""
-          className="rounded-b-[50px] flex flex-col relative z-10"
+          className="hidden sm:flex rounded-b-[50px] flex-col relative z-10"
           src="/bg.png"
         />
-        <div className="w-full absolute top-[130px]">
-          <div className="flex items-center gap-[5%] px-[40px] relative z-10">
+        <Image
+          alt=""
+          radius="none"
+          src="/bg-m.png"
+          className="flex sm:hidden rounded-b-[50px] flex-col relative z-10 min-h-[434px]"
+        />
+
+        <div className="w-full absolute top-[100px] sm:top-[130px]">
+          <div className="flex justify-center sm:justify-start items-center gap-[5%] sm:px-[40px] relative z-10">
             <Suspense>
-              <SearchWidget className=""/>
+              <SearchWidget className="" />
             </Suspense>
-            <div className="flex flex-col w-[750px] gap-8">
+            <div className="hidden sm:flex flex-col w-[750px] gap-8">
               <h1 className="text-[48px] font-semibold text-white leading-[56px]">
                 Поиск лучших содержанок и самых успешных мужчин
               </h1>
@@ -312,17 +56,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-[60px]  bg-gray dark:bg-black">
-            <h2 className="text-[36px] text-white font-semibold pl-[40px] z-20 relative">
+          <div className="pt-[4%] sm:mt-[60px]  bg-gray dark:bg-black">
+            <h2 className="text-[30px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
               Содержанки
             </h2>
 
-            <div className="w-full grid grid-cols-4 mt-[30px] gap-[50px] z-20 relative px-[40px]">
+            <div className="w-full grid grid-cols-2 sm:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
               {womans?.map((item: any, idx: number) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
-                      "mt-[50px] -mb-[50px]":
+                      "sm:mt-[50px] sm:-mb-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
@@ -339,17 +83,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-[100px] bg-gray dark:bg-black">
-            <h2 className="text-[36px] text-black dark:text-white font-semibold pl-[40px] z-20 relative">
+          <div className="pt-[40px] sm:pt-[100px] bg-gray dark:bg-black">
+            <h2 className="text-[30px] sm:text-[36px] text-black dark:text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
               Наши мужчины
             </h2>
 
-            <div className="w-full grid grid-cols-4 mt-[30px] gap-[50px] z-20 relative px-[40px]">
+            <div className="w-full grid grid-cols-2 sm:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
               {mens?.map((item: any, idx: number) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
-                      "mt-[50px] -mb-[50px]":
+                      "sm:mt-[50px] sm:-mb-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
@@ -365,15 +109,15 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="bg-white dark:bg-foreground-200 p-6 m-9 mb-0 mt-[120px] rounded-[36px]">
+            <div className="bg-white dark:bg-foreground-200 p-6 m-3 sm:m-9 mb-0 mt-[70px] sm:mt-[120px] rounded-[36px]">
               <Image
                 alt="BLOW"
-                className="object-cover float-left mr-8 mb-3"
+                className="object-cover float-left mr-8 mb-5 sm:mb-3"
                 height={510}
                 src={`/info.png`}
                 width={570}
               />
-              <p>
+              <p className="">
                 <span className="text-[24px] text-primary font-semibold">
                   BLOW
                 </span>
@@ -419,7 +163,7 @@ export default function Home() {
               </p>
 
               <p className="mt-6">
-                <span className="text-[24px] text-primary font-semibold">
+                <span className="text-[20px] sm:text-[24px] leading-6 text-primary font-semibold">
                   Лучший сайт для знакомства с любовницами и влиятельными
                   спонсорами
                 </span>
@@ -434,7 +178,7 @@ export default function Home() {
               </p>
 
               <p className="mt-6">
-                <span className="text-[24px] text-primary font-semibold">
+                <span className="text-[20px] sm:text-[24px] leading-6 text-primary font-semibold">
                   Самые состоятельные любовники для роскошных женщин
                 </span>
               </p>
@@ -456,15 +200,15 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="pt-[70px] bg-gray dark:bg-black px-12">
-              <h2 className="text-[24px] font-semibold">
+            <div className="pt-[60px] sm:pt-[70px] bg-gray text-black/50 dark:text-white/50 leading-6 dark:bg-black px-6 sm:px-12">
+              <h2 className="text-[20px] sm:text-[24px] font-semibold">
                 Найди любовницу или спонсора рядом с тобой – знакомься, общайся
                 и наслаждайся приятным обществом в своем городе! 
               </h2>
             </div>
 
-            <div className="grid grid-cols-6 mt-[30px] px-12 pb-[50px] gap-6">
-              <div className="flex flex-col gap-1">
+            <div className="grid grid-cols-2 sm:grid-cols-6 mt-[40px] sm:mt-[30px] px-6 sm:px-12 pb-[50px] gap-6 text-sm sm:text-base">
+              <div className="flex flex-col gap-2 sm:gap-1">
                 {cities1?.map((item: any) => (
                   <Link
                     key={item.value}
@@ -476,7 +220,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2 sm:gap-1">
                 {cities2?.map((item: any) => (
                   <Link
                     key={item.value}
@@ -488,7 +232,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2 sm:gap-1">
                 {cities3?.map((item: any) => (
                   <Link
                     key={item.value}
@@ -500,7 +244,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2 sm:gap-1">
                 {cities4?.map((item: any) => (
                   <Link
                     key={item.value}
@@ -512,7 +256,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2 sm:gap-1">
                 {cities5?.map((item: any) => (
                   <Link
                     key={item.value}
@@ -524,7 +268,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2 sm:gap-1">
                 {cities6?.map((item: any) => (
                   <Link
                     key={item.value}
@@ -541,12 +285,8 @@ export default function Home() {
             </div>
 
             <footer className="bg-gray dark:bg-black w-full">
-              <div className="bg-dark rounded-t-[50px] px-12 py-[28px] grid grid-cols-3 text-white items-center">
-                <p>
-                  {new Date().getFullYear()} © BLOW. Сайт для лиц старше 18-ти
-                  лет.
-                </p>
-                <div className="flex justify-center">
+              <div className="bg-dark rounded-t-[50px] px-3 sm:px-12 py-[28px] grid grid-cols-1 sm:grid-cols-3 text-white items-center text-xs sm:text-base">
+                <div className="sm:hidden flex justify-center">
                   <Image
                     alt="BLOW"
                     height={40}
@@ -555,7 +295,20 @@ export default function Home() {
                     width={101}
                   />
                 </div>
-                <div className="flex items-center justify-end gap-6">
+                <p className="text-center sm:twxt-left mt-5 sm:mt-0">
+                  {new Date().getFullYear()} © BLOW. Сайт для лиц старше 18-ти
+                  лет.
+                </p>
+                <div className="hidden sm:flex justify-center">
+                  <Image
+                    alt="BLOW"
+                    height={40}
+                    radius="none"
+                    src="/logo.png"
+                    width={101}
+                  />
+                </div>
+                <div className="mt-4 sm:mt-0 flex items-center justify-center sm:justify-end gap-6">
                   <div className="underline cursor-pointer hover:text-primary text-nowrap">
                     Свяжись с нами
                   </div>

@@ -37,7 +37,7 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
         width={"100%"}
       />
 
-      <div className="p-[7px] bg-transparent w-full absolute left-0 bottom-0 z-10">
+      <div className="text-sm sm:text-base p-[7px] bg-transparent w-full absolute left-0 bottom-0 z-10">
         <div className=" bg-dark/50 p-3 px-4 rounded-[24px] flex flex-col">
           <div className="flex items-center gap-1.5">
             {/* {item?.online ? ( */}
@@ -46,7 +46,7 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
             <p className="font-semibold">{item?.firstName ? item.firstName : item?.sex === 'male' ? 'Мужчина' : "Девушка"}</p>
           </div>
 
-          <p className="opacity-50">
+          <p className="opacity-50 text-start">
             {item?.age ? item.age + ", " : ""}
             {getCityString(item?.city)}
           </p>
