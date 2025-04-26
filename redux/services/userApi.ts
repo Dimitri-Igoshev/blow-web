@@ -34,7 +34,7 @@ export const userApi = createApi({
       providesTags: ["User"],
     }),
     getUsers: builder.query({
-      query: ({ sex, city, minage, maxage, limit }) => `?sex=${sex || ''}&city=${city || ''}&minage=${minage || ''}&maxage=${maxage || ''}&limit=${limit || '12'}`,
+      query: ({ sex, city, minage, maxage, limit }) => `?sex=${sex || ''}&city=${city || ''}&minage=${minage || ''}&maxage=${maxage || ''}&limit=${limit || '16'}`,
       providesTags: ["User"],
     }),
     // createUser: builder.mutation({
