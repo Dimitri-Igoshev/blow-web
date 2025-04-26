@@ -80,7 +80,7 @@ const AccountProfilePage = () => {
             </div>
           </Link>
 
-          {me?.sex === 'male' ? (
+          {me?.sex === "male" ? (
             <div className="flex gap-2.5 cursor-pointer group transition-all">
               <LuCrown className="text-primary min-w-4" size={16} />
               <p className="-mt-[3px] group-hover:text-primary">

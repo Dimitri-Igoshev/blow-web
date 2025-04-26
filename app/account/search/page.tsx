@@ -1,9 +1,10 @@
 "use client";
 
-import { ProfilePreview } from "@/components/ProfilePreview";
-import { useGetUsersQuery } from "@/redux/services/userApi";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+
+import { ProfilePreview } from "@/components/ProfilePreview";
+import { useGetUsersQuery } from "@/redux/services/userApi";
 
 export default function AccountSearch() {
   const searchParams = useSearchParams();
@@ -36,7 +37,7 @@ export default function AccountSearch() {
 
           <div className="grid grid-cols-2 gap-[34px]">
             {users.map((item: any) => (
-              <ProfilePreview item={item} key={item._id} />
+              <ProfilePreview key={item._id} item={item} />
             ))}
           </div>
         </>

@@ -5,16 +5,15 @@ import {
   NavbarContent,
   NavbarBrand,
   NavbarItem,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarMenuItem,
 } from "@heroui/navbar";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import { Image } from "@heroui/image";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Avatar, Link, useDisclosure } from "@heroui/react";
-import { use, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Avatar, useDisclosure } from "@heroui/react";
+import { useState } from "react";
+import { RiCloseFill, RiMenu4Fill } from "react-icons/ri";
+import Link from "next/link";
 
 import { RegisterModal } from "./register-modal";
 import { LoginModal } from "./login-modal";
@@ -26,8 +25,6 @@ import { ROUTES } from "@/app/routes";
 import { useGetMeQuery } from "@/redux/services/userApi";
 import { config } from "@/common/env";
 import { CameraIcon } from "@/common/icons";
-import { siteConfig } from "@/config/site";
-import { RiCloseFill, RiMenu4Fill } from "react-icons/ri";
 
 export const Navbar = () => {
   const router = useRouter();
@@ -84,10 +81,10 @@ export const Navbar = () => {
             >
               <Image
                 alt="BLOW"
+                className="w-[102px] sm:w-[127px] h-[40px] sm:h-[50px]"
                 radius="none"
                 src="/logo.png"
                 onClick={() => router.push(ROUTES.HOME)}
-                className="w-[102px] sm:w-[127px] h-[40px] sm:h-[50px]"
               />
             </NextLink>
           </NavbarBrand>
@@ -166,11 +163,9 @@ export const Navbar = () => {
         </NavbarContent>
 
         <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-          <RiMenu4Fill
-            size={32}
-            color="white"
-            onClick={() => setMobileMenu(true)}
-          />
+          <button onClick={() => setMobileMenu(true)}>
+            <RiMenu4Fill color="white" size={32} />
+          </button>
         </NavbarContent>
 
         {/* Мобильное меню */}
@@ -208,34 +203,37 @@ export const Navbar = () => {
 
           {me ? (
             <ul className="flex flex-col gap-3 text-[18px] mt-4">
-              <li onClick={() => router.push(ROUTES.ACCOUNT.SEARCH)}>
-                Поиск анкет
-              </li>
-              <li onClick={() => router.push(ROUTES.ACCOUNT.PROFILE)}>
-                Профиль
-              </li>
-              <li onClick={() => router.push(ROUTES.ACCOUNT.DIALOGUES)}>
-                Диалоги
-              </li>
-              <li onClick={() => router.push(ROUTES.ACCOUNT.GUESTS)}>
-                Кто смотрел
-              </li>
-              <li onClick={() => router.push(ROUTES.ACCOUNT.SERVICES)}>
-                Услуги
-              </li>
-              <li onClick={() => router.push(ROUTES.ACCOUNT.NOTES)}>Заметки</li>
-              <li onClick={() => router.push(ROUTES.ACCOUNT.MAILINGS)}>
-                Рассылки
-              </li>
+              <Link href={ROUTES.ACCOUNT.SEARCH}>
+                <li>Поиск анкет</li>
+              </Link>
+              <Link href={ROUTES.ACCOUNT.PROFILE}>
+                <li>Профиль</li>
+              </Link>
+              <Link href={ROUTES.ACCOUNT.DIALOGUES}>
+                <li>Диалоги</li>
+              </Link>
 
-              <li className="mt-6" onClick={logout}>
+              <Link href={ROUTES.ACCOUNT.GUESTS}>
+                <li>Кто смотрел</li>
+              </Link>
+              <Link href={ROUTES.ACCOUNT.SERVICES}>
+                <li>Услуги</li>
+              </Link>
+              <Link href={ROUTES.ACCOUNT.NOTES}>
+                <li>Заметки</li>
+              </Link>
+              <Link href={ROUTES.ACCOUNT.MAILINGS}>
+                <li>Рассылки</li>
+              </Link>
+
+              <button className="mt-6" onClick={logout}>
                 Выйти
-              </li>
+              </button>
             </ul>
           ) : (
             <ul className="flex flex-col gap-3 text-[18px] mt-4">
-              <li onClick={onLogin}>Есть страница</li>
-              <li onClick={onRegister}>Добавить себя</li>
+              <button onClick={onLogin}>Есть страница</button>
+              <button onClick={onRegister}>Добавить себя</button>
             </ul>
           )}
         </div>

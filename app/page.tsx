@@ -33,9 +33,9 @@ export default function Home() {
         />
         <Image
           alt=""
+          className="flex sm:hidden rounded-b-[50px] flex-col relative z-10 min-h-[434px]"
           radius="none"
           src="/bg-m.png"
-          className="flex sm:hidden rounded-b-[50px] flex-col relative z-10 min-h-[434px]"
         />
 
         <div className="w-full absolute top-[100px] sm:top-[130px]">

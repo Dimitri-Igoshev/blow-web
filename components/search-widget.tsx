@@ -7,14 +7,14 @@ import { Select, SelectItem, useDisclosure } from "@heroui/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { MenIcon, WomenIcon } from "./icons";
+import { LoginModal } from "./login-modal";
+import { RegisterModal } from "./register-modal";
+import { EmailModal } from "./email-password";
 
 import { cities } from "@/data/cities";
 import { ages } from "@/data/ages";
 import { useGetMeQuery } from "@/redux/services/userApi";
 import { ROUTES } from "@/app/routes";
-import { LoginModal } from "./login-modal";
-import { RegisterModal } from "./register-modal";
-import { EmailModal } from "./email-password";
 
 interface SearchWidgetProps {
   horizontal?: boolean;
@@ -34,11 +34,11 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
   const [woman, setWoman] = useState(searchParams?.get("sex") === "female");
   const [ageFromOptions, setAgeFromOptions] = useState([...ages]);
   const [ageFrom, setAgeFrom] = useState(
-    !!searchParams?.get("minage") ? searchParams.get("minage") : ""
+    !!searchParams?.get("minage") ? searchParams.get("minage") : "",
   );
   const [ageToOptions, setAgeToOptions] = useState([...ages]);
   const [ageTo, setAgeTo] = useState(
-    !!searchParams?.get("maxage") ? searchParams.get("maxage") : ""
+    !!searchParams?.get("maxage") ? searchParams.get("maxage") : "",
   );
   const [city, setCity] = useState(!!searchParams?.get("city") || "");
 
@@ -94,7 +94,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
       onLogin();
     } else {
       router.push(
-        `${ROUTES.ACCOUNT.SEARCH}?sex=${men && woman ? "" : men ? "male" : woman ? "female" : ""}&minage=${ageFrom ? ageFrom.toString() : ""}&maxage=${ageTo ? ageTo.toString() : ""}&city=${city || ""}`
+        `${ROUTES.ACCOUNT.SEARCH}?sex=${men && woman ? "" : men ? "male" : woman ? "female" : ""}&minage=${ageFrom ? ageFrom.toString() : ""}&maxage=${ageTo ? ageTo.toString() : ""}&city=${city || ""}`,
       );
     }
   };
@@ -107,7 +107,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
           "grid grid-cols-4 w-full rounded-[32px] ": horizontal,
           "flex flex-col rounded-[32px] sm:w-[400px] ": !horizontal,
         },
-        className
+        className,
       )}
     >
       <div

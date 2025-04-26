@@ -65,7 +65,7 @@ export default function PanelLayout({
             {
               "h-[350px]": isSearch,
               "h-[210px]": !isSearch,
-            }
+            },
           )}
           src={isSearch ? "/bg.png" : "/bg-min.png"}
         />

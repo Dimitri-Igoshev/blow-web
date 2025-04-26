@@ -1,11 +1,12 @@
-'use client'
+"use client";
 
 import { cn } from "@heroui/theme";
 import { FC } from "react";
 import { Image } from "@heroui/image";
+import { useRouter } from "next/navigation";
+
 import { config } from "@/common/env";
 import { getCityString } from "@/helper/getCityString";
-import { useRouter } from "next/navigation";
 import { ROUTES } from "@/app/routes";
 
 interface PreviewWidgetProps {
@@ -15,12 +16,12 @@ interface PreviewWidgetProps {
 
 export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
   const router = useRouter();
-  
+
   return (
     <button
       className={cn(
         "w-full h-full border-[5px] rounded-[32px] border-white dark:border-white/25 overflow-hidden relative cursor-pointer text-white sm:hover:scale-110 transition-all",
-        className
+        className,
       )}
       onClick={() => router.push(`${ROUTES.ACCOUNT.SEARCH}/${item._id}`)}
     >
@@ -41,9 +42,15 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
         <div className=" bg-dark/50 p-3 px-4 rounded-[24px] flex flex-col">
           <div className="flex items-center gap-1.5">
             {/* {item?.online ? ( */}
-              <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
             {/* ) : null} */}
-            <p className="font-semibold">{item?.firstName ? item.firstName : item?.sex === 'male' ? 'Мужчина' : "Девушка"}</p>
+            <p className="font-semibold">
+              {item?.firstName
+                ? item.firstName
+                : item?.sex === "male"
+                  ? "Мужчина"
+                  : "Девушка"}
+            </p>
           </div>
 
           <p className="opacity-50 text-start">

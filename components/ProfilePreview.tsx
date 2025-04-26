@@ -1,12 +1,13 @@
 import { FC } from "react";
 import { cn } from "@heroui/theme";
 import { Image } from "@heroui/image";
-import { config } from "@/common/env";
-import { getCityString } from "@/helper/getCityString";
 import { Button } from "@heroui/button";
 import { PiWaveform } from "react-icons/pi";
-import { ROUTES } from "@/app/routes";
 import { useRouter } from "next/navigation";
+
+import { config } from "@/common/env";
+import { getCityString } from "@/helper/getCityString";
+import { ROUTES } from "@/app/routes";
 
 interface ProfilePreviewProps {
   item: any;
@@ -18,13 +19,13 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
   className = "",
 }) => {
   const router = useRouter();
-  
+
   return (
     <>
       <div
         className={cn(
           "bg-white dark:bg-foreground-100 p-6 flex flex-row gap-6 rounded-[32px] col-span-1 w-full",
-          className
+          className,
         )}
       >
         <div className="overflow-hidden relative rounded-[20px]  min-w-[230px]">
@@ -47,12 +48,18 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
         <div className="flex flex-col justify-between gap-6 w-full">
           <div className="flex flex-col gap-1 mt-1">
             <div className="flex gap-1.5 items-center">
-              <div className="w-2 h-2 rounded-full bg-green-400"></div>
+              <div className="w-2 h-2 rounded-full bg-green-400" />
               <p className="-mt-[2px] text-[12px]">сейчас онлайн</p>
             </div>
 
             <div className="flex justify-between items-center">
-              <p className="text-[24px] font-semibold">{item?.firstName ? item.firstName : item.sex === 'male' ? "Мужчина" : "Девушка"}</p>
+              <p className="text-[24px] font-semibold">
+                {item?.firstName
+                  ? item.firstName
+                  : item.sex === "male"
+                    ? "Мужчина"
+                    : "Девушка"}
+              </p>
               <p>
                 {item?.age ? item.age + ", " : ""}
                 {getCityString(item?.city)}
@@ -101,7 +108,9 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
               color="secondary"
               radius="full"
               variant="solid"
-              onPress={() => router.push(ROUTES.ACCOUNT.SEARCH + '/' + item?._id)}
+              onPress={() =>
+                router.push(ROUTES.ACCOUNT.SEARCH + "/" + item?._id)
+              }
             >
               Профиль
             </Button>

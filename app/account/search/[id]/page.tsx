@@ -1,15 +1,16 @@
 "use client";
 
-import { useGetUserQuery } from "@/redux/services/userApi";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { Image } from "@heroui/image";
-import { config } from "@/common/env";
-import { getCityString } from "@/helper/getCityString";
 import { MdOutlineHeight } from "react-icons/md";
 import { GiWeight } from "react-icons/gi";
 import { Button } from "@heroui/button";
 import { PiWaveform } from "react-icons/pi";
+
+import { getCityString } from "@/helper/getCityString";
+import { config } from "@/common/env";
+import { useGetUserQuery } from "@/redux/services/userApi";
 
 interface ProfileViewProps {
   params: any;
@@ -57,9 +58,9 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
               <div className="grid grid-cols-4 gap-4 w-full mt-4">
                 {user?.photos.map((item: any, idx: number) => (
                   <button
+                    key={item.url}
                     className="overflow-hidden relative rounded-[36px]"
                     onClick={() => setCurrentImage(item.url)}
-                    key={item.url}
                   >
                     <Image
                       alt=""
@@ -98,7 +99,7 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
                   </div>
 
                   <div className="flex gap-1.5 items-center">
-                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                    <div className="w-2 h-2 rounded-full bg-green-400" />
                     <p className="-mt-[2px] text-[12px]">сейчас онлайн</p>
                   </div>
                 </div>
