@@ -27,7 +27,7 @@ import { useGetMeQuery } from "@/redux/services/userApi";
 import { config } from "@/common/env";
 import { CameraIcon } from "@/common/icons";
 import { siteConfig } from "@/config/site";
-import { RiMenu4Fill } from "react-icons/ri";
+import { RiCloseFill, RiMenu4Fill } from "react-icons/ri";
 
 export const Navbar = () => {
   const router = useRouter();
@@ -59,6 +59,14 @@ export const Navbar = () => {
   };
 
   const registration = () => {};
+
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  const logout = () => {
+    localStorage.setItem("access-token", "");
+    router.replace(ROUTES.HOME);
+    window.location.reload();
+  };
 
   return (
     <>
@@ -157,10 +165,13 @@ export const Navbar = () => {
           )}
         </NavbarContent>
 
-
         <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <RiMenu4Fill size={32} color="white" />
-      </NavbarContent>
+          <RiMenu4Fill
+            size={32}
+            color="white"
+            onClick={() => setMobileMenu(true)}
+          />
+        </NavbarContent>
 
         {/* Мобильное меню */}
         {/* <NavbarMenu>
@@ -185,6 +196,50 @@ export const Navbar = () => {
         </div>
       </NavbarMenu> */}
       </HeroUINavbar>
+
+      {mobileMenu ? (
+        <div className="h-screen w-screen fixed top-0 left-0 bottom-0 right-0 bg-white dark:bg-dark z-40 flex flex-col gap-3 p-3 px-5">
+          <div className="flex justify-between">
+            <ThemeSwitch className="" />
+            <p className="text-[20px] font-semibold mt-[2px]">Меню</p>
+
+            <RiCloseFill size={36} onClick={() => setMobileMenu(false)} />
+          </div>
+
+          {me ? (
+            <ul className="flex flex-col gap-3 text-[18px] mt-4">
+              <li onClick={() => router.push(ROUTES.ACCOUNT.SEARCH)}>
+                Поиск анкет
+              </li>
+              <li onClick={() => router.push(ROUTES.ACCOUNT.PROFILE)}>
+                Профиль
+              </li>
+              <li onClick={() => router.push(ROUTES.ACCOUNT.DIALOGUES)}>
+                Диалоги
+              </li>
+              <li onClick={() => router.push(ROUTES.ACCOUNT.GUESTS)}>
+                Кто смотрел
+              </li>
+              <li onClick={() => router.push(ROUTES.ACCOUNT.SERVICES)}>
+                Услуги
+              </li>
+              <li onClick={() => router.push(ROUTES.ACCOUNT.NOTES)}>Заметки</li>
+              <li onClick={() => router.push(ROUTES.ACCOUNT.MAILINGS)}>
+                Рассылки
+              </li>
+
+              <li className="mt-6" onClick={logout}>
+                Выйти
+              </li>
+            </ul>
+          ) : (
+            <ul className="flex flex-col gap-3 text-[18px] mt-4">
+              <li onClick={onLogin}>Есть страница</li>
+              <li onClick={onRegister}>Добавить себя</li>
+            </ul>
+          )}
+        </div>
+      ) : null}
 
       <LoginModal
         isOpen={isLogin}
