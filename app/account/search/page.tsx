@@ -5,7 +5,7 @@ import { useGetUsersQuery } from "@/redux/services/userApi";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function accountSearch() {
+export default function AccountSearch() {
   const searchParams = useSearchParams();
 
   const [search, setSearch] = useState({
