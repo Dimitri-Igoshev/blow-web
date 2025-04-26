@@ -19,7 +19,7 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
   return (
     <button
       className={cn(
-        "w-full h-full border-[5px] rounded-[32px] border-white dark:border-white/25 overflow-hidden relative cursor-pointer text-white hover:scale-110 transition-all",
+        "w-full h-full border-[5px] rounded-[32px] border-white dark:border-white/25 overflow-hidden relative cursor-pointer text-white sm:hover:scale-110 transition-all",
         className
       )}
       onClick={() => router.push(`${ROUTES.ACCOUNT.SEARCH}/${item._id}`)}
