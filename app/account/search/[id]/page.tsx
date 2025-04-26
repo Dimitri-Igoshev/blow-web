@@ -12,7 +12,7 @@ import { Button } from "@heroui/button";
 import { PiWaveform } from "react-icons/pi";
 
 interface ProfileViewProps {
-  params: { id: string };
+  params: any;
 }
 
 const ProfileView: FC<ProfileViewProps> = ({ params }) => {
