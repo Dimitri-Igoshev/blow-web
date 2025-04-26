@@ -9,9 +9,9 @@ import {
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import { Image } from "@heroui/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Avatar, useDisclosure } from "@heroui/react";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 
 import { RegisterModal } from "./register-modal";
 import { LoginModal } from "./login-modal";

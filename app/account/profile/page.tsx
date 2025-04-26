@@ -47,7 +47,7 @@ const AccountProfilePage = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 px-9 h-screen pt-[94px] gap-[50px]">
+    <div className="grid grid-cols-4 px-9 pt-[94px] gap-[50px]">
       <div className="col-span-1 flex flex-col gap-[50px]">
         <div ref={ref} className="relative">
           <Image
@@ -80,7 +80,7 @@ const AccountProfilePage = () => {
             </div>
           </Link>
 
-          {me?.sex?.male ? (
+          {me?.sex === 'male' ? (
             <div className="flex gap-2.5 cursor-pointer group transition-all">
               <LuCrown className="text-primary min-w-4" size={16} />
               <p className="-mt-[3px] group-hover:text-primary">

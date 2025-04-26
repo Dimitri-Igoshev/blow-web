@@ -193,38 +193,6 @@ export default function EditProfile() {
         onSetMain={setMainImage}
       />
 
-      {/* <div className="grid grid-cols-5 gap-5 w-full">
-        {user?.photos?.map((photo: any) => (
-          <div
-            key={photo.url}
-            className="col-span-1 rounded-[27px] overflow-hidden relative group"
-          >
-            <Image
-              alt=""
-              className="z-0 relative"
-              height={"100%"}
-              radius="none"
-              src={`${config.MEDIA_URL}/${photo?.url}` || ""}
-              width={"100%"}
-            />
-
-            <div className="hidden group-hover:flex absolute top-2.5 left-2.5 w-[40px] h-[40px] rounded-full bg-white/50 dark:bg-dark/50 cursor-pointer items-center justify-center hover:bg-primary hover:text-white hover:dark:bg-primary hover:dark:text-white transition-all">
-              <TiStarFullOutline size={24} />
-            </div>
-
-            <div className="hidden group-hover:flex absolute top-2.5 right-2.5 w-[40px] h-[40px] rounded-full bg-white/50 dark:bg-dark/50 cursor-pointer items-center justify-center hover:bg-primary hover:text-white hover:dark:bg-primary hover:dark:text-white transition-all">
-              <IoTrash size={20} />
-            </div>
-          </div>
-        ))}
-        <button className="col-span-1 bg-white min-h-[300px] dark:bg-foreground-100 rounded-[27px] flex justify-center items-center group z-0 relative">
-          <div className="flex flex-col items-center gap-3 group-hover:text-primary transition-all">
-            <BsFillCameraFill size={36} />
-            <p className="font-semibold">Добавить фото</p>
-          </div>
-        </button>
-      </div> */}
-
       <h2 className="font-semibold text-[24px] mt-5">Цели знакомства</h2>
 
       <div className="flex flex-wrap gap-[50px] w-full">

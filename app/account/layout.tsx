@@ -1,6 +1,6 @@
 "use client";
 
-import { Tab, Tabs } from "@heroui/react";
+import { cn, Tab, Tabs } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Image } from "@heroui/image";
@@ -8,6 +8,7 @@ import { Image } from "@heroui/image";
 import { ROUTES } from "../routes";
 
 import Protected from "@/components/Protected";
+import { SearchWidget } from "@/components/search-widget";
 
 export default function PanelLayout({
   children,
@@ -16,6 +17,8 @@ export default function PanelLayout({
 }>) {
   const pathname = usePathname();
   const [tab, setTab] = useState("profile");
+
+  const isSearch = pathname === ROUTES.ACCOUNT.SEARCH;
 
   useEffect(() => {
     switch (pathname) {
@@ -57,45 +60,63 @@ export default function PanelLayout({
       <div className="relative">
         <img
           alt=""
-          className="rounded-b-[50px] flex flex-col fixed z-10 w-full h-[210px] object-cover"
-          src="/bg-min.png"
+          className={cn(
+            "rounded-b-[50px] flex flex-col fixed z-10 w-full object-cover",
+            {
+              "h-[350px]": isSearch,
+              "h-[210px]": !isSearch,
+            }
+          )}
+          src={isSearch ? "/bg.png" : "/bg-min.png"}
         />
 
         <div className="fixed z-10 px-9 mt-[128px] w-full">
-          <Tabs
-            fullWidth
-            aria-label="Tabs"
-            classNames={{
-              tabContent: "text-white",
-            }}
-            radius="full"
-            selectedKey={tab}
-            variant="bordered"
-          >
-            <Tab
-              key="search"
-              href={ROUTES.ACCOUNT.SEARCH}
-              title="Поиск анкет"
-            />
-            <Tab
-              key="guests"
-              href={ROUTES.ACCOUNT.GUESTS}
-              title="Кто смотрел"
-            />
-            <Tab
-              key="mailings"
-              href={ROUTES.ACCOUNT.MAILINGS}
-              title="Рассылки"
-            />
-            <Tab key="profile" href={ROUTES.ACCOUNT.PROFILE} title="Профиль" />
-            <Tab key="services" href={ROUTES.ACCOUNT.SERVICES} title="Услуги" />
-            <Tab key="notes" href={ROUTES.ACCOUNT.NOTES} title="Заметки" />
-            <Tab
-              key="dialogues"
-              href={ROUTES.ACCOUNT.DIALOGUES}
-              title="Диалоги"
-            />
-          </Tabs>
+          <div className="mb-[40px]">
+            <Tabs
+              fullWidth
+              aria-label="Tabs"
+              classNames={{
+                tabContent: "text-white",
+              }}
+              radius="full"
+              selectedKey={tab}
+              variant="bordered"
+            >
+              <Tab
+                key="search"
+                href={ROUTES.ACCOUNT.SEARCH}
+                title="Поиск анкет"
+              />
+              <Tab
+                key="guests"
+                href={ROUTES.ACCOUNT.GUESTS}
+                title="Кто смотрел"
+              />
+              <Tab
+                key="mailings"
+                href={ROUTES.ACCOUNT.MAILINGS}
+                title="Рассылки"
+              />
+              <Tab
+                key="profile"
+                href={ROUTES.ACCOUNT.PROFILE}
+                title="Профиль"
+              />
+              <Tab
+                key="services"
+                href={ROUTES.ACCOUNT.SERVICES}
+                title="Услуги"
+              />
+              <Tab key="notes" href={ROUTES.ACCOUNT.NOTES} title="Заметки" />
+              <Tab
+                key="dialogues"
+                href={ROUTES.ACCOUNT.DIALOGUES}
+                title="Диалоги"
+              />
+            </Tabs>
+          </div>
+
+          {isSearch ? <SearchWidget horizontal /> : null}
         </div>
 
         <div className="pt-[160px] min-h-screen pb-[50px]">{children}</div>

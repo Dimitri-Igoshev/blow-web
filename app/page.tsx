@@ -11,6 +11,7 @@ import { PreviewWidget } from "@/components/preview-widget";
 import { SearchWidget } from "@/components/search-widget";
 import { cities } from "@/data/cities";
 import { useGetUsersQuery } from "@/redux/services/userApi";
+import { useSearchParams } from "next/navigation";
 
 const soderjanki = [
   {
@@ -282,7 +283,8 @@ export default function Home() {
   const cities5 = cities.slice(24, 30);
   const cities6 = cities.slice(30, 34);
 
-  const { data: users } = useGetUsersQuery(null);
+  const { data: mens } = useGetUsersQuery({ sex: "male" });
+  const { data: womans } = useGetUsersQuery({ sex: "female" });
 
   return (
     <>
@@ -295,7 +297,7 @@ export default function Home() {
         <div className="w-full absolute top-[130px]">
           <div className="flex items-center gap-[5%] px-[40px] relative z-10">
             <Suspense>
-              <SearchWidget className="" />
+              <SearchWidget className=""/>
             </Suspense>
             <div className="flex flex-col w-[750px] gap-8">
               <h1 className="text-[48px] font-semibold text-white leading-[56px]">
@@ -316,7 +318,7 @@ export default function Home() {
             </h2>
 
             <div className="w-full grid grid-cols-4 mt-[30px] gap-[50px] z-20 relative px-[40px]">
-              {soderjanki.map((item, idx) => (
+              {womans?.map((item: any, idx: number) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
@@ -343,7 +345,7 @@ export default function Home() {
             </h2>
 
             <div className="w-full grid grid-cols-4 mt-[30px] gap-[50px] z-20 relative px-[40px]">
-              {sponsors.map((item, idx) => (
+              {mens?.map((item: any, idx: number) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
