@@ -61,17 +61,29 @@ export default function PanelLayout({
         <img
           alt=""
           className={cn(
-            "rounded-b-[50px] flex flex-col fixed z-10 w-full object-cover",
+            "hidden sm:flex rounded-b-[50px] flex-col fixed z-10 w-full object-cover",
             {
               "h-[350px]": isSearch,
               "h-[210px]": !isSearch,
-            },
+            }
           )}
           src={isSearch ? "/bg.png" : "/bg-min.png"}
         />
 
-        <div className="fixed z-10 px-9 mt-[128px] w-full">
-          <div className="mb-[40px]">
+        <img
+          alt=""
+          className={cn(
+            "flex sm:hidden rounded-b-[50px] flex-col absolute z-10 w-full object-cover",
+            {
+              "min-h-[434px]": isSearch,
+              "h-[210px]": !isSearch,
+            }
+          )}
+          src={isSearch ? "/bg-m.png" : "/bg-min.png"}
+        />
+
+        <div className="absolute sm:fixed z-10 sm:px-9 top-[96px] sm:mt-[128px] w-full">
+          <div className="sm:mb-[40px]">
             <Tabs
               fullWidth
               aria-label="Tabs"
@@ -81,6 +93,7 @@ export default function PanelLayout({
               radius="full"
               selectedKey={tab}
               variant="bordered"
+              className="hidden sm:flex"
             >
               <Tab
                 key="search"
@@ -88,19 +101,19 @@ export default function PanelLayout({
                 title="Поиск анкет"
               />
               <Tab
-                key="guests"
-                href={ROUTES.ACCOUNT.GUESTS}
-                title="Кто смотрел"
-              />
-              <Tab
-                key="mailings"
-                href={ROUTES.ACCOUNT.MAILINGS}
-                title="Рассылки"
-              />
-              <Tab
                 key="profile"
                 href={ROUTES.ACCOUNT.PROFILE}
                 title="Профиль"
+              />
+              <Tab
+                key="dialogues"
+                href={ROUTES.ACCOUNT.DIALOGUES}
+                title="Диалоги"
+              />
+              <Tab
+                key="guests"
+                href={ROUTES.ACCOUNT.GUESTS}
+                title="Кто смотрел"
               />
               <Tab
                 key="services"
@@ -109,45 +122,63 @@ export default function PanelLayout({
               />
               <Tab key="notes" href={ROUTES.ACCOUNT.NOTES} title="Заметки" />
               <Tab
-                key="dialogues"
-                href={ROUTES.ACCOUNT.DIALOGUES}
-                title="Диалоги"
+                key="mailings"
+                href={ROUTES.ACCOUNT.MAILINGS}
+                title="Рассылки"
               />
             </Tabs>
           </div>
 
           {isSearch ? <SearchWidget horizontal /> : null}
+
+          {isSearch ? (
+            <h2 className="mt-[20px] text-[26px] text-white font-semibold z-20 relative text-center">
+              Результаты поиска
+            </h2>
+          ) : null}
         </div>
 
-        <div className="pt-[160px] min-h-screen pb-[50px]">{children}</div>
+        <div className="pt-[100] sm:pt-[160px] min-h-screen pb-[50px]">
+          {children}
+        </div>
 
-        <footer className="bg-gray dark:bg-black w-full relative">
-          <div className="bg-dark rounded-t-[50px] px-12 py-[28px] grid grid-cols-3 text-white items-center">
-            <p>
-              {new Date().getFullYear()} © BLOW. Сайт для лиц старше 18-ти лет.
-            </p>
-            <div className="flex justify-center">
-              <Image
-                alt="BLOW"
-                height={40}
-                radius="none"
-                src="/logo.png"
-                width={101}
-              />
-            </div>
-            <div className="flex items-center justify-end gap-6">
-              <div className="underline cursor-pointer hover:text-primary text-nowrap">
-                Свяжись с нами
+        <footer className="bg-gray dark:bg-black w-full">
+              <div className="bg-dark rounded-t-[50px] px-3 sm:px-12 py-[28px] grid grid-cols-1 sm:grid-cols-3 text-white items-center text-xs sm:text-base">
+                <div className="sm:hidden flex justify-center">
+                  <Image
+                    alt="BLOW"
+                    height={40}
+                    radius="none"
+                    src="/logo.png"
+                    width={101}
+                  />
+                </div>
+                <p className="text-center sm:twxt-left mt-5 sm:mt-0">
+                  {new Date().getFullYear()} © BLOW. Сайт для лиц старше 18-ти
+                  лет.
+                </p>
+                <div className="hidden sm:flex justify-center">
+                  <Image
+                    alt="BLOW"
+                    height={40}
+                    radius="none"
+                    src="/logo.png"
+                    width={101}
+                  />
+                </div>
+                <div className="mt-4 sm:mt-0 flex items-center justify-center sm:justify-end gap-6">
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Свяжись с нами
+                  </div>
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Правила
+                  </div>
+                  <div className="underline cursor-pointer hover:text-primary text-nowrap">
+                    Договор оферта
+                  </div>
+                </div>
               </div>
-              <div className="underline cursor-pointer hover:text-primary text-nowrap">
-                Правила
-              </div>
-              <div className="underline cursor-pointer hover:text-primary text-nowrap">
-                Договор оферта
-              </div>
-            </div>
-          </div>
-        </footer>
+            </footer>
       </div>
     </Protected>
   );

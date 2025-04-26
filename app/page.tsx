@@ -57,7 +57,7 @@ export default function Home() {
           </div>
 
           <div className="pt-[4%] sm:mt-[60px]  bg-gray dark:bg-black">
-            <h2 className="text-[30px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
+            <h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
               Содержанки
             </h2>
 
@@ -84,7 +84,7 @@ export default function Home() {
           </div>
 
           <div className="pt-[40px] sm:pt-[100px] bg-gray dark:bg-black">
-            <h2 className="text-[30px] sm:text-[36px] text-black dark:text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
+            <h2 className="text-[26px] sm:text-[36px] text-black dark:text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
               Наши мужчины
             </h2>
 
