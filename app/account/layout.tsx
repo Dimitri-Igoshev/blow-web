@@ -64,7 +64,7 @@ export default function PanelLayout({
             "hidden sm:flex rounded-b-[50px] flex-col fixed z-10 w-full object-cover",
             {
               "h-[350px]": isSearch,
-              "h-[210px]": !isSearch,
+              "sm:h-[210px]": !isSearch,
             },
           )}
           src={isSearch ? "/bg.png" : "/bg-min.png"}
@@ -76,7 +76,7 @@ export default function PanelLayout({
             "flex sm:hidden rounded-b-[50px] flex-col absolute z-10 w-full object-cover",
             {
               "min-h-[434px]": isSearch,
-              "h-[210px]": !isSearch,
+              "hidden": !isSearch,
             },
           )}
           src={isSearch ? "/bg-m.png" : "/bg-min.png"}
@@ -85,7 +85,6 @@ export default function PanelLayout({
         <div
           className={cn(
             "absolute sm:fixed z-10 sm:px-9 top-[96px] sm:mt-[30px] w-full",
-            {'px-9': isSearch}
           )}
         >
           <div className="sm:mb-[40px]">

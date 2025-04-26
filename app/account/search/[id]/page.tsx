@@ -24,7 +24,7 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
   const [currentImage, setCurrentImage] = useState(user?.photos[0]?.url);
 
   return (
-    <div className="flex w-full flex-col px-9 pt-[86px] gap-[30px]">
+    <div className="flex w-full flex-col px-3 sm:px-9 pt-[30px] sm:pt-[86px] gap-[30px]">
       {user ? (
         <>
           <div className="flex w-full items-center justify-between">
@@ -37,7 +37,7 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
           </div>
 
           <div className="w-full grid grid-cols-12 gap-9">
-            <div className="col-span-6 flex flex-col">
+            <div className="col-span-12 sm:col-span-6 flex flex-col">
               <div className="overflow-hidden relative rounded-[36px]">
                 <Image
                   alt=""
@@ -55,7 +55,7 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
                 />
               </div>
 
-              <div className="grid grid-cols-4 gap-4 w-full mt-4">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 w-full mt-4">
                 {user?.photos.map((item: any, idx: number) => (
                   <button
                     key={item.url}
@@ -81,7 +81,7 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
               </div>
             </div>
 
-            <div className="col-span-6 bg-white dark:bg-foreground-100 rounded-[36px] p-[36px] flex flex-col justify-between">
+            <div className="col-span-12 sm:col-span-6 bg-white dark:bg-foreground-100 rounded-[36px] p-[36px] flex flex-col justify-between">
               <div className="flex flex-col gap-6">
                 <div className="flex justify-between items-start">
                   <div className="flex flex-col -mt-3">
