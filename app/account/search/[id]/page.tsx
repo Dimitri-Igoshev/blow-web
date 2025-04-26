@@ -24,7 +24,7 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
   const [currentImage, setCurrentImage] = useState(user?.photos[0]?.url);
 
   return (
-    <div className="flex w-full flex-col px-3 sm:px-9 pt-[30px] sm:pt-[86px] gap-[30px]">
+    <div className="flex w-full flex-col px-3 sm:px-9 pt-[86px] gap-[30px]">
       {user ? (
         <>
           <div className="flex w-full items-center justify-between">
@@ -156,7 +156,7 @@ const ProfileView: FC<ProfileViewProps> = ({ params }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-flow-cols-1 sm:grid-cols-2 gap-6 mt-6">
                 <Button
                   className="z-0 relative"
                   color="secondary"
