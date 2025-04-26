@@ -28,7 +28,7 @@ export default function AccountSearch() {
   const { data: users } = useGetUsersQuery(search);
 
   return (
-    <div className="flex w-full flex-col px-3 sm:px-9 pt-[340px] sm:pt-[220px] gap-[30px]">
+    <div className="flex w-full flex-col px-3 sm:px-9 pt-[400px] sm:pt-[220px] gap-[30px]">
       {users ? (
         <>
           <div className="hidden sm:flex w-full items-center justify-between">
