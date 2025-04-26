@@ -65,7 +65,7 @@ export default function PanelLayout({
             {
               "h-[350px]": isSearch,
               "h-[210px]": !isSearch,
-            }
+            },
           )}
           src={isSearch ? "/bg.png" : "/bg-min.png"}
         />
@@ -77,12 +77,17 @@ export default function PanelLayout({
             {
               "min-h-[434px]": isSearch,
               "h-[210px]": !isSearch,
-            }
+            },
           )}
           src={isSearch ? "/bg-m.png" : "/bg-min.png"}
         />
 
-        <div className="absolute sm:fixed z-10 sm:px-9 top-[96px] sm:mt-[128px] w-full">
+        <div
+          className={cn(
+            "absolute sm:fixed z-10 sm:px-9 top-[96px] sm:mt-[30px] w-full",
+            {'px-9': isSearch}
+          )}
+        >
           <div className="sm:mb-[40px]">
             <Tabs
               fullWidth
@@ -132,7 +137,7 @@ export default function PanelLayout({
           {isSearch ? <SearchWidget horizontal /> : null}
 
           {isSearch ? (
-            <h2 className="mt-[20px] text-[26px] text-white font-semibold z-20 relative text-center">
+            <h2 className="block sm:hidden mt-[20px] text-[26px] text-white font-semibold z-20 relative text-center">
               Результаты поиска
             </h2>
           ) : null}

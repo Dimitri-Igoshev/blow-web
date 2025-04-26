@@ -28,10 +28,10 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
           className
         )}
       >
-        <div className="overflow-hidden relative rounded-[20px]  min-w-[230px]">
+        <div className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px]">
           <Image
             alt=""
-            className="z-0 relative w-full h-full sm:w-[345px] sm:h-[230px] "
+            className="z-0 relative w-full h-full sm:h-[345px] sm:w-[230px] "
             radius="none"
             src={
               item?.photos[0]?.url

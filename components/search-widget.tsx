@@ -102,10 +102,10 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
   return (
     <div
       className={cn(
-        "p-[20px] sm:p-[30px] gap-4 sm:gap-5 bg-primary/50 mx-2.5 sm:mx-0",
+        "p-[20px] sm:p-[30px] gap-4 sm:gap-5 bg-primary/50 mx-2.5 sm:mx-0 rounded-[32px]",
         {
-          "flex flex-col sm:grid sm:grid-cols-4 sm:w-full rounded-[32px] ": horizontal,
-          "flex flex-col rounded-[32px] sm:w-[400px] ": !horizontal,
+          "flex flex-col sm:grid sm:grid-cols-4 sm:w-full": horizontal,
+          "flex flex-col sm:w-[400px]": !horizontal,
         },
         className,
       )}
