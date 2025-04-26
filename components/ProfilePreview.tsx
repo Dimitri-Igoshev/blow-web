@@ -5,6 +5,8 @@ import { config } from "@/common/env";
 import { getCityString } from "@/helper/getCityString";
 import { Button } from "@heroui/button";
 import { PiWaveform } from "react-icons/pi";
+import { ROUTES } from "@/app/routes";
+import { useRouter } from "next/navigation";
 
 interface ProfilePreviewProps {
   item: any;
@@ -15,6 +17,8 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
   item,
   className = "",
 }) => {
+  const router = useRouter();
+  
   return (
     <>
       <div
@@ -33,8 +37,8 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
               item?.photos[0]?.url
                 ? `${config.MEDIA_URL}/${item.photos[0].url}`
                 : item?.sex === "male"
-                  ? "/men.jpg"
-                  : "/woman.jpg"
+                  ? "/men2.png"
+                  : "/woman2.png"
             }
             width={"230px"}
           />
@@ -97,6 +101,7 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
               color="secondary"
               radius="full"
               variant="solid"
+              onPress={() => router.push(ROUTES.ACCOUNT.SEARCH + '/' + item?._id)}
             >
               Профиль
             </Button>

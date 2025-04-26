@@ -1,8 +1,12 @@
+'use client'
+
 import { cn } from "@heroui/theme";
 import { FC } from "react";
 import { Image } from "@heroui/image";
 import { config } from "@/common/env";
 import { getCityString } from "@/helper/getCityString";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/app/routes";
 
 interface PreviewWidgetProps {
   item: any;
@@ -10,12 +14,15 @@ interface PreviewWidgetProps {
 }
 
 export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
+  const router = useRouter();
+  
   return (
-    <div
+    <button
       className={cn(
         "w-full h-full border-[5px] rounded-[32px] border-white dark:border-white/25 overflow-hidden relative cursor-pointer text-white hover:scale-110 transition-all",
         className
       )}
+      onClick={() => router.push(`${ROUTES.ACCOUNT.SEARCH}/${item._id}`)}
     >
       <Image
         alt=""
@@ -45,6 +52,6 @@ export const PreviewWidget: FC<PreviewWidgetProps> = ({ item, className }) => {
           </p>
         </div>
       </div>
-    </div>
+    </button>
   );
 };

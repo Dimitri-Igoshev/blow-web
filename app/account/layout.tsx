@@ -51,7 +51,7 @@ export default function PanelLayout({
 
         return;
       default:
-        return;
+        setTab("search");
     }
   }, [pathname]);
 
