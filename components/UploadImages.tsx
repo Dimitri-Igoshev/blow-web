@@ -101,7 +101,7 @@ const UploadImages: FC<UploadImagesProps> = ({
   }, [data]);
 
   return (
-    <div className="grid grid-cols-5 gap-5 w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-5 gap-5 w-full">
       {images.map(({ file, url, main }: IPhoto, idx: number) => (
         <div
           key={url}

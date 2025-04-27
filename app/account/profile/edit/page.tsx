@@ -107,9 +107,10 @@ export default function EditProfile() {
   };
 
   return (
-    <div className="flex w-full flex-col px-9 pt-[84px] gap-[30px]">
-      <div className="flex w-full items-center justify-between">
-        <h1 className="font-semibold text-[36px]">Редактирование профиля</h1>
+    <div className="flex w-full flex-col px-3 sm:px-9 pt-[84px] gap-[30px]">
+      <div className="flex w-full items-center justify-between flex-col sm:flex-row gap-9 sm:gap-3">
+        <h1 className="hidden sm:block font-semibold text-[36px]">Редактирование профиля</h1>
+        <h1 className="block sm:hidden font-semibold text-[24px]">Редактирование</h1>
 
         <Button
           className="z-0 relative"
@@ -122,7 +123,7 @@ export default function EditProfile() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-5 gap-5 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-5 gap-5 w-full mt-3 sm:mt-0">
         <Input
           className="z-0 relative"
           classNames={{ input: "font-semibold" }}
