@@ -15,6 +15,7 @@ import { cities } from "@/data/cities";
 import { ages } from "@/data/ages";
 import { useGetMeQuery } from "@/redux/services/userApi";
 import { ROUTES } from "@/app/routes";
+import { ErrorModal } from "./ErrorModal"
 
 interface SearchWidgetProps {
   horizontal?: boolean;
@@ -88,6 +89,21 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
   };
 
   const registration = () => {};
+
+  const {
+      isOpen: isError,
+      onOpen: onError,
+      onOpenChange: onErrorChange,
+    } = useDisclosure();
+  
+    const [error, setError] = useState("");
+  
+    const handleError = (error: string) => {
+      console.log("error", error);
+      setError(error);
+      onError();
+    };
+  
 
   const search = () => {
     if (!me) {
@@ -211,6 +227,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
         isOpen={isLogin}
         onOpenChange={onLoginChange}
         onRegister={onRegister}
+        showError={(error: string) => handleError(error)}
       />
       <RegisterModal
         isOpen={isRegister}
@@ -225,6 +242,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
         onOpenChange={onEmailChange}
         onRegister={registration}
       />
+      <ErrorModal error={error} isOpen={isError} onOpenChange={onErrorChange} />
     </div>
   );
 };
