@@ -119,7 +119,7 @@ const AccountProfilePage = () => {
 			<div className="mt-9 sm:mt-0 sm:col-span-3 flex flex-col">
 				<div className="bg-white dark:bg-foreground-100 p-9 rounded-[32px] flex flex-col gap-5">
 					<div className="flex  flex-wrap items-center justify-between w-full">
-						<div className="flex sm:hidden  items-center gap-2">
+						<div className="flex sm:hidden  items-center gap-2 w-full sm:w-auto">
 							<div className="w-2.5 h-2.5 rounded-full bg-green-400" />
 							<p>сейчас онлайн</p>
 						</div>
