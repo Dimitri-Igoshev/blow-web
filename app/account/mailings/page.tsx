@@ -6,6 +6,8 @@ export default function accountMailings() {
       <div className="flex w-full items-center justify-between">
         <h1 className="font-semibold text-[36px]">Рассылки</h1>
       </div>
+
+      <p>Еще нет рассылок...</p>
     </div>
   );
 }

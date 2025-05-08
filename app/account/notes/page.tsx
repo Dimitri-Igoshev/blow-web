@@ -6,6 +6,8 @@ export default function accountNotes() {
       <div className="flex w-full items-center justify-between">
         <h1 className="font-semibold text-[36px]">Заметки</h1>
       </div>
+
+      <p>Еще нет заметок...</p>
     </div>
   );
 }
