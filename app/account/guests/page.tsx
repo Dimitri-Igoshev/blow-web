@@ -7,7 +7,7 @@ export default function AccountGuests() {
 	const { data: guests } = useGetUsersQuery({});
 
 	return (
-		<div className="flex w-full flex-col px-3 md:px-9 pt-0 md:pt-[84px] gap-[30px] mb-[50px] min-h-screen h-full">
+		<div className="flex w-full flex-col px-3 md:px-9 pt-[84px] gap-[30px] mb-[50px] min-h-screen h-full">
 			<div className="flex w-full items-center justify-between">
 				<h1 className="w-full font-semibold text-[36px] text-center sm:text-left">Кто смотрел</h1>
 			</div>
