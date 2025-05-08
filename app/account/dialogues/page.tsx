@@ -24,7 +24,7 @@ export default function AccountDialogues() {
 				)}
 			</div>
 
-			<div className="grid grid-cols-1 md:grid-cols-5 h-[100%]">
+			<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 h-[100%]">
 				<div
 					className={cn("col-span-1 flex-col gap-1 w-full", {
 						"hidden md:flex": isDialog,
@@ -121,7 +121,7 @@ export default function AccountDialogues() {
 
 				<div
 					className={cn(
-						"col-span-1 md:col-span-4 border-[7px] p-3 border-white dark:border-foreground-100 w-full h-[70%] rounded-[36px] relative overflow-y-scroll hide-scroll text-[14px]",
+						"col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 border-[7px] p-3 border-white dark:border-foreground-100 w-full h-[70%] rounded-[36px] relative overflow-y-scroll hide-scroll text-[14px]",
 						{
 							"hidden md:flex": !isDialog,
 						}
