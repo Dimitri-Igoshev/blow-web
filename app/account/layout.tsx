@@ -142,7 +142,7 @@ export default function PanelLayout({
           ) : null}
         </div>
 
-        <div className="pt-[100] sm:pt-[160px] min-h-screen h-auto pb-[50px]">
+        <div className="pt-[100] sm:pt-[160px] pb-[50px]">
           {children}
         </div>
 

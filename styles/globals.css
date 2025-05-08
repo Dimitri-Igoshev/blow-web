@@ -42,3 +42,14 @@ select:-webkit-autofill:focus {
     clip-path: inset(0 -3px 0 0)
   }
 }
+
+/* Скрываем scrollbar для Chrome, Safari и Opera */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+ 
+/* Скрываем scrollbar для IE, Edge и Firefox */
+.hide-scroll {
+  -ms-overflow-style: none;  /* IE и Edge */
+  scrollbar-width: none;  /* Firefox */
+}
