@@ -73,7 +73,7 @@ export default function PanelLayout({
         <img
           alt=""
           className={cn(
-            "flex sm:hidden rounded-b-[50px] flex-col absolute z-10 w-full object-cover",
+            "flex sm:hidden rounded-b-[50px] flex-col absolute z-20 w-full object-cover z-10",
             {
               "min-h-[434px]": isSearch,
               "hidden": !isSearch,
@@ -142,7 +142,7 @@ export default function PanelLayout({
           ) : null}
         </div>
 
-        <div className="pt-[100] sm:pt-[160px] min-h-screen pb-[50px]">
+        <div className="pt-[100] sm:pt-[160px] min-h-screen h-auto pb-[50px]">
           {children}
         </div>
 

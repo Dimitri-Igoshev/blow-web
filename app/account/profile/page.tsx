@@ -47,7 +47,7 @@ const AccountProfilePage = () => {
 	}, []);
 
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-4 px-3 sm:px-9 pt-[94px] sm:gap-[50px]">
+		<div className="grid grid-cols-1 sm:grid-cols-4 px-3 sm:px-9 pt-0 md:pt-[94px] sm:gap-[50px]">
 			<div className="sm:col-span-1 flex flex-col gap-[50px] w-full">
 				<div ref={ref} className="relative">
 					<Image

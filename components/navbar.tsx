@@ -89,12 +89,12 @@ export const Navbar = () => {
 	return (
 		<>
 			<HeroUINavbar
-				className="p-0 sm:p-3 fixed bg-transparent"
+				className="p-0 md:p-3 fixed bg-transparent"
 				isBlurred={true}
 				maxWidth="full"
 				position="sticky"
 			>
-				<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+				<NavbarContent className="basis-1/5 md:basis-full" justify="start">
 					<NavbarBrand as="li" className="gap-3 max-w-fit">
 						<NextLink
 							className="flex justify-start items-center gap-1"
@@ -102,7 +102,7 @@ export const Navbar = () => {
 						>
 							<Image
 								alt="BLOW"
-								className="w-[102px] sm:w-[127px] h-[40px] sm:h-[50px]"
+								className="w-[102px] md:w-[127px] h-[40px] md:h-[50px]"
 								radius="none"
 								src="/logo.png"
 								onClick={() => router.push(ROUTES.HOME)}
@@ -112,7 +112,7 @@ export const Navbar = () => {
 				</NavbarContent>
 
 				<NavbarContent
-					className="hidden sm:flex basis-1/5 sm:basis-full"
+					className="hidden md:flex basis-1/5 md:basis-full"
 					justify="end"
 				>
 					<SearchIcon
@@ -183,7 +183,7 @@ export const Navbar = () => {
 					)}
 				</NavbarContent>
 
-				<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+				<NavbarContent className="md:hidden basis-1 pl-4" justify="end">
 					<button onClick={() => setMobileMenu(true)}>
 						<RiMenu4Fill color="white" size={32} />
 					</button>
