@@ -17,6 +17,7 @@ import { useGetMeQuery } from "@/redux/services/userApi";
 import { ROUTES } from "@/app/routes";
 import { ErrorModal } from "./ErrorModal";
 import { IoSearch } from "react-icons/io5";
+import {Switch} from "@heroui/react";
 
 interface SearchWidgetProps {
 	horizontal?: boolean;
@@ -43,6 +44,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
 		!!searchParams?.get("maxage") ? searchParams.get("maxage") : ""
 	);
 	const [city, setCity] = useState(!!searchParams?.get("city") || "");
+  const [isOnline, setIsOnline] = useState(true);
 
 	useEffect(() => {
 		if (!searchParams.get("city")) return;
@@ -213,9 +215,13 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
 					))}
 				</Select>
 			</div>
-
+      
+      <div className="flex gap-6 items-center w-full justify-between">
+      <Switch color="success" classNames={{
+        label: "text-white",
+      }} isSelected={isOnline} onValueChange={setIsOnline}>Онлайн</Switch>
 			<Button
-				className={cn("font-semibold text-white dark:bg-black bg-dark", {
+				className={cn("font-semibold text-white dark:bg-black bg-dark w-full", {
 					"mt-2": !horizontal,
 					"xl:hidden 2xl:flex": horizontal,
 				})}
@@ -236,6 +242,7 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
 			>
 				<IoSearch className="text-[20px]" />
 			</Button>
+      </div>
 
 			<LoginModal
 				isOpen={isLogin}

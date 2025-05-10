@@ -28,7 +28,7 @@ export default function Home() {
       <div className="relative">
         <img
           alt=""
-          className="hidden sm:flex rounded-b-[50px] flex-col relative z-10"
+          className="hidden sm:flex rounded-b-[50px] flex-col relative z-10 min-h-[700px] object-cover"
           src="/bg.png"
         />
         <Image
@@ -39,15 +39,15 @@ export default function Home() {
         />
 
         <div className="w-full absolute top-[100px] sm:top-[130px]">
-          <div className="flex justify-center sm:justify-start items-center gap-[5%] sm:px-[40px] relative z-10">
+          <div className="flex justify-center md:justify-start items-center gap-[5%] md:px-[40px] relative z-10">
             <Suspense>
-              <SearchWidget className="" />
+              <SearchWidget />
             </Suspense>
-            <div className="hidden sm:flex flex-col w-[750px] gap-8">
-              <h1 className="text-[48px] font-semibold text-white leading-[56px]">
+            <div className="hidden md:flex flex-col md:w-[750px] gap-8">
+              <h1 className="text-[26px] lg:text-[36px] font-semibold text-white lg:leading-[56px]">
                 Поиск лучших содержанок и самых успешных мужчин
               </h1>
-              <ul className="text-white uppercase list-disc leading-7 ml-4">
+              <ul className="hidden md:block text-white uppercase list-disc leading-7 ml-4">
                 <li>Бесплатная регистрация</li>
                 <li>Реальные анкеты</li>
                 <li>Качественные фото</li>
@@ -56,17 +56,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-[4%] sm:mt-[60px]  bg-gray dark:bg-black">
+          <div className="pt-[4%] sm:pt-[40px] bg-gray dark:bg-black">
             <h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
               Содержанки
             </h2>
 
-            <div className="w-full grid grid-cols-2 sm:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
+            <div className="w-full grid grid-cols-2 lg:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
               {womans?.map((item: any, idx: number) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
-                      "sm:mt-[50px] sm:-mb-[50px]":
+                      "lg:mt-[50px] lg:-mb-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
@@ -88,12 +88,12 @@ export default function Home() {
               Наши мужчины
             </h2>
 
-            <div className="w-full grid grid-cols-2 sm:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
+            <div className="w-full grid grid-cols-2 lg:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
               {mens?.map((item: any, idx: number) => (
                 <div key={item._id} className="flex justify-center">
                   <PreviewWidget
                     className={cn({
-                      "sm:mt-[50px] sm:-mb-[50px]":
+                      "lg:mt-[50px] lg:-mb-[50px]":
                         idx === 1 ||
                         idx === 2 ||
                         idx === 5 ||
