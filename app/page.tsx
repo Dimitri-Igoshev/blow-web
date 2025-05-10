@@ -56,7 +56,7 @@ export default function Home() {
 	}, [isSearch]);
 
 	return (
-		<>
+		<Suspense>
 			<div className="relative">
 				<img
 					alt=""
@@ -397,6 +397,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-		</>
+		</Suspense>
 	);
 }
