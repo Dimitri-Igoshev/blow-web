@@ -25,10 +25,13 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
       <div
         className={cn(
           "bg-white dark:bg-foreground-100 p-6 flex flex-col xl:flex-row gap-6 rounded-[32px] col-span-1 w-full",
-          className
+          className,
         )}
       >
-        <button className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px] cursor-pointer" onClick={() => router.push(ROUTES.ACCOUNT.SEARCH + "/" + item?._id)}>
+        <button
+          className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px] cursor-pointer"
+          onClick={() => router.push(ROUTES.ACCOUNT.SEARCH + "/" + item?._id)}
+        >
           <Image
             alt=""
             className="z-0 relative w-full h-full xl:h-[345px] xl:w-[230px] "

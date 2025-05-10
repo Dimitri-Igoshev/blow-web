@@ -109,8 +109,12 @@ export default function EditProfile() {
   return (
     <div className="flex w-full flex-col px-3 sm:px-9 pt-[84px] gap-[30px]">
       <div className="flex w-full items-center justify-between flex-col sm:flex-row gap-9 sm:gap-3">
-        <h1 className="hidden sm:block font-semibold text-[36px]">Редактирование профиля</h1>
-        <h1 className="block sm:hidden font-semibold text-[24px]">Редактирование</h1>
+        <h1 className="hidden sm:block font-semibold text-[36px]">
+          Редактирование профиля
+        </h1>
+        <h1 className="block sm:hidden font-semibold text-[24px]">
+          Редактирование
+        </h1>
 
         <Button
           className="z-0 relative"
