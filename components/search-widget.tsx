@@ -22,11 +22,13 @@ import {Switch} from "@heroui/react";
 interface SearchWidgetProps {
 	horizontal?: boolean;
 	className?: string;
+	refresh?: () => void;
 }
 
 export const SearchWidget: FC<SearchWidgetProps> = ({
 	horizontal = false,
 	className,
+	refresh = () => null
 }) => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
@@ -109,7 +111,11 @@ export const SearchWidget: FC<SearchWidgetProps> = ({
 
 	const search = () => {
 		if (!me) {
-			onLogin();
+			// window.open(`${ROUTES.HOME}?sex=${men && woman ? "" : men ? "male" : woman ? "female" : ""}&minage=${ageFrom ? ageFrom.toString() : ""}&maxage=${ageTo ? ageTo.toString() : ""}&city=${city || ""}`, "_self");
+			router.push(
+				`${ROUTES.HOME}?sex=${men && woman ? "" : men ? "male" : woman ? "female" : ""}&minage=${ageFrom ? ageFrom.toString() : ""}&maxage=${ageTo ? ageTo.toString() : ""}&city=${city || ""}`
+			);
+			refresh()
 		} else {
 			router.push(
 				`${ROUTES.ACCOUNT.SEARCH}?sex=${men && woman ? "" : men ? "male" : woman ? "female" : ""}&minage=${ageFrom ? ageFrom.toString() : ""}&maxage=${ageTo ? ageTo.toString() : ""}&city=${city || ""}`
