@@ -118,7 +118,7 @@ export default function Home() {
             </div>
           ) : null}
 
-          {isSearch && users?.length ? (
+          {/* {isSearch && users?.length ? (
             <div className="pt-[4%] sm:pt-[40px] bg-gray dark:bg-black">
               <h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
                 Результаты поиска
@@ -151,7 +151,7 @@ export default function Home() {
                 Ни одной анкеты не найдено...
               </h2>
             </div>
-          )}
+          )} */}
 
           <div className="pt-[40px] sm:pt-[100px] bg-gray dark:bg-black">
             {!isSearch && mens?.length ? (
