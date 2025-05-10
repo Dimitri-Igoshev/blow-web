@@ -28,7 +28,7 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
           className
         )}
       >
-        <div className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px]">
+        <button className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px]" onClick={() => router.push(ROUTES.ACCOUNT.SEARCH + "/" + item?._id)}>
           <Image
             alt=""
             className="z-0 relative w-full h-full xl:h-[345px] xl:w-[230px] "
@@ -41,7 +41,7 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
                   : "/woman2.png"
             }
           />
-        </div>
+        </button>
 
         <div className="flex flex-col justify-between gap-6 w-full">
           <div className="flex flex-col gap-1 mt-1">
