@@ -24,14 +24,14 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
     <>
       <div
         className={cn(
-          "bg-white dark:bg-foreground-100 p-6 flex flex-col sm:flex-row gap-6 rounded-[32px] col-span-1 w-full",
+          "bg-white dark:bg-foreground-100 p-6 flex flex-col xl:flex-row gap-6 rounded-[32px] col-span-1 w-full",
           className
         )}
       >
         <div className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px]">
           <Image
             alt=""
-            className="z-0 relative w-full h-full sm:h-[345px] sm:w-[230px] "
+            className="z-0 relative w-full h-full xl:h-[345px] xl:w-[230px] "
             radius="none"
             src={
               item?.photos[0]?.url

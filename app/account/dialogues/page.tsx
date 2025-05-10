@@ -127,7 +127,7 @@ export default function AccountDialogues() {
 						}
 					)}
 				>
-					<div className="flex flex-col gap-3">
+					<div className="flex flex-col gap-3 w-full">
 						<div className="flex flex-col gap-3 items-end">
 							<div className="flex items-center gap-2">
 								<Image
