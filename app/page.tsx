@@ -56,7 +56,7 @@ export default function Home() {
 	}, [isSearch]);
 
 	return (
-		<Suspense>
+		<>
 			<div className="relative">
 				<img
 					alt=""
@@ -72,9 +72,7 @@ export default function Home() {
 
 				<div className="w-full absolute top-[100px] sm:top-[130px]">
 					<div className="flex justify-center md:justify-start items-center gap-[5%] md:px-[40px] relative z-10">
-						<Suspense>
 							<SearchWidget refresh={() => setIsSearch(true)} />
-						</Suspense>
 						<div className="hidden md:flex flex-col md:w-[750px] gap-8">
 							<h1 className="text-[26px] lg:text-[36px] font-semibold text-white lg:leading-[56px]">
 								Поиск лучших содержанок и самых успешных мужчин
@@ -399,6 +397,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-		</Suspense>
+		</>
 	);
 }
