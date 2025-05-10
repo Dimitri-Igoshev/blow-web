@@ -28,7 +28,7 @@ export const ProfilePreview: FC<ProfilePreviewProps> = ({
           className
         )}
       >
-        <button className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px]" onClick={() => router.push(ROUTES.ACCOUNT.SEARCH + "/" + item?._id)}>
+        <button className="overflow-hidden relative rounded-[20px]  min-h-[345px] min-w-[230px] cursor-pointer" onClick={() => router.push(ROUTES.ACCOUNT.SEARCH + "/" + item?._id)}>
           <Image
             alt=""
             className="z-0 relative w-full h-full xl:h-[345px] xl:w-[230px] "
