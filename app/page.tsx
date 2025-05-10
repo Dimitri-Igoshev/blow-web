@@ -51,13 +51,12 @@ export default function Home() {
 
 	useEffect(() => {
 		if (isSearch) {
-			setIsSearch(false);
 			refetch();
 		}
 	}, [isSearch]);
 
 	return (
-		<>
+		<Suspense>
 			<div className="relative">
 				<img
 					alt=""
@@ -400,6 +399,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-		</>
+		</Suspense>
 	);
 }
