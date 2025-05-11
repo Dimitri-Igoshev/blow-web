@@ -9,6 +9,7 @@ import { ROUTES } from "../routes";
 
 import Protected from "@/components/Protected";
 import { SearchWidget } from "@/components/search-widget";
+import { useGetMeQuery } from "@/redux/services/userApi"
 
 export default function PanelLayout({
   children,
@@ -17,6 +18,7 @@ export default function PanelLayout({
 }>) {
   const pathname = usePathname();
   const [tab, setTab] = useState("profile");
+  const { data: me } = useGetMeQuery(null)
 
   const isSearch = pathname === ROUTES.ACCOUNT.SEARCH;
 
@@ -56,14 +58,15 @@ export default function PanelLayout({
   }, [pathname]);
 
   return (
-    <Protected>
+    // <Protected>
+      <>
       <div className="relative">
         <img
           alt=""
           className={cn(
             "hidden sm:flex rounded-b-[50px] flex-col fixed z-10 w-full object-cover",
             {
-              "h-[530px] xl:h-[350px]": isSearch,
+              "h-[430px] xl:h-[350px]": isSearch,
               "sm:h-[210px]": !isSearch,
             },
           )}
@@ -82,12 +85,14 @@ export default function PanelLayout({
           src={isSearch ? "/bg-m.png" : "/bg-min.png"}
         />
 
+        
         <div
           className={cn(
             "absolute sm:fixed z-10 sm:px-9 top-[96px] sm:mt-[30px] w-full",
           )}
         >
-          <div className="sm:mb-[40px]">
+          {me ? (
+            <div className="sm:mb-[40px]">
             <Tabs
               fullWidth
               aria-label="Tabs"
@@ -132,6 +137,8 @@ export default function PanelLayout({
               />
             </Tabs>
           </div>
+          ) : null}
+          
 
           {isSearch ? (
             <div className="flex w-full justify-center md:justify-start items-center gap-9">
@@ -150,7 +157,7 @@ export default function PanelLayout({
           ) : null}
         </div>
 
-        <div className="pt-[100] sm:pt-[160px] pb-[50px]">{children}</div>
+        <div className="pt-[100px] sm:pt-[160px] pb-[50px]">{children}</div>
 
         <footer className="bg-gray dark:bg-black w-full">
           <div className="bg-dark rounded-t-[50px] px-3 sm:px-12 py-[28px] grid grid-cols-1 sm:grid-cols-3 text-white items-center text-xs sm:text-base">
@@ -189,6 +196,7 @@ export default function PanelLayout({
           </div>
         </footer>
       </div>
-    </Protected>
+      </>
+    // </Protected>
   );
 }

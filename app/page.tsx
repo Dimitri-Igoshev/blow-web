@@ -56,7 +56,7 @@ export default function Home() {
 	}, [isSearch]);
 
 	return (
-		<Suspense>
+		<>
 			<div className="relative">
 				<img
 					alt=""
@@ -72,7 +72,9 @@ export default function Home() {
 
 				<div className="w-full absolute top-[100px] sm:top-[130px]">
 					<div className="flex justify-center md:justify-start items-center gap-[5%] md:px-[40px] relative z-10">
+						<Suspense>
 							<SearchWidget refresh={() => setIsSearch(true)} />
+						</Suspense>
 						<div className="hidden md:flex flex-col md:w-[750px] gap-8">
 							<h1 className="text-[26px] lg:text-[36px] font-semibold text-white lg:leading-[56px]">
 								Поиск лучших содержанок и самых успешных мужчин
@@ -115,7 +117,6 @@ export default function Home() {
 						</div>
 					) : null}
 
-					<Suspense>
 						{isSearch && users?.length ? (
 							<div className="pt-[4%] sm:pt-[40px] bg-gray dark:bg-black">
 								<h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
@@ -150,7 +151,6 @@ export default function Home() {
 								</h2>
 							</div>
 						)}
-					</Suspense>
 
 					<div className="pt-[40px] sm:pt-[100px] bg-gray dark:bg-black">
 						{!isSearch && mens?.length ? (
@@ -397,6 +397,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-		</Suspense>
+		</>
 	);
 }
