@@ -6,7 +6,7 @@ import { Suspense, useEffect, useState } from "react";
 import { ProfilePreview } from "@/components/ProfilePreview";
 import { useGetUsersQuery } from "@/redux/services/userApi";
 
-export default function AccountSearch() {
+const AccountSearch = () => {
 	const searchParams = useSearchParams();
 
 	const [search, setSearch] = useState({
@@ -47,3 +47,5 @@ export default function AccountSearch() {
 		</Suspense>
 	);
 }
+
+export default AccountSearch;
