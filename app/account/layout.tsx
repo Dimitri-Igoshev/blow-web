@@ -58,7 +58,7 @@ export default function PanelLayout({
   }, [pathname]);
 
   return (
-    // <Protected>
+    <Protected>
       <>
       <div className="relative">
         <img
@@ -197,6 +197,6 @@ export default function PanelLayout({
         </footer>
       </div>
       </>
-    // </Protected>
+    </Protected>
   );
 }

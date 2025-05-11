@@ -3,7 +3,6 @@
 import { cn } from "@heroui/theme";
 import { Image } from "@heroui/image";
 import Link from "next/link";
-import { Suspense } from "react";
 
 import { ROUTES } from "./routes";
 
@@ -11,6 +10,7 @@ import { PreviewWidget } from "@/components/preview-widget";
 import { SearchWidget } from "@/components/search-widget";
 import { cities } from "@/data/cities";
 import { useGetUsersQuery } from "@/redux/services/userApi";
+import { useSelector } from "react-redux";
 
 export default function Home() {
 	const cities1 = cities.slice(0, 6);
@@ -22,6 +22,10 @@ export default function Home() {
 
 	const { data: mens } = useGetUsersQuery({ sex: "male" });
 	const { data: womans } = useGetUsersQuery({ sex: "female" });
+
+	const state = useSelector((state: any) => state);
+	const search = state?.search?.search ? state.search.search : null;
+	const { data: users } = useGetUsersQuery(search, { skip: !search.sex && !search.city && !search.minage && !search.maxage });
 
 	return (
 		<>
@@ -40,9 +44,8 @@ export default function Home() {
 
 				<div className="w-full absolute top-[100px] sm:top-[130px]">
 					<div className="flex justify-center md:justify-start items-center gap-[5%] md:px-[40px] relative z-10">
-						<Suspense>
-							<SearchWidget />
-						</Suspense>
+						<SearchWidget />
+
 						<div className="hidden md:flex flex-col md:w-[750px] gap-8">
 							<h1 className="text-[26px] lg:text-[36px] font-semibold text-white lg:leading-[56px]">
 								Поиск лучших содержанок и самых успешных мужчин
@@ -56,7 +59,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					{womans?.length ? (
+					{!users?.length && womans?.length ? (
 						<div className="pt-[4%] sm:pt-[40px] bg-gray dark:bg-black">
 							<h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
 								Содержанки
@@ -86,7 +89,7 @@ export default function Home() {
 					) : null}
 
 					<div className="pt-[40px] sm:pt-[100px] bg-gray dark:bg-black">
-						{mens?.length ? (
+						{!users?.length && mens?.length ? (
 							<>
 								<h2 className="text-[26px] sm:text-[36px] text-black dark:text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
 									Наши мужчины
@@ -94,6 +97,35 @@ export default function Home() {
 
 								<div className="w-full grid grid-cols-2 lg:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
 									{mens?.map((item: any, idx: number) => (
+										<div key={item._id} className="flex justify-center">
+											<PreviewWidget
+												className={cn({
+													"lg:mt-[50px] lg:-mb-[50px]":
+														idx === 1 ||
+														idx === 2 ||
+														idx === 5 ||
+														idx === 6 ||
+														idx === 9 ||
+														idx === 10 ||
+														idx === 13 ||
+														idx === 14,
+												})}
+												item={item}
+											/>
+										</div>
+									))}
+								</div>
+							</>
+						) : null}
+
+						{users?.length ? (
+							<>
+								<h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
+									Результаты поиска
+								</h2>
+
+								<div className="w-full grid grid-cols-2 lg:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
+									{users?.map((item: any, idx: number) => (
 										<div key={item._id} className="flex justify-center">
 											<PreviewWidget
 												className={cn({
