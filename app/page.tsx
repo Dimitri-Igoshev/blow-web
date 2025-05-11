@@ -3,8 +3,7 @@
 import { cn } from "@heroui/theme";
 import { Image } from "@heroui/image";
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 import { ROUTES } from "./routes";
 
@@ -24,37 +23,6 @@ export default function Home() {
 	const { data: mens } = useGetUsersQuery({ sex: "male" });
 	const { data: womans } = useGetUsersQuery({ sex: "female" });
 
-	const searchParams = useSearchParams();
-	const [isSearch, setIsSearch] = useState(false);
-
-	const [search, setSearch] = useState({
-		sex: searchParams.get("sex") || "",
-		minage: parseInt(searchParams.get("minage") || ""),
-		maxage: parseInt(searchParams.get("maxage") || ""),
-		city: searchParams.get("city") || "",
-	});
-
-	useEffect(() => {
-		setSearch({
-			sex: searchParams.get("sex") || "",
-			minage: parseInt(searchParams.get("minage") || ""),
-			maxage: parseInt(searchParams.get("maxage") || ""),
-			city: searchParams.get("city") || "",
-		});
-
-		setIsSearch(
-			!!(search?.city || search?.sex || search?.minage || search?.maxage)
-		);
-	}, [searchParams]);
-
-	const { data: users, refetch } = useGetUsersQuery(search);
-
-	useEffect(() => {
-		if (isSearch) {
-			refetch();
-		}
-	}, [isSearch]);
-
 	return (
 		<>
 			<div className="relative">
@@ -73,7 +41,7 @@ export default function Home() {
 				<div className="w-full absolute top-[100px] sm:top-[130px]">
 					<div className="flex justify-center md:justify-start items-center gap-[5%] md:px-[40px] relative z-10">
 						<Suspense>
-							<SearchWidget refresh={() => setIsSearch(true)} />
+							<SearchWidget />
 						</Suspense>
 						<div className="hidden md:flex flex-col md:w-[750px] gap-8">
 							<h1 className="text-[26px] lg:text-[36px] font-semibold text-white lg:leading-[56px]">
@@ -88,7 +56,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					{!isSearch && womans?.length ? (
+					{womans?.length ? (
 						<div className="pt-[4%] sm:pt-[40px] bg-gray dark:bg-black">
 							<h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
 								Содержанки
@@ -117,43 +85,8 @@ export default function Home() {
 						</div>
 					) : null}
 
-						{isSearch && users?.length ? (
-							<div className="pt-[4%] sm:pt-[40px] bg-gray dark:bg-black">
-								<h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
-									Результаты поиска
-								</h2>
-
-								<div className="w-full grid grid-cols-2 lg:grid-cols-4 mt-[30px] gap-3 sm:gap-[50px] z-20 relative px-3 sm:px-[40px]">
-									{users?.map((item: any, idx: number) => (
-										<div key={item._id} className="flex justify-center">
-											<PreviewWidget
-												className={cn({
-													"lg:mt-[50px] lg:-mb-[50px]":
-														idx === 1 ||
-														idx === 2 ||
-														idx === 5 ||
-														idx === 6 ||
-														idx === 9 ||
-														idx === 10 ||
-														idx === 13 ||
-														idx === 14,
-												})}
-												item={item}
-											/>
-										</div>
-									))}
-								</div>
-							</div>
-						) : (
-							<div className="pt-[4%] sm:pt-[40px] bg-gray dark:bg-black -mb-[180px]">
-								<h2 className="text-[26px] sm:text-[36px] text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
-									Ни одной анкеты не найдено...
-								</h2>
-							</div>
-						)}
-
 					<div className="pt-[40px] sm:pt-[100px] bg-gray dark:bg-black">
-						{!isSearch && mens?.length ? (
+						{mens?.length ? (
 							<>
 								<h2 className="text-[26px] sm:text-[36px] text-black dark:text-white font-semibold sm:pl-[40px] z-20 relative text-center sm:text-start">
 									Наши мужчины
