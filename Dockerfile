@@ -1,22 +1,31 @@
-FROM node:lts as dependencies
-WORKDIR /blow-web
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+# Base on offical Node.js Alpine image
+FROM node:alpine
 
-FROM node:lts as builder
-WORKDIR /blow-web
-COPY . .
-COPY --from=dependencies /blow-web/node_modules ./node_modules
-RUN yarn build
+# Set working directory
+WORKDIR /usr/app
 
-FROM node:lts as runner
-WORKDIR /blow-web
-ENV NODE_ENV production
+# Install PM2 globally
+RUN npm install --global pm2
 
-COPY --from=builder /blow-web/public ./public
-COPY --from=builder /blow-web/package.json ./package.json
-COPY --from=builder /blow-web/.next ./.next
-COPY --from=builder /blow-web/node_modules ./node_modules
+# Copy package.json and package-lock.json before other files
+# Utilise Docker cache to save re-installing dependencies if unchanged
+COPY ./package*.json ./
 
+# Install dependencies
+RUN npm install --production
+
+# Copy all files
+COPY ./ ./
+
+# Build app
+RUN npm run build
+
+# Expose the listening port
 EXPOSE 3000
-CMD ["yarn", "start"]
+
+# Run container as non-root (unprivileged) user
+# The node user is provided in the Node.js Alpine base image
+USER node
+
+# Run npm start script with PM2 when container starts
+CMD [ "pm2-runtime", "npm", "--", "start" ]
