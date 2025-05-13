@@ -138,7 +138,6 @@ export default function PanelLayout({
             </Tabs>
           </div>
           ) : null}
-          
 
           {isSearch ? (
             <div className="flex w-full justify-center md:justify-start items-center gap-9">

@@ -6,10 +6,15 @@ import { Input } from "@heroui/input";
 import { cn } from "@heroui/theme";
 import { useState } from "react";
 
+import WebSocket from "@/components/WebSocket";
+import { socket, WebSocketProvider } from "@/app/WebSocketContext";
+
 export default function AccountDialogues() {
   const [isDialog, setIsDialog] = useState(false);
 
   return (
+    <WebSocketProvider value={socket}>
+      <WebSocket />
     <div className="flex w-full flex-col px-3 md:px-9 pt-[84px] gap-[30px] h-screen">
       <div className="flex w-full items-center justify-between">
         {isDialog ? (
@@ -202,5 +207,6 @@ export default function AccountDialogues() {
         </div>
       </div>
     </div>
+    </WebSocketProvider>
   );
 }
