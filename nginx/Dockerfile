@@ -1,4 +1,3 @@
-# Base on offical NGINX Alpine image
 FROM nginx:alpine
 
 # Remove any existing config files
